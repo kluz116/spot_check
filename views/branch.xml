@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     
+        <record id="view_spot_check_tree" model="ir.ui.view">
+            <field name="name">spot_check.branch.tree</field>
+            <field name="model">spot_check.branch</field>
+             <field name="arch" type="xml">
+                <tree string="All Branches">
+                    <field name="branch_code" />
+                    <field name="branch_name" />
+                </tree>
+            </field>
+        </record>
+         
+
+       <record model="ir.ui.view" id="branch_form_spot_check_view">
+            <field name="name">spot_check.branch.form</field>
+            <field name="model">spot_check.branch</field>
+            <field name="arch" type="xml">
+                <form string="Add Branch" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <field name="branch_code"/>
+                        </group>
+                        <group>
+                            <field name="branch_name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+      
+        <record model="ir.ui.view" id="branch_search_spot_check_view">
+            <field name="name">spot_check.branch.search</field>
+            <field name="model">spot_check.branch</field>
+            <field name="arch" type="xml">
+                <search>
+                      <field name="branch_code" />
+                      <field name="branch_name" />
+                      
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="branch_lists_action">
+            <field name="name">Branches</field>
+            <field name="res_model">spot_check.branch</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create new Branch</p>
+            </field>
+        </record>
+
+        <!-- top level menu: no parent -->
+        <menuitem id="main_spot_check_menu" name="Online Spot Checks"/>
+        <menuitem id="config_menu_spot_check" name="Configurations" sequence="11"  parent="main_spot_check_menu" />
+        <menuitem id="config_branches" name="Branches" parent="config_menu_spot_check" sequence="5"  action="branch_lists_action" />
+ 
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<record id="branch_view_preferences_form" model="ir.ui.view">
+    <field name="name">Inhetitance In Preference</field>
+    <field name="model">res.users</field>
+    <field name="inherit_id" ref="base.view_users_form" />
+    <field name="arch" type="xml">
+      <xpath expr="//page/group/field[@name='signature']" position="before">
+        <group string="Spot Check Settings">
+          <field string="Branch Name" name="branch_ids" readonly="0" />
+          <field string="Role" name="user_role" readonly="0" />
+          <field string="Supervisor" name="supervisor" readonly="0" />
+        </group>
+      </xpath>
+    </field>
+</record>
+</odoo>

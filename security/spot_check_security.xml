@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.module.category" id="module_spot_check">
+        <field name="name">Spot Check </field>
+        <field name="description">Spot Check </field>
+        <field name="sequence">20</field>
+    </record>
+        <record id="Credit_Supervisor" model="res.groups">
+        <field name="name">Credit Supervisor</field>
+        <field name="category_id" ref="module_spot_check"/>       
+    </record>
+    <record id="Branch_Accountant" model="res.groups">
+        <field name="name">Branch Accountant</field>
+        <field name="category_id" ref="module_spot_check"/>
+    </record>
+    <record id="Branch_Manager" model="res.groups">
+        <field name="name">Branch Manager</field>
+        <field name="category_id" ref="module_spot_check"/>       
+    </record>
+    <record id="Cash_Managment_Support" model="res.groups">
+        <field name="name">Cash Managment Support</field>
+        <field name="category_id" ref="module_spot_check"/>
+    </record>
+    <record id="Branch_Teller" model="res.groups">
+        <field name="name">Tellers</field>
+        <field name="category_id" ref="module_spot_check"/>
+    </record>
+    <!--
+    <record model="ir.rule" id="partner_view_rule_branch_accountatnt">
+        <field name="name">Branch Accountant View Rule</field>
+        <field name="model_id" ref="model_cash_managment_request"/>
+        <field name="groups" eval="[(4, ref('cash_managment.Branch_Accountant'))]" />
+        <field name="domain_force">[('|'),('user_id', '=', user.id),('branch_accountant_from','=', user.partner_id.id)]</field>    
+    </record>
+    <record model="ir.rule" id="partner_view_rule_to_branch_accountatnt">
+        <field name="name">Branch Accountant View Rule</field>
+        <field name="model_id" ref="model_cash_managment_request"/>
+        <field name="groups" eval="[(4, ref('cash_managment.Branch_Accountant'))]" />
+        <field name="domain_force">[('branch_accountant_to','=', user.partner_id.id)]</field>    
+    </record>
+
+    <record model="ir.rule" id="partner_request_mapping_view_rule_branch_accountatnt">
+        <field name="name">Branch Accountant View Rule Request Mapping</field>
+        <field name="model_id" ref="model_cash_managment_requestmapping"/>
+        <field name="groups" eval="[(4, ref('cash_managment.Branch_Accountant'))]" />
+        <field name="domain_force">[('|'),('to_confirmed_by','=', user.partner_id.id),('from_confirmed_by','=', user.partner_id.id)]</field>    
+    </record>
+
+    <record model="ir.rule" id="partner_requests_mapping_view_rule_branch_manager">
+        <field name="name">Branch Accountant View Rule Request Mapping</field>
+        <field name="model_id" ref="model_cash_managment_requestmapping"/>
+        <field name="groups" eval="[(4, ref('cash_managment.Branch_Manager'))]" />
+        <field name="domain_force">[('|'),('from_manager','=', user.partner_id.id),('to_manager','=', user.partner_id.id)]</field>    
+    </record>
+  
+  
+    <record model="ir.rule" id="partner_view_rule_Branch_Manager">
+        <field name="name">Branch Manager View Rule</field>
+        <field name="model_id" ref="model_cash_managment_request"/>
+        <field name="groups" eval="[(4, ref('cash_managment.Branch_Manager'))]" />
+        <field name="domain_force">[('|'),('branch_code_from', '=', user.branch_id.branch_code),('branch_code_to', '=', user.branch_id.branch_code)]</field>    
+    </record>
+
+    <record model="ir.rule" id="partner_view_rule_branch_accountatnt_bank_confirmations">
+        <field name="name">Branch Accountant View Rule</field>
+        <field name="model_id" ref="model_cash_managment_cash_bank_request_confirmation"/>
+        <field name="groups" eval="[(4, ref('cash_managment.Branch_Accountant'))]" />
+        <field name="domain_force">[('user_id', '=', user.id)]</field>    
+    </record>
+
+    <record model="ir.rule" id="partner_view_rule_branch_accountatnt_bank_confirmations_manager">
+        <field name="name">Branch Manager View Rule</field>
+        <field name="model_id" ref="model_cash_managment_cash_bank_request_confirmation"/>
+        <field name="groups" eval="[(4, ref('cash_managment.Branch_Manager'))]" />
+        <field name="domain_force">[('to_branch', '=', user.branch_id.branch_code)]</field>    
+    </record>-->
+     <!-- 
+  
+    <record model="ir.rule" id="partner_view_rule_Branch_Manager">
+        <field name="name">Branch Manager View Rule</field>
+        <field name="model_id" ref="model_cash_managment_request"/>
+        <field name="groups" eval="[(4, ref('cash_managment.Branch_Manager'))]" />
+        <field name="domain_force">[('|'),('branch_code_from', '=', user.branch_id.branch_code),('branch_code_to', '=', user.branch_id.branch_code)]</field>    
+    </record>
+
+    <record model="ir.rule" id="partner_branch_manager_to_confirm">
+        <field name="name">Branch Manager To Confirm</field>
+        <field name="model_id" ref="model_cash_managment_confirm_cash_to"/>
+        <field name="groups" eval="[(4, ref('cash_managment.Branch_Manager'))]" />
+        <field name="domain_force">[('to_branch', '=', user.branch_code)]</field>    
+    </record>
+    <record model="ir.rule" id="partner_branch_manager_from_confirm">
+        <field name="name">Branch Manager From Confirm</field>
+        <field name="model_id" ref="model_cash_managment_request_confirmation"/>
+        <field name="groups" eval="[(4, ref('cash_managment.Branch_Manager'))]" />
+        <field name="domain_force">[('|'),('from_branch', '=', user.branch_code),('to_branch', '=', user.branch_code)]</field> 
+    </record>-->
+
+    <!--
+    <record id="partner_view_rule_cash_managment_to" model="ir.rule">
+        <field name="model_id" ref="model_cash_managment_confirm_cash_to" />
+        <field name="name">Cash Managment Support</field>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4,ref('cash_managment.Cash_Managment_Support'))]"/>
+    </record>-->
+</odoo>

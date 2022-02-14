@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="spot_check_vault_tree" model="ir.ui.view">
+            <field name="name">spot_check_vault.tree</field>
+            <field name="model">spot_check.vault</field>
+             <field name="arch" type="xml">
+                <tree string="All Vault Spot Checks" default_order='created_on desc'>
+
+                    <field name="deno_fifty_thounsand"/>
+                    <field name="deno_twenty_thounsand"/>
+                    <field name="deno_ten_thounsand"/>
+                    <field name="deno_five_thounsand"/>
+                    <field name="deno_two_thounsand"/>
+                    <field name="deno_one_thounsand"/>
+                </tree>
+            </field>
+        </record>
+ 
+        <record id="vault_view_form" model="ir.ui.view">
+            <field name="name">spot_check.vault.form</field>
+            <field name="model">spot_check.vault</field>
+            <field name="arch" type="xml">
+                <form string="Create Certificate of cash balance" create="false" edit="false">
+                <xpath expr="//sheet" position="before">
+                    <header> 
+                    </header>
+                </xpath>
+                   <sheet>
+
+                        <group>
+                             <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"/>
+                        </group> 
+                         <group>
+                              <field name ="branch_code"/>
+                         </group>
+                        
+                         <notebook>
+                                <page string="GOOD CURRENCY">
+                                    <group>
+                                       <field name ="deno_fifty_thounsand"/>
+                                    </group>
+                                    <group>
+                                       <field name ="deno_twenty_thounsand"/>
+                                    </group>
+                                    <group>
+                                       <field name ="deno_ten_thounsand"/>
+                                    </group>
+                                     <group>
+                                       <field name ="deno_five_thounsand"/>
+                                    </group>
+                                     <group>
+                                       <field name ="deno_two_thounsand"/>
+                                    </group>
+                                     <group>
+                                       <field name ="deno_one_thounsand"/>
+                                    </group>
+                                    <group>
+                                       <field name ="sub_total_good" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                                    </group>
+                                </page>
+                                <page string="COINS CURRENCY">
+                                    <group>
+                                       <field name ="coin_one_thounsand"/>
+                                    </group>
+                                    <group>
+                                       <field name ="coin_five_houndred"/>
+                                    </group>
+                                    <group>
+                                       <field name ="coin_two_hundred"/>
+                                    </group>
+                                     <group>
+                                       <field name ="coin_one_hundred"/>
+                                    </group>
+                                     <group>
+                                       <field name ="coin_fifty"/>
+                                    </group> 
+                                    <group>
+                                       <field name ="sub_total_coins" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                                    </group>
+                                </page>
+                                <page string="MUTILATED CASH">
+                                    <group>
+                                       <field name ="mutilated_deno_fifty_thounsand"/>
+                                    </group>
+                                    <group>
+                                       <field name ="mutilated_deno_twenty_thounsand"/>
+                                    </group>
+                                    <group>
+                                       <field name ="mutilated_deno_ten_thounsand"/>
+                                    </group>
+                                     <group>
+                                       <field name ="mutilated_deno_five_thounsand"/>
+                                    </group>
+                                     <group>
+                                       <field name ="mutilated_deno_two_thounsand"/>
+                                    </group>
+                                     <group>
+                                       <field name ="mutilated_deno_one_thounsand"/>
+                                    </group> 
+                                    <group>
+                                    <field name ="sub_total_mutilated" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                                    </group>
+                                </page>
+                          </notebook>  
+                            <group>
+                             <field name ="grand_total_ugx" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                            <group>
+                             <field name = "trx_proof"/>
+                            </group>
+                            <group>
+                             <field name ="created_on" invisible="1"/>
+                            </group> 
+                            <group>
+                             <field name ="created_by" invisible="1"/>
+                            </group>             
+                    </sheet>  
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="spot_check_vault_search_view">
+            <field name="name">spot_check.vault.search</field>
+            <field name="model">spot_check.vault</field>
+            <field name="arch" type="xml">
+                <search>
+                    
+                     <field name ="created_on"/>
+                    <separator/>
+                     <filter name="created_ons" string="Today" domain="[('created_on', '&gt;=', datetime.datetime.now().strftime('%Y-%m-%d 00:00:00'))]" />
+                </search>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="vault_list_action">
+            <field name="name">Vault Spot Checks</field>
+            <field name="res_model">spot_check.vault</field>
+            <field name="view_mode">tree,form</field>
+            <field name ="context">{"search_default_created_ons":1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Vault Spot Checks</p>
+            </field>
+        </record>
+
+        <menuitem id="main_spot_check_menu" name="Online Spot Checks"/>
+        <menuitem id="vault_request" name="Spot Checks" sequence="1" parent="main_spot_check_menu"/>
+        <menuitem id="vault_spot__checkes" name="Vault" sequence="2" parent="vault_request" action="vault_list_action"/>        
+</odoo>

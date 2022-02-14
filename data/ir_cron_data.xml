@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<odoo>
+    <record id="update_expiration_branch_cron" model="ir.cron">
+        <field name="name">Branch Expiration: Expire Request After An 2 Hours</field>
+        <field name="model_id" ref="model_cash_managment_request"/>
+        <field name="state">code</field>
+        <field name="code">model._update_expiration_branch()</field>
+        <field name="interval_number">10</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+    <record id="update_expiration_hod_cron" model="ir.cron">
+        <field name="name">Hod Expiration: Expire Request After An 8 Hours</field>
+        <field name="model_id" ref="model_cash_managment_request"/>
+        <field name="state">code</field>
+        <field name="code">model._update_expiration_hod()</field>
+        <field name="interval_number">10</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+
+    <record id="update_initiated_requests_cron" model="ir.cron">
+        <field name="name">Notify Users On Initiated Requests</field>
+        <field name="model_id" ref="model_cash_managment_requestapproved"/>
+        <field name="state">code</field>
+        <field name="code">model._update_notified_initiated()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+
+</odoo>
