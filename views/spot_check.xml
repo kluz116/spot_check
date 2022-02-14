@@ -30,10 +30,6 @@
                         <group>
                              <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"/>
                         </group> 
-                         <group>
-                              <field name ="branch_code"/>
-                         </group>
-                        
                          <notebook>
                                 <page string="GOOD CURRENCY">
                                     <group>
@@ -108,6 +104,19 @@
                             <group>
                              <field name = "trx_proof"/>
                             </group>
+                           <group>
+                             <field name = "system_cash_balance"/>
+                            </group>
+                            <group>
+                             <field name = "shortage_cash"/>
+                            </group>
+                            <group>
+                             <field name = "surplus_cash"/>
+                            </group>
+                             <group>
+                             <field name = "consent_status" widget="radio"  options="{'horizontal': true}"/>
+                            </group>
+                       
                             <group>
                              <field name ="created_on" invisible="1"/>
                             </group> 

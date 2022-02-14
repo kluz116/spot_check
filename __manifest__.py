@@ -2,14 +2,9 @@
 {
     'name': "Online Spot Check",
 
-    'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+    'summary': "This is a cash spot check application developed with Python Odoo Framework for ERPS",
 
-    'description': """
-    Onlie cash managment is a system that helps in day-to-day administration of managing cash inflows and outflows
-    """,
-
+    'description': "This is a cash spot check application developed with Python Odoo Framework for ERPS",
     'author': "Finance Trust Bank",
     'website': "http://www.financetrust.co.ug",
 
@@ -20,7 +15,7 @@
     'version': '0.1',
     
     # any module necessary for this one to work correctly
-    'depends': ['mail','base'],
+    'depends': ['mail'],
   
     # always loaded
     'data': [
@@ -28,9 +23,7 @@
         'security/ir.model.access.csv',
         'views/branch.xml',
         'views/spot_check.xml',
-        'views/spots_user.xml'
-
-      
+        #'views/spots_user.xml'
         #'reports/cash_bank_request_report.xml'
     ],
     # only loaded in demonstration mode

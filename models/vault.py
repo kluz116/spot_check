@@ -1,3 +1,4 @@
+from typing_extensions import Required
 from odoo import models,api,fields
 
 class Vault(models.Model):
@@ -34,8 +35,11 @@ class Vault(models.Model):
     trx_proof = fields.Binary('File')
     branch_code = fields.Integer(compute='_compute_branch',string='Branch',store=True)
     branch_manager = fields.Integer(compute='_compute_manager',string='Branch_manager',store=True)
-
-
+    system_cash_balance = fields.Monetary(string="System Cash Balance")
+    shortage_cash = fields.Monetary(string="Shortage Cash")
+    surplus_cash = fields.Monetary(string="Surplus Cash")
+    consent_status = fields.Selection(string='Do you consent that that Vault and System Balance Match?', selection=[('Yes', 'Yes'), ('No', 'No')])
+    #consent_comment = fields.Char(string="Comment")
 
     @api.depends('deno_fifty_thounsand', 'deno_twenty_thounsand','deno_ten_thounsand','deno_five_thounsand','deno_two_thounsand','deno_one_thounsand')
     def _compute_total_good_currency(self):
