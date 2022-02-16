@@ -7,9 +7,9 @@
     <field name="arch" type="xml">
       <xpath expr="//page/group/field[@name='signature']" position="before">
         <group string="Spot Check Settings">
-          <field string="Branch Name" name="branch_ids" readonly="0" />
+          <field string="Branch Name" name="branch_id" readonly="0" />
           <field string="Role" name="user_role" readonly="0" />
-          <field string="Supervisor" name="supervisor" readonly="0" />
+          <field string="Supervises" name="supervises" readonly="0" />
         </group>
       </xpath>
     </field>

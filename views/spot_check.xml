@@ -6,12 +6,32 @@
              <field name="arch" type="xml">
                 <tree string="All Vault Spot Checks" default_order='created_on desc'>
 
-                    <field name="deno_fifty_thounsand"/>
-                    <field name="deno_twenty_thounsand"/>
-                    <field name="deno_ten_thounsand"/>
-                    <field name="deno_five_thounsand"/>
-                    <field name="deno_two_thounsand"/>
-                    <field name="deno_one_thounsand"/>
+                    <field name="unique_field"/>
+                    <field name="state"/>
+                    <field name="branch_code"/>
+                    <field name="sub_total_good"/>
+                    <field name="sub_total_coins"/>
+                    <field name="sub_total_mutilated"/>
+                    <field name="grand_total_ugx"/>
+                    <field name="system_cash_balance"/>
+              
+                </tree>
+            </field>
+        </record>
+                <record id="spot_check_atm_tree" model="ir.ui.view">
+            <field name="name">spot_check_atm.tree</field>
+            <field name="model">spot_check.atm</field>
+             <field name="arch" type="xml">
+                <tree string="All ATM Spot Checks" default_order='created_on desc'>
+
+                    <field name="unique_field"/>
+                    <field name="state"/>
+                    <field name="branch_code"/>
+                    <field name="sub_total_good"/>
+                  
+                    <field name="grand_total_ugx"/>
+                    <field name="system_cash_balance"/>
+              
                 </tree>
             </field>
         </record>
@@ -21,8 +41,14 @@
             <field name="model">spot_check.vault</field>
             <field name="arch" type="xml">
                 <form string="Create Certificate of cash balance" create="false" edit="false">
-                <xpath expr="//sheet" position="before">
+                  <xpath expr="//sheet" position="before">
                     <header> 
+                        <button name="%(spot_check.wizard_spot_check_accountant_cosent)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
+                        <button name="%(spot_check.wizard_spot_check_manager_cosent)d" states='confirmed_one' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
+                  
+                        <field name ="current_to_branch_accountant" invisible ='1'/>
+                        <field name ="current_to_branch_manager" invisible ='1'/>
+                        <field name="state" widget="statusbar" statusbar_visible="ongoing,confirmed_one,confirmed_two" />
                     </header>
                 </xpath>
                    <sheet>
@@ -116,7 +142,15 @@
                              <group>
                              <field name = "consent_status" widget="radio"  options="{'horizontal': true}"/>
                             </group>
-                       
+                            <group>
+                             <field name = "consent_comment"/>
+                            </group>
+                              <group>
+                             <field name = "branch_manager"/>
+                            </group>
+                           <group>
+                             <field name = "branch_accountant"/>
+                            </group>
                             <group>
                              <field name ="created_on" invisible="1"/>
                             </group> 
@@ -128,9 +162,106 @@
             </field>
         </record>
 
+
+          <record id="atm_view_form" model="ir.ui.view">
+            <field name="name">spot_check.atm.form</field>
+            <field name="model">spot_check.atm</field>
+            <field name="arch" type="xml">
+                <form string="Create Certificate of cash balance" create="false" edit="false">
+                  <xpath expr="//sheet" position="before">
+                    <header> 
+                        <button name="%(spot_check.wizard_spot_check_accountant_cosent_atm)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
+                        <button name="%(spot_check.wizard_spot_check_manager_cosent_atm)d" states='confirmed_one' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
+                  
+                        <field name ="current_to_branch_accountant" invisible ='1'/>
+                        <field name ="current_to_branch_manager" invisible ='1'/>
+                        <field name="state" widget="statusbar" statusbar_visible="ongoing,confirmed_one,confirmed_two" />
+                    </header>
+                </xpath>
+                   <sheet>
+
+                        <group>
+                             <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"/>
+                        </group> 
+                         <notebook>
+                                <page string="GOOD CURRENCY">
+                                    <group>
+                                       <field name ="deno_fifty_thounsand"/>
+                                    </group>
+                                    <group>
+                                       <field name ="deno_twenty_thounsand"/>
+                                    </group>
+                                    <group>
+                                       <field name ="deno_ten_thounsand"/>
+                                    </group>
+                                     <group>
+                                       <field name ="deno_five_thounsand"/>
+                                    </group>
+                                     <group>
+                                       <field name ="deno_two_thounsand"/>
+                                    </group>
+                                     <group>
+                                       <field name ="deno_one_thounsand"/>
+                                    </group>
+                                    <group>
+                                       <field name ="sub_total_good" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                                    </group>
+                                </page>
+                                
+                          </notebook>  
+                            <group>
+                             <field name ="grand_total_ugx" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                            <group>
+                             <field name = "trx_proof"/>
+                            </group>
+                           <group>
+                             <field name = "system_cash_balance"/>
+                            </group>
+                            <group>
+                             <field name = "shortage_cash"/>
+                            </group>
+                            <group>
+                             <field name = "surplus_cash"/>
+                            </group>
+                             <group>
+                             <field name = "consent_status" widget="radio"  options="{'horizontal': true}"/>
+                            </group>
+                            <group>
+                             <field name = "consent_comment"/>
+                            </group>
+                              <group>
+                             <field name = "branch_manager"/>
+                            </group>
+                           <group>
+                             <field name = "branch_accountant"/>
+                            </group>
+                            <group>
+                             <field name ="created_on" invisible="1"/>
+                            </group> 
+                            <group>
+                             <field name ="created_by" invisible="1"/>
+                            </group>             
+                    </sheet>  
+                </form>
+            </field>
+        </record>
         <record model="ir.ui.view" id="spot_check_vault_search_view">
             <field name="name">spot_check.vault.search</field>
             <field name="model">spot_check.vault</field>
+            <field name="arch" type="xml">
+                <search>
+                    
+                     <field name ="created_on"/>
+                    <separator/>
+                     <filter name="created_ons" string="Today" domain="[('created_on', '&gt;=', datetime.datetime.now().strftime('%Y-%m-%d 00:00:00'))]" />
+                </search>
+            </field>
+        </record>
+
+         <record model="ir.ui.view" id="spot_check_atm_search_view">
+            <field name="name">spot_check.atm.search</field>
+            <field name="model">spot_check.atm</field>
             <field name="arch" type="xml">
                 <search>
                     
@@ -152,7 +283,18 @@
             </field>
         </record>
 
-        <menuitem id="main_spot_check_menu" name="Online Spot Checks"/>
+         <record model="ir.actions.act_window" id="atm_list_action">
+            <field name="name">ATM Spot Checks</field>
+            <field name="res_model">spot_check.atm</field>
+            <field name="view_mode">tree,form</field>
+            <field name ="context">{"search_default_created_ons":1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">ATM Spot Check</p>
+            </field>
+        </record>
+
+        <menuitem id="main_spot_check_menu" name="Online Spot Check"/>
         <menuitem id="vault_request" name="Spot Checks" sequence="1" parent="main_spot_check_menu"/>
-        <menuitem id="vault_spot__checkes" name="Vault" sequence="2" parent="vault_request" action="vault_list_action"/>        
+        <menuitem id="vault_spot__checkes" name="Vault Spot Checks" sequence="2" parent="vault_request" action="vault_list_action"/>  
+        <menuitem id="atm_spot__checkes" name="ATM Spot Checks" sequence="2" parent="vault_request" action="atm_list_action"/>      
 </odoo>
