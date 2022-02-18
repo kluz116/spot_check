@@ -1,13 +1,15 @@
 from odoo import models,api,fields
 
-class Vault(models.Model):
-    _name = "spot_check.vault"
-    _description = "This is a a vault model"
+class Tellers(models.Model):
+    _name = "spot_check.teller"
+    _description = "This is a a tellers model"
     _rec_name ="grand_total_ugx"
     
     partner_id = fields.Many2one ('res.partner', 'Customer', default = lambda self: self.env.user.partner_id )
+    from_branch_id = fields.Integer(related='partner_id.branch_id')
     currency_id = fields.Many2one('res.currency', string='Currency' )
-
+    branch_id = fields.Many2one('cash_managment.branch',string ='Branch',domain="[('branch_id', '=', from_branch_id)]" ,required=True)
+    teller_id = fields.Many2one('res.partner','Teller:',domain="[('branch_id', '=', branch_id),('user_role','=','teller')]")
     state = fields.Selection([('ongoing', 'Pending Accountant Consent'),('confirmed_one', 'Pending Manager Consent'),('confirmed_two', 'Confirmed')],default="ongoing", string="Status")
     deno_fifty_thounsand = fields.Monetary(string="50,000 Shs")
     deno_twenty_thounsand = fields.Monetary(string="20,000 Shs")
@@ -48,11 +50,6 @@ class Vault(models.Model):
     manager_comment = fields.Text(string="Comment")
     consent_manager_date =  fields.Datetime(string='Consent Date')
     
-
-    
-
-
-
     current_to_branch_accountant = fields.Boolean('is current user ?', compute='_get_to_branch_accountant')
     current_to_branch_manager = fields.Boolean('is current user ?', compute='_get_to_branch_manager')
 
