@@ -21,7 +21,7 @@ class Vault(models.Model):
     created_on =  fields.Datetime(string='Date', default=lambda self: fields.datetime.now())
     created_by = fields.Many2one('res.users','Confirmed By:',default=lambda self: self.env.user)
     user_id = fields.Many2one('res.users', string='User', track_visibility='onchange', readonly=True, default=lambda self: self.env.user.id)
-    trx_proof = fields.Binary(string='Upload file', attachment=True)
+    trx_proof = fields.Binary(string='Upload file', attachment=True,required=True)
     branch_code = fields.Integer(compute='_compute_branch',string='Branch',store=True)
     branch_manager = fields.Many2one(compute='_get_manager_id', comodel_name='res.partner', string='Branch Manger', store=True)
     branch_accountant = fields.Many2one(compute='_get_accountant_id', comodel_name='res.partner', string='Branch Accountant', store=True)
