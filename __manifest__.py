@@ -25,10 +25,13 @@
         'wizard/spot_check_vault_consent_manager.xml',
         'wizard/spot_check_atm_consent_accountant.xml',
         'wizard/spot_check_atm_consent_manager.xml',
+        'wizard/spot_check_consent_teller.xml',
         'views/branch.xml',
         'views/spot_check.xml',
-        'views/spots_user.xml'
-        #'reports/cash_bank_request_report.xml'
+        'views/spots_user.xml',
+        'reports/report_spot.xml',
+        'reports/report_vault.xml'
+
     ],
     # only loaded in demonstration mode
     'demo': [

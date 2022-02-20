@@ -2,34 +2,35 @@ from odoo import models,api,fields
 
 class Vault(models.Model):
     _name = "spot_check.vault"
+    _inherit="mail.thread"
     _description = "This is a a vault model"
     _rec_name ="grand_total_ugx"
     
-    partner_id = fields.Many2one ('res.partner', 'Customer', default = lambda self: self.env.user.partner_id )
+    partner_id = fields.Many2one ('res.partner', 'Credit supervisor', default = lambda self: self.env.user.partner_id )
     currency_id = fields.Many2one('res.currency', string='Currency' )
 
-    state = fields.Selection([('ongoing', 'Pending Accountant Consent'),('confirmed_one', 'Pending Manager Consent'),('confirmed_two', 'Confirmed')],default="ongoing", string="Status")
+    state = fields.Selection([('ongoing', 'Pending Accountant Consent'),('confirmed_one', 'Pending Manager Consent'),('confirmed_two', 'Confirmed')],default="ongoing", string="Status",track_visibility='onchange')
     deno_fifty_thounsand = fields.Monetary(string="50,000 Shs")
     deno_twenty_thounsand = fields.Monetary(string="20,000 Shs")
     deno_ten_thounsand = fields.Monetary(string="10,000 Shs")
     deno_five_thounsand = fields.Monetary(string="5,000 Shs")
     deno_two_thounsand = fields.Monetary(string="2,000 Shs")
     deno_one_thounsand = fields.Monetary(string="1,000 Shs")
-    sub_total_good = fields.Float(compute='_compute_total_good_currency',string="Sub Total Good Currency",store=True)
+    sub_total_good = fields.Float(compute='_compute_total_good_currency',string="Sub Total Good Currency",store=True,track_visibility='always')
     coin_one_thounsand = fields.Monetary(string="1,000 Shs")
     coin_five_houndred = fields.Monetary(string="500 Shs")
     coin_two_hundred = fields.Monetary(string="200 Shs")
     coin_one_hundred = fields.Monetary(string="100 Shs")
     coin_fifty = fields.Monetary(string="50 Shs")
-    sub_total_coins = fields.Float(compute='_compute_total_coins',string="Sub Total Coins",store=True)
+    sub_total_coins = fields.Monetary(compute='_compute_total_coins',string="Sub Total Coins",store=True,track_visibility='always')
     mutilated_deno_fifty_thounsand = fields.Monetary(string="50,000 Shs")
     mutilated_deno_twenty_thounsand = fields.Monetary(string="20,000 Shs")
     mutilated_deno_ten_thounsand = fields.Monetary(string="10,000 Shs")
     mutilated_deno_five_thounsand = fields.Monetary(string="5,000 Shs")
     mutilated_deno_two_thounsand = fields.Monetary(string="2,000 Shs")
     mutilated_deno_one_thounsand = fields.Monetary(string="1,000 Shs")
-    sub_total_mutilated = fields.Float(compute='_compute_total_mutilated_currency',string="Sub Total Mutilated",store=True)
-    grand_total_ugx = fields.Float(compute='_compute_grand_totol',string="Grand Total (UGX)",store=True)
+    sub_total_mutilated = fields.Monetary(compute='_compute_total_mutilated_currency',string="Sub Total Mutilated",store=True,track_visibility='always')
+    grand_total_ugx = fields.Monetary(compute='_compute_grand_totol',string="Grand Total (UGX)",store=True)
     created_on =  fields.Datetime(string='Date', default=lambda self: fields.datetime.now())
     created_by = fields.Many2one('res.users','Confirmed By:',default=lambda self: self.env.user)
     user_id = fields.Many2one('res.users', string='User', track_visibility='onchange', readonly=True, default=lambda self: self.env.user.id)
@@ -40,7 +41,7 @@ class Vault(models.Model):
     system_cash_balance = fields.Monetary(string="System Cash Balance")
     shortage_cash = fields.Monetary(string="Shortage Cash")
     surplus_cash = fields.Monetary(string="Surplus Cash")
-    consent_status = fields.Selection(string='Do you consent that that Vault and System Balance Match?', selection=[('Yes', 'Yes'), ('No', 'No')])
+    consent_status = fields.Selection(string='Do you consent that that Vault and System Balance Match?', selection=[('Yes', 'Yes'), ('No', 'No')],track_visibility='always')
     consent_comment = fields.Text(string="Comment")
     unique_field = fields.Char(string="Ref",compute='comp_name', store=True)
     accountant_comment = fields.Text(string="Comment")
@@ -49,12 +50,9 @@ class Vault(models.Model):
     consent_manager_date =  fields.Datetime(string='Consent Date')
     
 
-    
-
-
-
     current_to_branch_accountant = fields.Boolean('is current user ?', compute='_get_to_branch_accountant')
     current_to_branch_manager = fields.Boolean('is current user ?', compute='_get_to_branch_manager')
+    
 
 
     @api.depends('deno_fifty_thounsand', 'deno_twenty_thounsand','deno_ten_thounsand','deno_five_thounsand','deno_two_thounsand','deno_one_thounsand')
@@ -106,6 +104,9 @@ class Vault(models.Model):
         for e in self:
             partner = self.env['res.users'].browse(self.env.uid).partner_id
             e.current_to_branch_manager = (True if partner.id == self.branch_manager.id else False)
+
+    
+
 
     @api.depends('created_on')
     def comp_name(self):

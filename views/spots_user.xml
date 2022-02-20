@@ -10,6 +10,7 @@
           <field string="Branch Name" name="branch_id" readonly="0" />
           <field string="Role" name="user_role" readonly="0" />
           <field string="Supervises" name="supervises" readonly="0" />
+          <field string="Till " name="till_id" readonly="0" />  
         </group>
       </xpath>
     </field>

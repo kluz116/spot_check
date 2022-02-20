@@ -176,15 +176,14 @@
                             <group>
                              <field name ="created_by" invisible="1"/>
                             </group>             
-                    </sheet>  
+                    </sheet> 
+                      <div class="oe_chatter">
+                           <field name="message_follower_ids" widget="mail_followers"/>
+                           <field name="message_ids" widget="mail_thread"/>
+                     </div> 
                 </form>
             </field>
         </record>
-
-
-
-
-
 
 
 
@@ -196,12 +195,10 @@
                 <form string="Create Declaration Form" create="false" edit="false">
                   <xpath expr="//sheet" position="before">
                     <header> 
-                        <button name="%(spot_check.wizard_spot_check_accountant_cosent)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
-                        <button name="%(spot_check.wizard_spot_check_manager_cosent)d" states='confirmed_one' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
-                  
-                        <field name ="current_to_branch_accountant" invisible ='1'/>
-                        <field name ="current_to_branch_manager" invisible ='1'/>
-                        <field name="state" widget="statusbar" statusbar_visible="ongoing,confirmed_one,confirmed_two" />
+                        <button name="%(spot_check.wizard_spot_check_tellers)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_teller', '=', False)]}" />
+                        <field name ="current_to_teller" invisible="1" />
+                     
+                        <field name="state" widget="statusbar" statusbar_visible="ongoing,confirmed_one" />
                     </header>
                 </xpath>
                    <sheet>
@@ -212,9 +209,14 @@
                           <group>
                              <field name = "branch_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"/>
                         </group> 
+                        
                           <group>
                              <field name = "teller_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"/>
                         </group>  
+                         <group>
+                              <field name ="till"/>
+                        </group>
+
                          <notebook>
                                 <page string="GOOD CURRENCY">
                                     <group>
@@ -305,10 +307,16 @@
                              <field name = "consent_comment"/>
                             </group>
                               <group>
-                             <field name = "branch_manager"/>
+                             <field name = "branch_manager" invisible="1"/>
+                            </group>
+                              <group>
+                             <field name = "partner_id" readonly="1"/>
                             </group>
                            <group>
-                             <field name = "branch_accountant"/>
+                             <field name = "branch_accountant" invisible="1"/>
+                            </group>
+                              <group>
+                             <field name = "from_branch_id" invisible="1"/>
                             </group>
                             <group>
                              <field name ="created_on" invisible="1"/>
@@ -317,6 +325,10 @@
                              <field name ="created_by" invisible="1"/>
                             </group>             
                     </sheet>  
+                    <div class="oe_chatter">
+                           <field name="message_follower_ids" widget="mail_followers"/>
+                           <field name="message_ids" widget="mail_thread"/>
+                     </div>
                 </form>
             </field>
         </record>
@@ -403,6 +415,10 @@
                              <field name ="created_by" invisible="1"/>
                             </group>             
                     </sheet>  
+                      <div class="oe_chatter">
+                           <field name="message_follower_ids" widget="mail_followers"/>
+                           <field name="message_ids" widget="mail_thread"/>
+                     </div>
                 </form>
             </field>
         </record>
