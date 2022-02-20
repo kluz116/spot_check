@@ -23,7 +23,7 @@
             <field name="name">spot_check_tellert.tree</field>
             <field name="model">spot_check.teller</field>
              <field name="arch" type="xml">
-                <tree string="All Teller Declalations" default_order='created_on desc'>
+                <tree string="All Teller Declarations" default_order='created_on desc'>
 
                     <field name="unique_field"/>
                     <field name="state"/>
@@ -32,7 +32,7 @@
                     <field name="sub_total_coins"/>
                     <field name="sub_total_mutilated"/>
                     <field name="grand_total_ugx"/>
-                    <field name="system_cash_balance"/>
+                    
               
                 </tree>
             </field>
@@ -291,18 +291,6 @@
                             <group>
                              <field name = "trx_proof"/>
                             </group>
-                           <group>
-                             <field name = "system_cash_balance"/>
-                            </group>
-                            <group>
-                             <field name = "shortage_cash"/>
-                            </group>
-                            <group>
-                             <field name = "surplus_cash"/>
-                            </group>
-                             <group>
-                             <field name = "consent_status" widget="radio"  options="{'horizontal': true}"/>
-                            </group>
                             <group>
                              <field name = "consent_comment"/>
                             </group>
@@ -476,7 +464,7 @@
             <field name="view_mode">tree,form</field>
             <field name ="context">{"search_default_created_ons":1}</field>
             <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">Teller Spot Checks</p>
+                <p class="o_view_nocontent_smiling_face">Teller Declarations</p>
             </field>
         </record>
 
@@ -494,5 +482,5 @@
         <menuitem id="vault_request" name="Spot Checks" sequence="1" parent="main_spot_check_menu"/>
         <menuitem id="vault_spot__checkes" name="Vault Spot Checks" sequence="2" parent="vault_request" action="vault_list_action"/>  
         <menuitem id="atm_spot__checkes" name="ATM Spot Checks" sequence="3" parent="vault_request" action="atm_list_action"/>   
-        <menuitem id="teller_spot__checkes" name="Teller Spot Checks" sequence="3" parent="vault_request" action="teller_list_action"/>    
+        <menuitem id="teller_spot__checkes" name="Teller Declarations" sequence="3" parent="vault_request" action="teller_list_action"/>    
 </odoo>

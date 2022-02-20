@@ -10,19 +10,19 @@
         <field name="category_id" ref="module_spot_check"/>       
     </record>
     <record id="Branch_Accountant_spot_check" model="res.groups">
-        <field name="name">Branch Accountant Spot</field>
+        <field name="name">Branch Accountant Spot Check</field>
         <field name="category_id" ref="module_spot_check"/>
     </record>
     <record id="Branch_Manager_spot_check" model="res.groups">
-        <field name="name">Branch Manager Spot</field>
+        <field name="name">Branch Manager Spot Check</field>
         <field name="category_id" ref="module_spot_check"/>       
     </record>
     <record id="Cash_Managment_Support_Team" model="res.groups">
-        <field name="name">Cash Managment Support Spot</field>
+        <field name="name">Cash Managment Support Spot Check</field>
         <field name="category_id" ref="module_spot_check"/>
     </record>
     <record id="Branch_Teller" model="res.groups">
-        <field name="name">Tellers</field>
+        <field name="name">Teller</field>
         <field name="category_id" ref="module_spot_check"/>
     </record>
   

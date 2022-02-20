@@ -22,5 +22,22 @@
         name="spot_check.vault_report"
         file="spot_check.vault_report"/>
 
+    <report
+        id="spot_check_atm_report"
+        model="spot_check.atm"
+        string="ATM Report"
+        report_type="qweb-pdf"
+        name="spot_check.atm_report"
+        file="spot_check.atm_report"/>
+
+    <report
+        id="spot_check_teller_report"
+        model="spot_check.teller"
+        string="Teller Report"
+        report_type="qweb-pdf"
+        name="spot_check.teller_report"
+        file="spot_check.teller_report"/>
+
+
     </data>
 </odoo>

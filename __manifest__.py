@@ -30,7 +30,9 @@
         'views/spot_check.xml',
         'views/spots_user.xml',
         'reports/report_spot.xml',
-        'reports/report_vault.xml'
+        'reports/report_vault.xml',
+        'reports/report_atm.xml',
+        'reports/report_teller.xml'
 
     ],
     # only loaded in demonstration mode

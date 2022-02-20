@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="atm_report">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                       <h4 style="text-align: center;">CERTIFICATE OF CASH BALANCE</h4>
+                       <t t-foreach="docs" t-as="x">
+                          <p>BRANCH : <strong t-field="x.branch_code"/></p>
+                          <p>DATE   : <strong t-field="x.created_on"/></p>
+                        <table class="table table-bordered table-sm">
+                            <thead>
+                                <tr class="bg-primary">
+                                   <th></th>
+                                   <th>PARTICULARS</th>
+                                    <th>CURRENCY</th>
+                                    <th>AMOUNT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <!--<t t-foreach="docs" t-as="x">-->
+                                <tr> <td rowspan="9"> <strong>A</strong></td></tr>
+                                <tr> <td rowspan="8" ><strong>Good Currency</strong> </td></tr>
+                                <tr>
+                                    <td>
+                                        50,000 Shs
+                                    </td>
+                                     <td>
+                                         <span t-field="x.deno_fifty_thounsand"/>
+                                        
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <td>
+                                        20,000 Shs
+                                    </td>
+                                     <td>
+                                         <span t-field="x.deno_twenty_thounsand"/>
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        10,000 Shs
+                                    </td>
+                                     <td>
+                                         <span t-field="x.deno_ten_thounsand"/>
+                                        
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <td>
+                                        5,000 Shs
+                                    </td>
+                                     <td>
+                                         <span t-field="x.deno_five_thounsand"/>
+                                        
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td>
+                                        2,000 Shs
+                                    </td>
+                                     <td>
+                                         <span t-field="x.deno_two_thounsand"/>
+                                        
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td>
+                                        1,000 Shs
+                                    </td>
+                                     <td>
+                                         <span t-field="x.deno_one_thounsand"/>
+                                        
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td> <strong> SUB-TOTAL</strong></td>
+                                     <td>
+                                         <strong t-field="x.sub_total_good"/>
+                                        
+                                    </td>
+                                </tr> 
+                                <tr> 
+                                    <td><strong>(A)</strong></td>
+                                    <td><strong>Total Cash In Reserve</strong> </td>
+                                
+                                    <td>
+                                        <strong>Grand Total</strong>
+                                    </td>
+                                     <td>
+                                         <strong t-field="x.grand_total_ugx"/>
+                                        
+                                    </td>
+                                </tr>
+                            <!--</t>-->
+                            </tbody>
+                        </table>
+                        <br/>
+                        <hr/>
+                        <p>AMOUNT IN WORDS: CASH BALANCE IN THE VAULT REGISTER : <strong  t-field="x.grand_total_ugx"/></p>
+                        <p>CASH BALANCE IN THE SYSTEM:  <strong  t-field="x.system_cash_balance"/></p>
+                        <p>AGREED/ NOT AGREED WITH BALANCES IN THE RESERVE BOOK/ SYSTEM Vs ACTUAL CASH :  <strong  t-field="x.consent_status"/></p>
+                        <p>THE SHORTAGE OF   <strong  t-field="x.shortage_cash"/> OR SURPLUS OF <strong  t-field="x.surplus_cash"/> </p>
+                        <hr/>
+                        <br/> 
+                        <br/>
+                        <br/>
+                       
+                        <p>VERIFIED BY : <strong  t-field="x.partner_id"/> DATE : <strong  t-field="x.created_on"/> </p>
+                        <p>WITNESSED BY : <strong  t-field="x.branch_accountant"/> DATE : <strong  t-field="x.consent_date"/> </p>
+                        <p>WITNESSED BY : <strong  t-field="x.branch_manager"/> DATE : <strong  t-field="x.consent_manager_date"/> </p>
+                        
+                        </t>
+                    </div>
+                </t>
+            </t>
+    
+    </template>
+</odoo>
