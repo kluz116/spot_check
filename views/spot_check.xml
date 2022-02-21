@@ -23,7 +23,7 @@
             <field name="name">spot_check_tellert.tree</field>
             <field name="model">spot_check.teller</field>
              <field name="arch" type="xml">
-                <tree string="All Teller Declalations" default_order='created_on desc'>
+                <tree string="All Teller Declarations" default_order='created_on desc'>
 
                     <field name="unique_field"/>
                     <field name="state"/>
@@ -32,7 +32,7 @@
                     <field name="sub_total_coins"/>
                     <field name="sub_total_mutilated"/>
                     <field name="grand_total_ugx"/>
-                    <field name="system_cash_balance"/>
+                    
               
                 </tree>
             </field>
@@ -176,15 +176,14 @@
                             <group>
                              <field name ="created_by" invisible="1"/>
                             </group>             
-                    </sheet>  
+                    </sheet> 
+                      <div class="oe_chatter">
+                           <field name="message_follower_ids" widget="mail_followers"/>
+                           <field name="message_ids" widget="mail_thread"/>
+                     </div> 
                 </form>
             </field>
         </record>
-
-
-
-
-
 
 
 
@@ -196,12 +195,10 @@
                 <form string="Create Declaration Form" create="false" edit="false">
                   <xpath expr="//sheet" position="before">
                     <header> 
-                        <button name="%(spot_check.wizard_spot_check_accountant_cosent)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
-                        <button name="%(spot_check.wizard_spot_check_manager_cosent)d" states='confirmed_one' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
-                  
-                        <field name ="current_to_branch_accountant" invisible ='1'/>
-                        <field name ="current_to_branch_manager" invisible ='1'/>
-                        <field name="state" widget="statusbar" statusbar_visible="ongoing,confirmed_one,confirmed_two" />
+                        <button name="%(spot_check.wizard_spot_check_tellers)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_teller', '=', False)]}" />
+                        <field name ="current_to_teller" invisible="1" />
+                     
+                        <field name="state" widget="statusbar" statusbar_visible="ongoing,confirmed_one" />
                     </header>
                 </xpath>
                    <sheet>
@@ -212,9 +209,14 @@
                           <group>
                              <field name = "branch_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"/>
                         </group> 
+                        
                           <group>
                              <field name = "teller_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"/>
                         </group>  
+                         <group>
+                              <field name ="till"/>
+                        </group>
+
                          <notebook>
                                 <page string="GOOD CURRENCY">
                                     <group>
@@ -289,26 +291,20 @@
                             <group>
                              <field name = "trx_proof"/>
                             </group>
-                           <group>
-                             <field name = "system_cash_balance"/>
-                            </group>
-                            <group>
-                             <field name = "shortage_cash"/>
-                            </group>
-                            <group>
-                             <field name = "surplus_cash"/>
-                            </group>
-                             <group>
-                             <field name = "consent_status" widget="radio"  options="{'horizontal': true}"/>
-                            </group>
                             <group>
                              <field name = "consent_comment"/>
                             </group>
                               <group>
-                             <field name = "branch_manager"/>
+                             <field name = "branch_manager" invisible="1"/>
+                            </group>
+                              <group>
+                             <field name = "partner_id" readonly="1"/>
                             </group>
                            <group>
-                             <field name = "branch_accountant"/>
+                             <field name = "branch_accountant" invisible="1"/>
+                            </group>
+                              <group>
+                             <field name = "from_branch_id" invisible="1"/>
                             </group>
                             <group>
                              <field name ="created_on" invisible="1"/>
@@ -317,6 +313,10 @@
                              <field name ="created_by" invisible="1"/>
                             </group>             
                     </sheet>  
+                    <div class="oe_chatter">
+                           <field name="message_follower_ids" widget="mail_followers"/>
+                           <field name="message_ids" widget="mail_thread"/>
+                     </div>
                 </form>
             </field>
         </record>
@@ -403,6 +403,10 @@
                              <field name ="created_by" invisible="1"/>
                             </group>             
                     </sheet>  
+                      <div class="oe_chatter">
+                           <field name="message_follower_ids" widget="mail_followers"/>
+                           <field name="message_ids" widget="mail_thread"/>
+                     </div>
                 </form>
             </field>
         </record>
@@ -460,7 +464,7 @@
             <field name="view_mode">tree,form</field>
             <field name ="context">{"search_default_created_ons":1}</field>
             <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">Teller Spot Checks</p>
+                <p class="o_view_nocontent_smiling_face">Teller Declarations</p>
             </field>
         </record>
 
@@ -478,5 +482,5 @@
         <menuitem id="vault_request" name="Spot Checks" sequence="1" parent="main_spot_check_menu"/>
         <menuitem id="vault_spot__checkes" name="Vault Spot Checks" sequence="2" parent="vault_request" action="vault_list_action"/>  
         <menuitem id="atm_spot__checkes" name="ATM Spot Checks" sequence="3" parent="vault_request" action="atm_list_action"/>   
-        <menuitem id="teller_spot__checkes" name="Teller Spot Checks" sequence="3" parent="vault_request" action="teller_list_action"/>    
+        <menuitem id="teller_spot__checkes" name="Teller Declarations" sequence="3" parent="vault_request" action="teller_list_action"/>    
 </odoo>

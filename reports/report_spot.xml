@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="paperformat_request_landscape" model="report.paperformat">
+        <field name="name">Requests Landscape</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Landscape</field>
+        <field name="dpi">90</field>
+        </record>
+    
+        
+    <report
+        id="spot_check_vault_report"
+        model="spot_check.vault"
+        string="Vault Report"
+        report_type="qweb-pdf"
+        name="spot_check.vault_report"
+        file="spot_check.vault_report"/>
+
+    <report
+        id="spot_check_atm_report"
+        model="spot_check.atm"
+        string="ATM Report"
+        report_type="qweb-pdf"
+        name="spot_check.atm_report"
+        file="spot_check.atm_report"/>
+
+    <report
+        id="spot_check_teller_report"
+        model="spot_check.teller"
+        string="Teller Report"
+        report_type="qweb-pdf"
+        name="spot_check.teller_report"
+        file="spot_check.teller_report"/>
+
+
+    </data>
+</odoo>

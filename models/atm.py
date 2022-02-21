@@ -2,33 +2,34 @@ from odoo import models,api,fields
 
 class Vault(models.Model):
     _name = "spot_check.atm"
+    _inherit="mail.thread"
     _description = "This is an ATM model"
     _rec_name ="grand_total_ugx"
     
     partner_id = fields.Many2one ('res.partner', 'Customer', default = lambda self: self.env.user.partner_id )
     currency_id = fields.Many2one('res.currency', string='Currency' )
 
-    state = fields.Selection([('ongoing', 'Pending Accountant Consent'),('confirmed_one', 'Pending Manager Consent'),('confirmed_two', 'Confirmed')],default="ongoing", string="Status")
+    state = fields.Selection([('ongoing', 'Pending Accountant Consent'),('confirmed_one', 'Pending Manager Consent'),('confirmed_two', 'Confirmed')],default="ongoing", string="Status",track_visibility='always')
     deno_fifty_thounsand = fields.Monetary(string="50,000 Shs")
     deno_twenty_thounsand = fields.Monetary(string="20,000 Shs")
     deno_ten_thounsand = fields.Monetary(string="10,000 Shs")
     deno_five_thounsand = fields.Monetary(string="5,000 Shs")
     deno_two_thounsand = fields.Monetary(string="2,000 Shs")
     deno_one_thounsand = fields.Monetary(string="1,000 Shs")
-    sub_total_good = fields.Float(compute='_compute_total_good_currency',string="Sub Total Good Currency",store=True)
+    sub_total_good = fields.Monetary(compute='_compute_total_good_currency',string="Sub Total Good Currency",store=True)
    
-    grand_total_ugx = fields.Float(compute='_compute_grand_totol',string="Grand Total (UGX)",store=True)
+    grand_total_ugx = fields.Monetary(compute='_compute_grand_totol',string="Grand Total (UGX)",store=True,track_visibility='always')
     created_on =  fields.Datetime(string='Date', default=lambda self: fields.datetime.now())
     created_by = fields.Many2one('res.users','Confirmed By:',default=lambda self: self.env.user)
     user_id = fields.Many2one('res.users', string='User', track_visibility='onchange', readonly=True, default=lambda self: self.env.user.id)
-    trx_proof = fields.Binary(string='Upload file', attachment=True,required=True)
+    trx_proof = fields.Binary(string='Upload System Statements', attachment=True,required=True)
     branch_code = fields.Integer(compute='_compute_branch',string='Branch',store=True)
     branch_manager = fields.Many2one(compute='_get_manager_id', comodel_name='res.partner', string='Branch Manger', store=True)
     branch_accountant = fields.Many2one(compute='_get_accountant_id', comodel_name='res.partner', string='Branch Accountant', store=True)
     system_cash_balance = fields.Monetary(string="System Cash Balance")
     shortage_cash = fields.Monetary(string="Shortage Cash")
     surplus_cash = fields.Monetary(string="Surplus Cash")
-    consent_status = fields.Selection(string='Do you consent that that Vault and System Balance Match?', selection=[('Yes', 'Yes'), ('No', 'No')])
+    consent_status = fields.Selection(string='Do you consent that that Vault and System Balance Match?', selection=[('Yes', 'Yes'), ('No', 'No')],track_visibility='always')
     consent_comment = fields.Text(string="Comment")
     unique_field = fields.Char(string="Ref",compute='comp_name', store=True)
     accountant_comment = fields.Text(string="Comment")

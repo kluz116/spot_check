@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="teller_report">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                       <h5 style="text-align: center;"> <strong > TELLER DECLARATION</strong></h5>
+                       <t t-foreach="docs" t-as="x">
+                          <p>BRANCH : <strong t-field="x.branch_code"/></p>
+                          <p>DATE   : <strong t-field="x.created_on"/></p>
+                          <p>TELLER   : <strong t-field="x.teller_id"/> TILL: <strong t-field="x.till"/></p>
+        
+                        <table class="table table-bordered table-sm">
+                            <thead>
+                                <tr class="bg-primary">
+                                   <th></th>
+                                   <th>PARTICULARS</th>
+                                    <th>CURRENCY</th>
+                                    <th>AMOUNT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <!--<t t-foreach="docs" t-as="x">-->
+                                <tr> <td rowspan="9"> <strong>A</strong></td></tr>
+                                <tr> <td rowspan="8" ><strong>Good Currency</strong> </td></tr>
+                                <tr>
+                                    <td>
+                                        50,000 Shs
+                                    </td>
+                                     <td>
+                                         <span t-field="x.deno_fifty_thounsand"/>
+                                        
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <td>
+                                        20,000 Shs
+                                    </td>
+                                     <td>
+                                         <span t-field="x.deno_twenty_thounsand"/>
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        10,000 Shs
+                                    </td>
+                                     <td>
+                                         <span t-field="x.deno_ten_thounsand"/>
+                                        
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <td>
+                                        5,000 Shs
+                                    </td>
+                                     <td>
+                                         <span t-field="x.deno_five_thounsand"/>
+                                        
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td>
+                                        2,000 Shs
+                                    </td>
+                                     <td>
+                                         <span t-field="x.deno_two_thounsand"/>
+                                        
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td>
+                                        1,000 Shs
+                                    </td>
+                                     <td>
+                                         <span t-field="x.deno_one_thounsand"/>
+                                        
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td> <strong> SUB-TOTAL</strong></td>
+                                     <td>
+                                         <strong t-field="x.sub_total_good"/>
+                                        
+                                    </td>
+                                </tr> 
+                                <tr> <td rowspan="8"> <strong>B </strong></td></tr>
+                                <tr> <td rowspan="7"><strong>Coins Currency </strong></td></tr>
+                                <tr>
+                                    <td>
+                                        1,000 Shs
+                                    </td>
+                                     <td>
+                                         <span t-field="x.coin_one_thounsand"/>
+                                        
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td>
+                                        500 Shs
+                                    </td>
+                                     <td>
+                                         <span t-field="x.coin_five_houndred"/>
+                                        
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td>
+                                        200 Shs
+                                    </td>
+                                     <td>
+                                         <span t-field="x.coin_two_hundred"/>
+                                        
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td>
+                                        100 Shs
+                                    </td>
+                                     <td>
+                                         <span t-field="x.coin_one_hundred"/>
+                                        
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td>
+                                        50 Shs
+                                    </td>
+                                     <td>
+                                         <span t-field="x.coin_fifty"/>
+                                        
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td>
+                                        <strong> SUB-TOTAL</strong>
+                                    </td>
+                                     <td>
+                                         <strong t-field="x.sub_total_coins"/>
+                                        
+                                    </td>
+                                </tr> 
+                                <tr> <td rowspan="9"><strong>C</strong></td></tr>
+                                <tr> <td rowspan="8"><strong>Mutilated Cash</strong> </td></tr>
+                                <tr>
+                                    <td>
+                                        50,000 Shs
+                                    </td>
+                                     <td>
+                                         <span t-field="x.mutilated_deno_fifty_thounsand"/>
+                                        
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <td>
+                                        20,000 Shs
+                                    </td>
+                                     <td>
+                                         <span t-field="x.mutilated_deno_twenty_thounsand"/>
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        10,000 Shs
+                                    </td>
+                                     <td>
+                                         <span t-field="x.mutilated_deno_ten_thounsand"/>
+                                        
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <td>
+                                        5,000 Shs
+                                    </td>
+                                     <td>
+                                         <span t-field="x.mutilated_deno_five_thounsand"/>
+                                        
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td>
+                                        2,000 Shs
+                                    </td>
+                                     <td>
+                                         <span t-field="x.mutilated_deno_two_thounsand"/>
+                                        
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td>
+                                        1,000 Shs
+                                    </td>
+                                     <td>
+                                         <span t-field="x.mutilated_deno_one_thounsand"/>
+                                        
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td>
+                                       <strong> SUB-TOTAL</strong>
+                                    </td>
+                                     <td>
+                                         <strong t-field="x.sub_total_mutilated"/>
+                                        
+                                    </td>
+                                </tr> 
+                                <tr> 
+                                    <td><strong>(A+B+C)</strong></td>
+                                    <td><strong>Total Cash In Reserve</strong> </td>
+                                
+                                    <td>
+                                        <strong>Grand Total</strong>
+                                    </td>
+                                     <td>
+                                         <strong t-field="x.grand_total_ugx"/>
+                                        
+                                    </td>
+                                </tr>
+                            <!--</t>-->
+                            </tbody>
+                        </table>
+                        <hr/>
+                        <p>VERIFIED BY : <strong  t-field="x.created_by"/> DATE : <strong  t-field="x.created_on"/> </p>
+                        <p>WITNESSED BY : <strong  t-field="x.teller_id"/> DATE : <strong  t-field="x.consent_date"/> </p>
+                        
+                        </t>
+                    </div>
+                </t>
+            </t>
+    
+    </template>
+</odoo>
