@@ -41,7 +41,7 @@ class Vault(models.Model):
     system_cash_balance = fields.Monetary(string="System Cash Balance")
     shortage_cash = fields.Monetary(string="Shortage Cash",compute='_get_shortage')
     surplus_cash = fields.Monetary(string="Surplus Cash",compute='_get_surplus')
-    consent_status = fields.Selection(string='Do you consent that that Vault and System Balance Match?', selection=[('Yes', 'Yes'), ('No', 'No')],track_visibility='always',required=True)
+    #consent_status = fields.Selection(string='Do you consent that that Vault and System Balance Match?', selection=[('Yes', 'Yes'), ('No', 'No')],track_visibility='always',required=True)
     consent_comment = fields.Text(string="Comment")
     unique_field = fields.Char(string="Ref",compute='comp_name', store=True)
     accountant_comment = fields.Text(string="Comment")
@@ -53,7 +53,18 @@ class Vault(models.Model):
     current_to_branch_accountant = fields.Boolean('is current user ?', compute='_get_to_branch_accountant')
     current_to_branch_manager = fields.Boolean('is current user ?', compute='_get_to_branch_manager')
     
+    def _get_consent(self):
+        active_model = self._name
+        for record in self:
+            if record.shortage_cash < 0:
+                consent_status = [('Yes','Yes')]
+            elif record.surplus_cash > 0:
+                consent_status = [('Yes','Yes')]
+            else:
+                consent_status = [('No','No')]
+            return consent_status
 
+    consent_status = fields.Selection(selection=lambda self: self._get_consent(), string="Consent Status", default="No")
 
     @api.depends('deno_fifty_thounsand', 'deno_twenty_thounsand','deno_ten_thounsand','deno_five_thounsand','deno_two_thounsand','deno_one_thounsand')
     def _compute_total_good_currency(self):
@@ -100,6 +111,8 @@ class Vault(models.Model):
                 rec.shortage_cash = 0
             else:
                 rec.shortage_cash = 0
+
+    
 
             
 

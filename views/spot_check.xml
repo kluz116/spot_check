@@ -162,7 +162,7 @@
                              <field name = "consent_status" widget="radio"  options="{'horizontal': true}"/>
                             </group>
                             <group>
-                             <field name = "consent_comment"/>
+                             <field name = "consent_comment" attrs="{'invisible':['|',('consent_status', '=', 'No')]}"/>
                             </group>
                               <group>
                              <field name = "branch_manager"/>
