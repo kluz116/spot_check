@@ -7,7 +7,7 @@ class BranchspotCheck(models.Model):
 
     branch_name = fields.Char(string="Branch Name", required=True)
     branch_code = fields.Integer(string="Branch Code", required=True)
-    user_id = fields.One2many('res.partner','branch_id', string="Name")
+    user_id = fields.One2many('res.partner','branch_id_spot_check', string="Name")
   
     
    

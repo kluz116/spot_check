@@ -63,11 +63,12 @@
                   <xpath expr="//sheet" position="before">
                     <header> 
                         <button name="%(spot_check.wizard_spot_check_accountant_cosent)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
+                        <button name="%(spot_check.wizard_spot_check_reject_cash_accountant)d" states='ongoing' type="action" string="Reject" class="btn btn-outline-danger" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
                         <button name="%(spot_check.wizard_spot_check_manager_cosent)d" states='confirmed_one' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
-                  
+                        <button name="%(spot_check.wizard_spot_check_reject_reject_manager)d" states='confirmed_one' type="action" string="Reejct" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
                         <field name ="current_to_branch_accountant" invisible ='1'/>
                         <field name ="current_to_branch_manager" invisible ='1'/>
-                        <field name="state" widget="statusbar" statusbar_visible="ongoing,confirmed_one,confirmed_two" />
+                        <field name="state" widget="statusbar" statusbar_visible="ongoing,confirmed_one,confirmed_two,rejected_one,rejected_two" />
                     </header>
                 </xpath>
                    <sheet>
@@ -147,28 +148,31 @@
                              <field name ="grand_total_ugx" readonly="1" style="color: #e60911; font-weight: bold;"/>
                             </group>
                             <group>
-                             <field name = "trx_proof"/>
-                            </group>
-                           <group>
-                             <field name = "system_cash_balance"/>
+                             <field name = "system_cash_balance" style="color: #e60911; font-weight: bold;" />
                             </group>
                             <group>
-                             <field name = "shortage_cash" readonly="1"/>
+                             <field name = "trx_proof" filename="Upload BRNET GL"/>
                             </group>
                             <group>
-                             <field name = "surplus_cash" readonly="1"/>
+                             <field name = "shortage_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                            <group>
+                             <field name = "surplus_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
                             </group>
                              <group>
-                             <field name = "consent_status" widget="radio"  options="{'horizontal': true}"/>
+                             <field name = "consent_status" widget="radio"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;"/>
                             </group>
                             <group>
                              <field name = "consent_comment" attrs="{'invisible':['|',('consent_status', '=', 'No')]}"/>
                             </group>
-                              <group>
-                             <field name = "branch_manager"/>
+                           <group>
+                             <field name = "partner_id" invisible="1"/>
+                            </group>
+                            <group>
+                             <field name = "branch_manager"  invisible="1"/>
                             </group>
                            <group>
-                             <field name = "branch_accountant"/>
+                             <field name = "branch_accountant" invisible="1"/>
                             </group>
                             <group>
                              <field name ="created_on" invisible="1"/>
@@ -289,16 +293,28 @@
                              <field name ="grand_total_ugx" readonly="1" style="color: #e60911; font-weight: bold;"/>
                             </group>
                             <group>
-                             <field name = "trx_proof"/>
+                             <field name = "system_cash_balance" style="color: #e60911; font-weight: bold;" />
                             </group>
                             <group>
-                             <field name = "consent_comment"/>
+                             <field name = "trx_proof" filename="Upload BRNET GL"/>
                             </group>
-                              <group>
+                            <group>
+                             <field name = "shortage_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                            <group>
+                             <field name = "surplus_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                             <group>
+                             <field name = "consent_status" widget="radio"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                            <group>
+                             <field name = "consent_comment" attrs="{'invisible':['|',('consent_status', '=', 'No')]}"/>
+                            </group>
+                           <group>
+                             <field name = "partner_id" invisible="1"/>
+                           </group>
+                           <group>
                              <field name = "branch_manager" invisible="1"/>
-                            </group>
-                              <group>
-                             <field name = "partner_id" readonly="1"/>
                             </group>
                            <group>
                              <field name = "branch_accountant" invisible="1"/>
@@ -372,29 +388,32 @@
                             <group>
                              <field name ="grand_total_ugx" readonly="1" style="color: #e60911; font-weight: bold;"/>
                             </group>
-                            <group>
-                             <field name = "trx_proof"/>
-                            </group>
                            <group>
-                             <field name = "system_cash_balance"/>
+                             <field name = "system_cash_balance" style="color: #e60911; font-weight: bold;" />
                             </group>
                             <group>
-                             <field name = "shortage_cash"/>
+                             <field name = "trx_proof" filename="Upload BRNET GL"/>
                             </group>
                             <group>
-                             <field name = "surplus_cash"/>
+                             <field name = "shortage_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                            <group>
+                             <field name = "surplus_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
                             </group>
                              <group>
-                             <field name = "consent_status" widget="radio"  options="{'horizontal': true}"/>
+                             <field name = "consent_status" widget="radio"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;"/>
                             </group>
                             <group>
-                             <field name = "consent_comment"/>
-                            </group>
-                              <group>
-                             <field name = "branch_manager"/>
+                             <field name = "consent_comment" attrs="{'invisible':['|',('consent_status', '=', 'No')]}"/>
                             </group>
                            <group>
-                             <field name = "branch_accountant"/>
+                             <field name = "partner_id" invisible="1"/>
+                           </group>
+                           <group>
+                             <field name = "branch_manager" invisible="1"/>
+                           </group>
+                           <group>
+                             <field name = "branch_accountant" invisible="1"/>
                             </group>
                             <group>
                              <field name ="created_on" invisible="1"/>

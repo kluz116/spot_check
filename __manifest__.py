@@ -26,6 +26,8 @@
         'wizard/spot_check_atm_consent_accountant.xml',
         'wizard/spot_check_atm_consent_manager.xml',
         'wizard/spot_check_consent_teller.xml',
+        'wizard/spot_check_vault_reject_accountant.xml',
+        'wizard/spot_check_vault_reject_manager.xml',
         'views/branch.xml',
         'views/spot_check.xml',
         'views/spots_user.xml',

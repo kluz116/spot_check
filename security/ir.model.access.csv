@@ -19,3 +19,5 @@ access_spot_check_branch1,spot_check,model_spot_check_branch,Cash_Managment_Supp
 access_spot_check_branch2,spot_check,model_spot_check_branch,Branch_Accountant_spot_check,1,1,0,0
 access_spot_check_branch3,spot_check,model_spot_check_branch,Branch_Accountant_spot_check,1,1,0,0
 access_spot_check_branch4,spot_check,model_spot_check_branch,Credit_Supervisor,1,1,1,1
+
+

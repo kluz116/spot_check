@@ -9,7 +9,7 @@ class Vault(models.Model):
     partner_id = fields.Many2one ('res.partner', 'Credit supervisor', default = lambda self: self.env.user.partner_id )
     currency_id = fields.Many2one('res.currency', string='Currency' )
 
-    state = fields.Selection([('ongoing', 'Pending Accountant Consent'),('confirmed_one', 'Pending Manager Consent'),('confirmed_two', 'Confirmed')],default="ongoing", string="Status",track_visibility='onchange')
+    state = fields.Selection([('ongoing', 'Pending Accountant Consent'),('confirmed_one', 'Pending Manager Consent'),('rejected_one', 'Rejected By Accountant'),('confirmed_two', 'Confirmed') ,('rejected_two', 'Rejected By Manager')],default="ongoing", string="Status",track_visibility='onchange')
     deno_fifty_thounsand = fields.Monetary(string="50,000 Shs")
     deno_twenty_thounsand = fields.Monetary(string="20,000 Shs")
     deno_ten_thounsand = fields.Monetary(string="10,000 Shs")
@@ -48,23 +48,19 @@ class Vault(models.Model):
     consent_date =  fields.Datetime(string='Consent Date')
     manager_comment = fields.Text(string="Comment")
     consent_manager_date =  fields.Datetime(string='Consent Date')
+    accountant_reject_comment = fields.Text(string="Reject Comment")
+    reeject_one_date =  fields.Datetime(string='Reject Date')
+    manager_reject_comment = fields.Text(string="Reject Comment")
+    reeject_two_date =  fields.Datetime(string='Reject Date')
+    
+
+    
+
     
 
     current_to_branch_accountant = fields.Boolean('is current user ?', compute='_get_to_branch_accountant')
     current_to_branch_manager = fields.Boolean('is current user ?', compute='_get_to_branch_manager')
-    
-    def _get_consent(self):
-        active_model = self._name
-        for record in self:
-            if record.shortage_cash < 0:
-                consent_status = [('Yes','Yes')]
-            elif record.surplus_cash > 0:
-                consent_status = [('Yes','Yes')]
-            else:
-                consent_status = [('No','No')]
-            return consent_status
-
-    consent_status = fields.Selection(selection=lambda self: self._get_consent(), string="Consent Status", default="No")
+    consent_status = fields.Char(string="Consent Status", compute='_get_consent')
 
     @api.depends('deno_fifty_thounsand', 'deno_twenty_thounsand','deno_ten_thounsand','deno_five_thounsand','deno_two_thounsand','deno_one_thounsand')
     def _compute_total_good_currency(self):
@@ -106,16 +102,14 @@ class Vault(models.Model):
 
     @api.depends('shortage_cash','surplus_cash')
     def _get_consent(self):
-        for rec in self:
-            if rec.shortage_cash < 0:
-                rec.shortage_cash = 0
+        for record in self:
+            if record.shortage_cash < 0:
+                record.consent_status = 'Yes'
+            elif record.surplus_cash > 0:
+                record.consent_status = 'Yes'
             else:
-                rec.shortage_cash = 0
-
-    
-
+                record.consent_status = 'No'
             
-
     @api.depends('user_id')
     def _compute_branch(self):
         for record in self:

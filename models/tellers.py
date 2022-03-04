@@ -2,7 +2,7 @@ from odoo import models,api,fields
 
 class Tellers(models.Model):
     _name = "spot_check.teller"
-    _inherit="mail.thread"
+    _inherit= ['mail.thread','cash_managment.branch']
     _description = "This is a a tellers model"
     _rec_name ="grand_total_ugx"
     
@@ -34,13 +34,17 @@ class Tellers(models.Model):
     mutilated_deno_one_thounsand = fields.Monetary(string="1,000 Shs")
     sub_total_mutilated = fields.Monetary(compute='_compute_total_mutilated_currency',string="Sub Total Mutilated",store=True,track_visibility='always')
     grand_total_ugx = fields.Monetary(compute='_compute_grand_totol',string="Grand Total (UGX)",store=True)
+    system_cash_balance = fields.Monetary(string="System Cash Balance")
+    shortage_cash = fields.Monetary(string="Shortage Cash",compute='_get_shortage')
+    surplus_cash = fields.Monetary(string="Surplus Cash",compute='_get_surplus')
     created_on =  fields.Datetime(string='Date', default=lambda self: fields.datetime.now())
     created_by = fields.Many2one('res.users','Confirmed By:',default=lambda self: self.env.user)
     user_id = fields.Many2one('res.users', string='User', track_visibility='onchange', readonly=True, default=lambda self: self.env.user.id)
-    trx_proof = fields.Binary(string='Upload System Statements', attachment=True,required=True)
+    trx_proof = fields.Binary(string='Upload Teller Declara', attachment=True,required=True)
     branch_code = fields.Integer(compute='_compute_branch',string='Branch',store=True)
     branch_manager = fields.Many2one(compute='_get_manager_id', comodel_name='res.partner', string='Branch Manger', store=True)
     branch_accountant = fields.Many2one(compute='_get_accountant_id', comodel_name='res.partner', string='Branch Accountant', store=True)
+    consent_status = fields.Char(string="Consent Status", compute='_get_consent')
 
     consent_comment = fields.Text(string="Comment")
     unique_field = fields.Char(string="Ref",compute='comp_name', store=True)
@@ -51,6 +55,7 @@ class Tellers(models.Model):
     current_to_branch_accountant = fields.Boolean('is current user ?', compute='_get_to_branch_accountant')
     current_to_branch_manager = fields.Boolean('is current user ?', compute='_get_to_branch_manager')
     current_to_teller = fields.Boolean('is current user ?', compute='_get_to_teller')
+    consent_status = fields.Char(string="Consent Status", compute='_get_consent')
 
 
     @api.depends('deno_fifty_thounsand', 'deno_twenty_thounsand','deno_ten_thounsand','deno_five_thounsand','deno_two_thounsand','deno_one_thounsand')
@@ -74,6 +79,33 @@ class Tellers(models.Model):
             record.grand_total_ugx = record.sub_total_good + record.sub_total_coins + record.sub_total_mutilated 
 
     
+    @api.depends('grand_total_ugx','system_cash_balance')
+    def _get_surplus(self):
+        for recs in self:
+            if recs.grand_total_ugx > recs.system_cash_balance:
+                recs.surplus_cash = recs.grand_total_ugx - recs.system_cash_balance
+    
+    @api.depends('grand_total_ugx','system_cash_balance')
+    def _get_shortage(self):
+        for rec in self:
+            if rec.system_cash_balance == rec.grand_total_ugx:
+                rec.shortage_cash = 0
+            elif rec.grand_total_ugx < rec.system_cash_balance:
+                rec.shortage_cash = rec.grand_total_ugx - rec.system_cash_balance
+          
+            else:
+                rec.shortage_cash = 0
+
+    @api.depends('shortage_cash','surplus_cash')
+    def _get_consent(self):
+        for record in self:
+            if record.shortage_cash < 0:
+                record.consent_status = 'Yes'
+            elif record.surplus_cash > 0:
+                record.consent_status = 'Yes'
+            else:
+                record.consent_status = 'No'
+
     @api.depends('user_id')
     def _compute_branch(self):
         for record in self:

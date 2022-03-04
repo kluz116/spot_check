@@ -22,14 +22,14 @@ class Vault(models.Model):
     created_on =  fields.Datetime(string='Date', default=lambda self: fields.datetime.now())
     created_by = fields.Many2one('res.users','Confirmed By:',default=lambda self: self.env.user)
     user_id = fields.Many2one('res.users', string='User', track_visibility='onchange', readonly=True, default=lambda self: self.env.user.id)
-    trx_proof = fields.Binary(string='Upload System Statements', attachment=True,required=True)
+    trx_proof = fields.Binary(string='Upload BRNET GL', attachment=True,required=True)
     branch_code = fields.Integer(compute='_compute_branch',string='Branch',store=True)
     branch_manager = fields.Many2one(compute='_get_manager_id', comodel_name='res.partner', string='Branch Manger', store=True)
     branch_accountant = fields.Many2one(compute='_get_accountant_id', comodel_name='res.partner', string='Branch Accountant', store=True)
     system_cash_balance = fields.Monetary(string="System Cash Balance")
-    shortage_cash = fields.Monetary(string="Shortage Cash")
-    surplus_cash = fields.Monetary(string="Surplus Cash")
-    consent_status = fields.Selection(string='Do you consent that that Vault and System Balance Match?', selection=[('Yes', 'Yes'), ('No', 'No')],track_visibility='always')
+    shortage_cash = fields.Monetary(string="Shortage Cash",compute='_get_shortage')
+    surplus_cash = fields.Monetary(string="Surplus Cash",compute='_get_surplus')
+    consent_status = fields.Char(string="Consent Status", compute='_get_consent')
     consent_comment = fields.Text(string="Comment")
     unique_field = fields.Char(string="Ref",compute='comp_name', store=True)
     accountant_comment = fields.Text(string="Comment")
@@ -37,11 +37,6 @@ class Vault(models.Model):
     manager_comment = fields.Text(string="Comment")
     consent_manager_date =  fields.Datetime(string='Consent Date')
     
-
-    
-
-
-
     current_to_branch_accountant = fields.Boolean('is current user ?', compute='_get_to_branch_accountant')
     current_to_branch_manager = fields.Boolean('is current user ?', compute='_get_to_branch_manager')
 
@@ -56,6 +51,33 @@ class Vault(models.Model):
     def _compute_grand_totol(self):
         for record in self:
             record.grand_total_ugx = record.sub_total_good 
+
+    @api.depends('grand_total_ugx','system_cash_balance')
+    def _get_surplus(self):
+        for recs in self:
+            if recs.grand_total_ugx > recs.system_cash_balance:
+                recs.surplus_cash = recs.grand_total_ugx - recs.system_cash_balance
+    
+    @api.depends('grand_total_ugx','system_cash_balance')
+    def _get_shortage(self):
+        for rec in self:
+            if rec.system_cash_balance == rec.grand_total_ugx:
+                rec.shortage_cash = 0
+            elif rec.grand_total_ugx < rec.system_cash_balance:
+                rec.shortage_cash = rec.grand_total_ugx - rec.system_cash_balance
+          
+            else:
+                rec.shortage_cash = 0
+
+    @api.depends('shortage_cash','surplus_cash')
+    def _get_consent(self):
+        for record in self:
+            if record.shortage_cash < 0:
+                record.consent_status = 'Yes'
+            elif record.surplus_cash > 0:
+                record.consent_status = 'Yes'
+            else:
+                record.consent_status = 'No'
 
     
     @api.depends('user_id')
