@@ -1,29 +1,29 @@
 <?xml version="1.0"?>
 <odoo>
-        <record id="spot_check_reject_manager" model="ir.ui.view">
-            <field name="name">spot_check.reject_manager.form</field>
-            <field name="model">spot_check.reject_manager</field>
+        <record id="spot_check_reject_cash_teller" model="ir.ui.view">
+            <field name="name">spot_check.cash_reject_teller.form</field>
+            <field name="model">spot_check.cash_reject_teller</field>
             <field name="arch" type="xml">
                 <form string="Reject Cash Consent">
                     <group class="oe_title">
                         <field name="state" invisible="1"/>
-                        <field name="manager_reject_comment"/>
-                        <field name="reeject_two_date" readonly="1"/>
+                        <field name="teller_reject_comment"/>
+                        <field name="reeject_one_date" readonly="1"/>
                     </group>
                     <footer>
-                        <button name="reject_vault_manager" string="Reject" type="object" class="btn btn-outline-primary"/>
+                        <button name="reject_teller" string="Reject" type="object" class="btn btn-outline-primary"/>
                         <button string="Cancel" class="btn-outline-dark" special="cancel"/>
                     </footer>
                 </form>
             </field>
         </record>
 
-        <record id="wizard_spot_check_reject_reject_manager" model="ir.actions.act_window">
+        <record id="wizard_spot_check_reject_cash_teller" model="ir.actions.act_window">
             <field name="name">Reject</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">spot_check.reject_manager</field>
+            <field name="res_model">spot_check.cash_reject_teller</field>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="spot_check_reject_manager"/>
+            <field name="view_id" ref="spot_check_reject_cash_teller"/>
             <field name="target">new</field>
         </record>
 </odoo>

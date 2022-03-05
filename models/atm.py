@@ -1,6 +1,6 @@
 from odoo import models,api,fields
 
-class Vault(models.Model):
+class ATM(models.Model):
     _name = "spot_check.atm"
     _inherit="mail.thread"
     _description = "This is an ATM model"
@@ -9,7 +9,7 @@ class Vault(models.Model):
     partner_id = fields.Many2one ('res.partner', 'Customer', default = lambda self: self.env.user.partner_id )
     currency_id = fields.Many2one('res.currency', string='Currency' )
 
-    state = fields.Selection([('ongoing', 'Pending Accountant Consent'),('confirmed_one', 'Pending Manager Consent'),('confirmed_two', 'Confirmed')],default="ongoing", string="Status",track_visibility='always')
+    state = fields.Selection([('ongoing', 'Pending Accountant Consent'),('confirmed_one', 'Pending Manager Consent'),('rejected_one', 'Rejected By Accountant'),('confirmed_two', 'Confirmed') ,('rejected_two', 'Rejected By Manager')],default="ongoing", string="Status",track_visibility='always')
     deno_fifty_thounsand = fields.Monetary(string="50,000 Shs")
     deno_twenty_thounsand = fields.Monetary(string="20,000 Shs")
     deno_ten_thounsand = fields.Monetary(string="10,000 Shs")
@@ -23,6 +23,8 @@ class Vault(models.Model):
     created_by = fields.Many2one('res.users','Confirmed By:',default=lambda self: self.env.user)
     user_id = fields.Many2one('res.users', string='User', track_visibility='onchange', readonly=True, default=lambda self: self.env.user.id)
     trx_proof = fields.Binary(string='Upload BRNET GL', attachment=True,required=True)
+    trx_proof1 = fields.Binary(string='ATM Counters', attachment=True,required=True)
+    trx_proof2 = fields.Binary(string='ATM Spot Recooncilations', attachment=True,required=True)
     branch_code = fields.Integer(compute='_compute_branch',string='Branch',store=True)
     branch_manager = fields.Many2one(compute='_get_manager_id', comodel_name='res.partner', string='Branch Manger', store=True)
     branch_accountant = fields.Many2one(compute='_get_accountant_id', comodel_name='res.partner', string='Branch Accountant', store=True)
@@ -30,12 +32,18 @@ class Vault(models.Model):
     shortage_cash = fields.Monetary(string="Shortage Cash",compute='_get_shortage')
     surplus_cash = fields.Monetary(string="Surplus Cash",compute='_get_surplus')
     consent_status = fields.Char(string="Consent Status", compute='_get_consent')
-    consent_comment = fields.Text(string="Comment")
+    consent_comment = fields.Text(string="Comment", required=True, default="Consent Status Yes, Write your comment Here")
     unique_field = fields.Char(string="Ref",compute='comp_name', store=True)
     accountant_comment = fields.Text(string="Comment")
     consent_date =  fields.Datetime(string='Consent Date')
     manager_comment = fields.Text(string="Comment")
     consent_manager_date =  fields.Datetime(string='Consent Date')
+    accountant_reject_comment = fields.Text(string="Reject Comment")
+    reeject_one_date =  fields.Datetime(string='Reject Date')
+    manager_reject_comment = fields.Text(string="Reject Comment")
+    reeject_two_date =  fields.Datetime(string='Reject Date')
+    
+
     
     current_to_branch_accountant = fields.Boolean('is current user ?', compute='_get_to_branch_accountant')
     current_to_branch_manager = fields.Boolean('is current user ?', compute='_get_to_branch_manager')
@@ -83,7 +91,7 @@ class Vault(models.Model):
     @api.depends('user_id')
     def _compute_branch(self):
         for record in self:
-            record.branch_code = record.user_id.branch_id.branch_code
+            record.branch_code = record.user_id.branch_id_spot_check.branch_code
 
     @api.depends('partner_id')    
     def _get_manager_id(self):

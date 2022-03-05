@@ -6,7 +6,7 @@
             <field name="arch" type="xml">
                 <form string="Cash Consent">
                     <group class="oe_title">
-                        <field name="state" readonly="1"/>
+                        <field name="state" invisible="1"/>
                         <field name="accountant_comment"/>
                         <field name="consent_date" readonly="1"/>
                     </group>

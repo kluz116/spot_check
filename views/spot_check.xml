@@ -14,6 +14,8 @@
                     <field name="sub_total_mutilated"/>
                     <field name="grand_total_ugx"/>
                     <field name="system_cash_balance"/>
+                    <field name="shortage_cash"/>
+                    <field name="surplus_cash"/>
               
                 </tree>
             </field>
@@ -32,6 +34,8 @@
                     <field name="sub_total_coins"/>
                     <field name="sub_total_mutilated"/>
                     <field name="grand_total_ugx"/>
+                    <field name="shortage_cash"/>
+                    <field name="surplus_cash"/>
                     
               
                 </tree>
@@ -47,9 +51,10 @@
                     <field name="state"/>
                     <field name="branch_code"/>
                     <field name="sub_total_good"/>
-                  
                     <field name="grand_total_ugx"/>
                     <field name="system_cash_balance"/>
+                    <field name="shortage_cash"/>
+                    <field name="surplus_cash"/>
               
                 </tree>
             </field>
@@ -65,10 +70,10 @@
                         <button name="%(spot_check.wizard_spot_check_accountant_cosent)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
                         <button name="%(spot_check.wizard_spot_check_reject_cash_accountant)d" states='ongoing' type="action" string="Reject" class="btn btn-outline-danger" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
                         <button name="%(spot_check.wizard_spot_check_manager_cosent)d" states='confirmed_one' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
-                        <button name="%(spot_check.wizard_spot_check_reject_reject_manager)d" states='confirmed_one' type="action" string="Reejct" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
+                        <button name="%(spot_check.wizard_spot_check_reject_reject_manager)d" states='confirmed_one' type="action" string="Reject" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
                         <field name ="current_to_branch_accountant" invisible ='1'/>
                         <field name ="current_to_branch_manager" invisible ='1'/>
-                        <field name="state" widget="statusbar" statusbar_visible="ongoing,confirmed_one,confirmed_two,rejected_one,rejected_two" />
+                        <field name="state" widget="statusbar" statusbar_visible="ongoing,rejected_one,confirmed_one,rejected_two,confirmed_two" />
                     </header>
                 </xpath>
                    <sheet>
@@ -200,9 +205,10 @@
                   <xpath expr="//sheet" position="before">
                     <header> 
                         <button name="%(spot_check.wizard_spot_check_tellers)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_teller', '=', False)]}" />
+                        <button name="%(spot_check.wizard_spot_check_reject_cash_teller)d" states='ongoing' type="action" string="Reject" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_teller', '=', False)]}" />
+               
                         <field name ="current_to_teller" invisible="1" />
-                     
-                        <field name="state" widget="statusbar" statusbar_visible="ongoing,confirmed_one" />
+                        <field name="state" widget="statusbar" statusbar_visible="ongoing,reject_one,confirmed_one" />
                     </header>
                 </xpath>
                    <sheet>
@@ -347,11 +353,14 @@
                   <xpath expr="//sheet" position="before">
                     <header> 
                         <button name="%(spot_check.wizard_spot_check_accountant_cosent_atm)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
+                        <button name="%(spot_check.wizard_spot_check_reject_cash_accountant_atm)d" states='ongoing' type="action" string="Reject" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
                         <button name="%(spot_check.wizard_spot_check_manager_cosent_atm)d" states='confirmed_one' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
+                        <button name="%(spot_check.wizard_spot_check_reject_reject_manager_atm)d" states='confirmed_one' type="action" string="Reject" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
+                        
                   
                         <field name ="current_to_branch_accountant" invisible ='1'/>
                         <field name ="current_to_branch_manager" invisible ='1'/>
-                        <field name="state" widget="statusbar" statusbar_visible="ongoing,confirmed_one,confirmed_two" />
+                        <field name="state" widget="statusbar" statusbar_visible="ongoing,rejected_one,confirmed_one,rejected_two,confirmed_two" />
                     </header>
                 </xpath>
                    <sheet>
@@ -394,6 +403,12 @@
                             <group>
                              <field name = "trx_proof" filename="Upload BRNET GL"/>
                             </group>
+                             <group>
+                             <field name = "trx_proof1" />
+                            </group>
+                             <group>
+                             <field name = "trx_proof2" />
+                            </group>
                             <group>
                              <field name = "shortage_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
                             </group>
@@ -435,8 +450,10 @@
             <field name="arch" type="xml">
                 <search>
                     <field name ="created_on"/>
+                    <field name="branch_code"/>
                     <separator/>
-                     <filter name="created_ons" string="Today" domain="[('created_on', '&gt;=', datetime.datetime.now().strftime('%Y-%m-%d 00:00:00'))]" />
+                     <filter name="created_ons" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
+                     <filter name="branch_codes" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_code'}"/>
                 </search>
             </field>
         </record>
@@ -447,8 +464,10 @@
             <field name="arch" type="xml">
                 <search>
                     <field name ="created_on"/>
+                    <field name="branch_code"/>
                     <separator/>
-                     <filter name="created_ons" string="Today" domain="[('created_on', '&gt;=', datetime.datetime.now().strftime('%Y-%m-%d 00:00:00'))]" />
+                     <filter name="created_ons" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
+                     <filter name="branch_codes" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_code'}"/>
                 </search>
             </field>
         </record>
@@ -460,11 +479,16 @@
                 <search>
                     
                      <field name ="created_on"/>
+                     <field name="branch_code"/>
                     <separator/>
-                     <filter name="created_ons" string="Today" domain="[('created_on', '&gt;=', datetime.datetime.now().strftime('%Y-%m-%d 00:00:00'))]" />
+                     <filter name="created_ons" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
+                     <filter name="branch_codes" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_code'}"/>
                 </search>
             </field>
         </record>
+
+
+
 
 
         <record model="ir.actions.act_window" id="vault_list_action">

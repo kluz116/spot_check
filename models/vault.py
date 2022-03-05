@@ -42,7 +42,7 @@ class Vault(models.Model):
     shortage_cash = fields.Monetary(string="Shortage Cash",compute='_get_shortage')
     surplus_cash = fields.Monetary(string="Surplus Cash",compute='_get_surplus')
     #consent_status = fields.Selection(string='Do you consent that that Vault and System Balance Match?', selection=[('Yes', 'Yes'), ('No', 'No')],track_visibility='always',required=True)
-    consent_comment = fields.Text(string="Comment")
+    consent_comment = fields.Text(string="Comment", required=True, default="Consent Status Yes, Write your comment Here")
     unique_field = fields.Char(string="Ref",compute='comp_name', store=True)
     accountant_comment = fields.Text(string="Comment")
     consent_date =  fields.Datetime(string='Consent Date')
@@ -113,7 +113,7 @@ class Vault(models.Model):
     @api.depends('user_id')
     def _compute_branch(self):
         for record in self:
-            record.branch_code = record.user_id.branch_id.branch_code
+            record.branch_code = record.user_id.branch_id_spot_check.branch_code
 
     @api.depends('partner_id')    
     def _get_manager_id(self):
