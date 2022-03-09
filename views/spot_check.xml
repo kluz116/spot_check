@@ -20,6 +20,25 @@
                 </tree>
             </field>
         </record>
+         <record id="spot_check_vault_usd_tree" model="ir.ui.view">
+            <field name="name">spot_check_vault_usd.tree</field>
+            <field name="model">spot_check.vault_usd</field>
+             <field name="arch" type="xml">
+                <tree string="All Vault Spot Checks" default_order='created_on desc'>
+
+                    <field name="unique_field"/>
+                    <field name="state"/>
+                    <field name="branch_code"/>
+                    <field name="sub_total_good"/>
+                    <field name="sub_total_mutilated"/>
+                    <field name="grand_total_ugx"/>
+                    <field name="system_cash_balance"/>
+                    <field name="shortage_cash"/>
+                    <field name="surplus_cash"/>
+              
+                </tree>
+            </field>
+        </record>
 
           <record id="spot_check_teller_tree" model="ir.ui.view">
             <field name="name">spot_check_tellert.tree</field>
@@ -216,72 +235,56 @@
                              <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"/>
                         </group> 
                          <notebook>
-                                <page string="GOOD CURRENCY">
+                                <page string="GOOD CURRENCY (USD) ">
                                     <group>
-                                       <field name ="deno_fifty_thounsand"/>
-                                    </group>
-                                    <group>
-                                       <field name ="deno_twenty_thounsand"/>
+                                       <field name ="hundred_dollar"/>
                                     </group>
                                     <group>
-                                       <field name ="deno_ten_thounsand"/>
+                                       <field name ="fifty_dollar"/>
+                                    </group>
+                                    <group>
+                                       <field name ="twenty_dollar"/>
                                     </group>
                                      <group>
-                                       <field name ="deno_five_thounsand"/>
+                                       <field name ="ten_dollar"/>
                                     </group>
                                      <group>
-                                       <field name ="deno_two_thounsand"/>
+                                       <field name ="five_dollar"/>
                                     </group>
                                      <group>
-                                       <field name ="deno_one_thounsand"/>
+                                       <field name ="one_dollar"/>
                                     </group>
                                     <group>
                                        <field name ="sub_total_good" readonly="1" style="color: #e60911; font-weight: bold;"/>
                                     </group>
                                 </page>
-                                <page string="COINS CURRENCY">
+                                <page string="MUTILATED CASH (USD)">
                                     <group>
-                                       <field name ="coin_one_thounsand"/>
+                                       <field name ="mutilated_hundred_dollar"/>
                                     </group>
                                     <group>
-                                       <field name ="coin_five_houndred"/>
+                                       <field name ="mutilated_fifty_dollar"/>
                                     </group>
                                     <group>
-                                       <field name ="coin_two_hundred"/>
+                                       <field name ="mutilated_twenty_dollar"/>
                                     </group>
                                      <group>
-                                       <field name ="coin_one_hundred"/>
+                                       <field name ="mutilated_ten_dollar"/>
                                     </group>
                                      <group>
-                                       <field name ="coin_fifty"/>
+                                       <field name ="mutilated_five_dollar"/>
                                     </group> 
+                                      <group>
+                                       <field name ="mutilated_five_dollar"/>
+                                    </group> 
+                                     <group>
+                                       <field name ="mutilated_one_dollar"/>
+                                    </group>
                                     <group>
-                                       <field name ="sub_total_coins" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                                       <field name ="sub_total_mutilated" readonly="1" style="color: #e60911; font-weight: bold;"/>
                                     </group>
                                 </page>
-                                <page string="MUTILATED CASH">
-                                    <group>
-                                       <field name ="mutilated_deno_fifty_thounsand"/>
-                                    </group>
-                                    <group>
-                                       <field name ="mutilated_deno_twenty_thounsand"/>
-                                    </group>
-                                    <group>
-                                       <field name ="mutilated_deno_ten_thounsand"/>
-                                    </group>
-                                     <group>
-                                       <field name ="mutilated_deno_five_thounsand"/>
-                                    </group>
-                                     <group>
-                                       <field name ="mutilated_deno_two_thounsand"/>
-                                    </group>
-                                     <group>
-                                       <field name ="mutilated_deno_one_thounsand"/>
-                                    </group> 
-                                    <group>
-                                    <field name ="sub_total_mutilated" readonly="1" style="color: #e60911; font-weight: bold;"/>
-                                    </group>
-                                </page>
+                 
                           </notebook>  
                             <group>
                              <field name ="grand_total_ugx" readonly="1" style="color: #e60911; font-weight: bold;"/>
@@ -592,6 +595,19 @@
                 </search>
             </field>
         </record>
+         <record model="ir.ui.view" id="spot_check_vault_usd_search_view">
+            <field name="name">spot_check.vault_usd.search</field>
+            <field name="model">spot_check.vault_usd</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name ="created_on"/>
+                    <field name="branch_code"/>
+                    <separator/>
+                     <filter name="created_ons" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
+                     <filter name="branch_codes" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_code'}"/>
+                </search>
+            </field>
+        </record>
 
         <record model="ir.ui.view" id="spot_check_teller_search_view">
             <field name="name">spot_check.teller.search</field>
@@ -627,8 +643,18 @@
 
 
         <record model="ir.actions.act_window" id="vault_list_action">
-            <field name="name">Vault Spot Checks</field>
+            <field name="name">Vault Spot Checks (UGX)</field>
             <field name="res_model">spot_check.vault</field>
+            <field name="view_mode">tree,form</field>
+            <field name ="context">{"search_default_created_ons":1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Vault Spot Checks</p>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="vault_list_usd_action">
+            <field name="name">Vault Spot Checks (USD)</field>
+            <field name="res_model">spot_check.vault_usd</field>
             <field name="view_mode">tree,form</field>
             <field name ="context">{"search_default_created_ons":1}</field>
             <field name="help" type="html">
@@ -658,7 +684,8 @@
 
         <menuitem id="main_spot_check_menu" name="Online Spot Check"/>
         <menuitem id="vault_request" name="Spot Checks" sequence="1" parent="main_spot_check_menu"/>
-        <menuitem id="vault_spot__checkes" name="Vault Spot Checks" sequence="2" parent="vault_request" action="vault_list_action"/>  
-        <menuitem id="atm_spot__checkes" name="ATM Spot Checks" sequence="3" parent="vault_request" action="atm_list_action"/>   
-        <menuitem id="teller_spot__checkes" name="Teller Declarations" sequence="3" parent="vault_request" action="teller_list_action"/>    
+        <menuitem id="vault_spot__checkes" name="Vault Spot Checks (UGX)" sequence="2" parent="vault_request" action="vault_list_action"/>  
+         <menuitem id="vault_spckes" name="Vault Spot Checks (USD)" sequence="3" parent="vault_request" action="vault_list_usd_action"/> 
+        <menuitem id="atm_spot__checkes" name="ATM Spot Checks" sequence="4" parent="vault_request" action="atm_list_action"/>   
+        <menuitem id="teller_spot__checkes" name="Teller Declarations" sequence="5" parent="vault_request" action="teller_list_action"/>    
 </odoo>
