@@ -1,37 +1,42 @@
 from odoo import models,api,fields
 
-class ATM(models.Model):
-    _name = "spot_check.atm"
+class VaultUsd(models.Model):
+    _name = "spot_check.vault_usd"
     _inherit="mail.thread"
-    _description = "This is an ATM model"
+    _description = "This is a a vault model"
     _rec_name ="grand_total_ugx"
     
-    partner_id = fields.Many2one ('res.partner', 'Customer', default = lambda self: self.env.user.partner_id )
+    partner_id = fields.Many2one ('res.partner', 'Credit supervisor', default = lambda self: self.env.user.partner_id )
     currency_id = fields.Many2one('res.currency', string='Currency' )
 
-    state = fields.Selection([('ongoing', 'Pending Accountant Consent'),('confirmed_one', 'Pending Manager Consent'),('rejected_one', 'Rejected By Accountant'),('confirmed_two', 'Confirmed') ,('rejected_two', 'Rejected By Manager')],default="ongoing", string="Status",track_visibility='always')
-    deno_fifty_thounsand = fields.Monetary(string="50,000 Shs")
-    deno_twenty_thounsand = fields.Monetary(string="20,000 Shs")
-    deno_ten_thounsand = fields.Monetary(string="10,000 Shs")
-    deno_five_thounsand = fields.Monetary(string="5,000 Shs")
-    deno_two_thounsand = fields.Monetary(string="2,000 Shs")
-    deno_one_thounsand = fields.Monetary(string="1,000 Shs")
-    sub_total_good = fields.Monetary(compute='_compute_total_good_currency',string="Sub Total Good Currency",store=True)
-   
-    grand_total_ugx = fields.Monetary(compute='_compute_grand_totol',string="Grand Total (UGX)",store=True,track_visibility='always')
+    state = fields.Selection([('ongoing', 'Pending Accountant Consent'),('confirmed_one', 'Pending Manager Consent'),('rejected_one', 'Rejected By Accountant'),('confirmed_two', 'Confirmed') ,('rejected_two', 'Rejected By Manager')],default="ongoing", string="Status",track_visibility='onchange')
+    hundred_dollar = fields.Monetary(string="$100")
+    fifty_dollar = fields.Monetary(string="$50")
+    twenty_dollar = fields.Monetary(string="$20")
+    ten_dollar = fields.Monetary(string="$10")
+    five_dollar = fields.Monetary(string="$5")
+    one_dollar = fields.Monetary(string="$1")
+    sub_total_good = fields.Monetary(compute='_compute_total_good_currency',string="Sub Total Good Currency",store=True,track_visibility='always')
+    mutilated_hundred_dollar = fields.Monetary(string="$100")
+    mutilated_fifty_dollar = fields.Monetary(string="$50")
+    mutilated_twenty_dollar = fields.Monetary(string="$20")
+    mutilated_ten_dollar = fields.Monetary(string="$10")
+    mutilated_five_dollar = fields.Monetary(string="$5")
+    mutilated_one_dollar = fields.Monetary(string="$1")
+
+    sub_total_mutilated = fields.Monetary(compute='_compute_total_mutilated_currency',string="Sub Total Mutilated",store=True,track_visibility='always')
+    grand_total_ugx = fields.Monetary(compute='_compute_grand_totol',string="Grand Total (UGX)",store=True)
     created_on =  fields.Datetime(string='Date', default=lambda self: fields.datetime.now())
     created_by = fields.Many2one('res.users','Confirmed By:',default=lambda self: self.env.user)
     user_id = fields.Many2one('res.users', string='User', track_visibility='onchange', readonly=True, default=lambda self: self.env.user.id)
     trx_proof = fields.Binary(string='Upload BRNET GL', attachment=True,required=True)
-    trx_proof1 = fields.Binary(string='ATM Counters', attachment=True,required=True)
-    trx_proof2 = fields.Binary(string='ATM Spot Recooncilations', attachment=True,required=True)
     branch_code = fields.Integer(compute='_compute_branch',string='Branch',store=True)
     branch_manager = fields.Many2one(compute='_get_manager_id', comodel_name='res.partner', string='Branch Manger', store=True)
     branch_accountant = fields.Many2one(compute='_get_accountant_id', comodel_name='res.partner', string='Branch Accountant', store=True)
     system_cash_balance = fields.Monetary(string="System Cash Balance")
     shortage_cash = fields.Monetary(string="Shortage Cash",compute='_get_shortage')
     surplus_cash = fields.Monetary(string="Surplus Cash",compute='_get_surplus')
-    consent_status = fields.Char(string="Consent Status", compute='_get_consent')
+    #consent_status = fields.Selection(string='Do you consent that that Vault and System Balance Match?', selection=[('Yes', 'Yes'), ('No', 'No')],track_visibility='always',required=True)
     consent_comment = fields.Text(string="Comment", required=True, default="Consent Status Yes, Write your comment Here")
     unique_field = fields.Char(string="Ref",compute='comp_name', store=True)
     accountant_comment = fields.Text(string="Comment")
@@ -45,21 +50,29 @@ class ATM(models.Model):
     
 
     
+
+    
+
     current_to_branch_accountant = fields.Boolean('is current user ?', compute='_get_to_branch_accountant')
     current_to_branch_manager = fields.Boolean('is current user ?', compute='_get_to_branch_manager')
+    consent_status = fields.Char(string="Consent Status", compute='_get_consent')
 
-
-    @api.depends('deno_fifty_thounsand', 'deno_twenty_thounsand','deno_ten_thounsand','deno_five_thounsand','deno_two_thounsand','deno_one_thounsand')
+    @api.depends('hundred_dollar', 'fifty_dollar','twenty_dollar','ten_dollar','five_dollar','one_dollar')
     def _compute_total_good_currency(self):
         for record in self:
-            record.sub_total_good = record.deno_fifty_thounsand + record.deno_twenty_thounsand + record.deno_ten_thounsand + record.deno_five_thounsand + record.deno_two_thounsand + record.deno_one_thounsand
+            record.sub_total_good = record.hundred_dollar + record.fifty_dollar + record.twenty_dollar + record.five_dollar + record.one_dollar + record.ten_dollar
         
+    @api.depends('mutilated_hundred_dollar', 'mutilated_fifty_dollar','mutilated_twenty_dollar','mutilated_ten_dollar','mutilated_five_dollar','mutilated_one_dollar')
+    def _compute_total_mutilated_currency(self):
+        for record in self:
+            record.sub_total_mutilated = record.mutilated_hundred_dollar + record.mutilated_fifty_dollar + record.mutilated_twenty_dollar + record.mutilated_ten_dollar + record.mutilated_five_dollar + record.mutilated_one_dollar
 
-    @api.depends('sub_total_good')
+    @api.depends('sub_total_good','sub_total_mutilated')
     def _compute_grand_totol(self):
         for record in self:
-            record.grand_total_ugx = record.sub_total_good 
+           record.grand_total_ugx = record.sub_total_good + record.sub_total_mutilated 
 
+    
     @api.depends('grand_total_ugx','system_cash_balance')
     def _get_surplus(self):
         for recs in self:
@@ -86,8 +99,7 @@ class ATM(models.Model):
                 record.consent_status = 'Yes'
             else:
                 record.consent_status = 'No'
-
-    
+            
     @api.depends('user_id')
     def _compute_branch(self):
         for record in self:
@@ -116,6 +128,9 @@ class ATM(models.Model):
         for e in self:
             partner = self.env['res.users'].browse(self.env.uid).partner_id
             e.current_to_branch_manager = (True if partner.id == self.branch_manager.id else False)
+
+    
+
 
     @api.depends('created_on')
     def comp_name(self):

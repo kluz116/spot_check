@@ -194,6 +194,141 @@
             </field>
         </record>
 
+        <record id="vault_usd_view_form" model="ir.ui.view">
+            <field name="name">spot_check.vault.form</field>
+            <field name="model">spot_check.vault_usd</field>
+            <field name="arch" type="xml">
+                <form string="Create Certificate of cash balance" create="false" edit="false">
+                  <xpath expr="//sheet" position="before">
+                    <header> 
+                        <button name="%(spot_check.wizard_spot_check_accountant_cosent)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
+                        <button name="%(spot_check.wizard_spot_check_reject_cash_accountant)d" states='ongoing' type="action" string="Reject" class="btn btn-outline-danger" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
+                        <button name="%(spot_check.wizard_spot_check_manager_cosent)d" states='confirmed_one' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
+                        <button name="%(spot_check.wizard_spot_check_reject_reject_manager)d" states='confirmed_one' type="action" string="Reject" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
+                        <field name ="current_to_branch_accountant" invisible ='1'/>
+                        <field name ="current_to_branch_manager" invisible ='1'/>
+                        <field name="state" widget="statusbar" statusbar_visible="ongoing,rejected_one,confirmed_one,rejected_two,confirmed_two" />
+                    </header>
+                </xpath>
+                   <sheet>
+
+                        <group>
+                             <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"/>
+                        </group> 
+                         <notebook>
+                                <page string="GOOD CURRENCY">
+                                    <group>
+                                       <field name ="deno_fifty_thounsand"/>
+                                    </group>
+                                    <group>
+                                       <field name ="deno_twenty_thounsand"/>
+                                    </group>
+                                    <group>
+                                       <field name ="deno_ten_thounsand"/>
+                                    </group>
+                                     <group>
+                                       <field name ="deno_five_thounsand"/>
+                                    </group>
+                                     <group>
+                                       <field name ="deno_two_thounsand"/>
+                                    </group>
+                                     <group>
+                                       <field name ="deno_one_thounsand"/>
+                                    </group>
+                                    <group>
+                                       <field name ="sub_total_good" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                                    </group>
+                                </page>
+                                <page string="COINS CURRENCY">
+                                    <group>
+                                       <field name ="coin_one_thounsand"/>
+                                    </group>
+                                    <group>
+                                       <field name ="coin_five_houndred"/>
+                                    </group>
+                                    <group>
+                                       <field name ="coin_two_hundred"/>
+                                    </group>
+                                     <group>
+                                       <field name ="coin_one_hundred"/>
+                                    </group>
+                                     <group>
+                                       <field name ="coin_fifty"/>
+                                    </group> 
+                                    <group>
+                                       <field name ="sub_total_coins" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                                    </group>
+                                </page>
+                                <page string="MUTILATED CASH">
+                                    <group>
+                                       <field name ="mutilated_deno_fifty_thounsand"/>
+                                    </group>
+                                    <group>
+                                       <field name ="mutilated_deno_twenty_thounsand"/>
+                                    </group>
+                                    <group>
+                                       <field name ="mutilated_deno_ten_thounsand"/>
+                                    </group>
+                                     <group>
+                                       <field name ="mutilated_deno_five_thounsand"/>
+                                    </group>
+                                     <group>
+                                       <field name ="mutilated_deno_two_thounsand"/>
+                                    </group>
+                                     <group>
+                                       <field name ="mutilated_deno_one_thounsand"/>
+                                    </group> 
+                                    <group>
+                                    <field name ="sub_total_mutilated" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                                    </group>
+                                </page>
+                          </notebook>  
+                            <group>
+                             <field name ="grand_total_ugx" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                            <group>
+                             <field name = "system_cash_balance" style="color: #e60911; font-weight: bold;" />
+                            </group>
+                            <group>
+                             <field name = "trx_proof" filename="Upload BRNET GL"/>
+                            </group>
+                            <group>
+                             <field name = "shortage_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                            <group>
+                             <field name = "surplus_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                             <group>
+                             <field name = "consent_status" widget="radio"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                            <group>
+                             <field name = "consent_comment" attrs="{'invisible':['|',('consent_status', '=', 'No')]}"/>
+                            </group>
+                           <group>
+                             <field name = "partner_id" invisible="1"/>
+                            </group>
+                            <group>
+                             <field name = "branch_manager"  invisible="1"/>
+                            </group>
+                           <group>
+                             <field name = "branch_accountant" invisible="1"/>
+                            </group>
+                            <group>
+                             <field name ="created_on" invisible="1"/>
+                            </group> 
+                            <group>
+                             <field name ="created_by" invisible="1"/>
+                            </group>             
+                    </sheet> 
+                      <div class="oe_chatter">
+                           <field name="message_follower_ids" widget="mail_followers"/>
+                           <field name="message_ids" widget="mail_thread"/>
+                     </div> 
+                </form>
+            </field>
+        </record>
+
+
 
 
 
