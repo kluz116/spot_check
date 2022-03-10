@@ -8,3 +8,9 @@ from . import spot_check_vault_reject_manager
 from . import spot_check_atm_reject_accountant
 from . import spot_check_atm_reject_manager
 from . import spot_check_reject_teller
+from . import spot_check_vault_usd_consent_accountant
+from . import spot_check_vault_usd_consent_manager
+from . import spot_check_vault_usd_reject_accountant
+from . import spot_check_vault_usd_reject_manager
+from . import spot_check_reject_teller_usd
+from . import spot_check_consent_teller_usd

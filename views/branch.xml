@@ -53,7 +53,7 @@
 
         <!-- top level menu: no parent -->
         <menuitem id="main_spot_check_menu" name="Online Spot Checks"/>
-        <menuitem id="config_menu_spot_check" name="Configurations" sequence="11"  parent="main_spot_check_menu" />
+        <menuitem id="config_menu_spot_check" name="Configurations" sequence="11"  parent="main_spot_check_menu" groups="spot_check.Cash_Managment_Support_Team" />
         <menuitem id="config_branches" name="Branches" parent="config_menu_spot_check" sequence="5"  action="branch_lists_action" />
  
 </odoo>

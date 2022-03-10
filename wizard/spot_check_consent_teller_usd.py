@@ -1,24 +1,24 @@
 from odoo import api, fields, models
-from datetime import datetime
 
-class SpotCheckConsentAccountantUsd(models.TransientModel):
-    _name = "spot_check.consent_accountant_usd"
+
+class SpotCheckConsentTellerUsd(models.TransientModel):
+    _name = "spot_check.consent_teller_usd"
     _description = "Confirm"
     _rec_name = 'state'
 
     
-    state = fields.Selection([('ongoing', 'Pending Accountant Consent'),('confirmed_one', 'Pending Manager Consent'),('confirmed_two', 'Confirmed')],default="confirmed_one", string="Status")
-    accountant_comment = fields.Text(string="Comment")
+    state = fields.Selection([('ongoing', 'Teller Consent'),('confirmed_one', 'Confirmed')],default="confirmed_one", string="Status")
+    teller_comment = fields.Text(string="Comment")
     consent_date =  fields.Datetime(string='Consent Date', default=lambda self: fields.datetime.now())
     
 
     @api.multi
-    def consent_vault_usd(self):
+    def consent_teller_usd(self):
         self.write({'state': 'confirmed_one'})
-        spot = self.env['spot_check.vault_usd'].browse(self._context.get('active_ids'))
+        spot = self.env['spot_check.teller_usd'].browse(self._context.get('active_ids'))
         for req in spot:
             req.state = self.state
-            req.accountant_comment = self.accountant_comment
+            req.teller_comment = self.teller_comment
             req.consent_date = self.consent_date
         
             #template_id = self.env.ref('cash_managment.email_template_branch_bank_request_confirm').id

@@ -55,12 +55,28 @@
                     <field name="grand_total_ugx"/>
                     <field name="shortage_cash"/>
                     <field name="surplus_cash"/>
-                    
-              
                 </tree>
             </field>
         </record>
-                <record id="spot_check_atm_tree" model="ir.ui.view">
+
+         <record id="spot_check_teller_tree" model="ir.ui.view">
+            <field name="name">spot_check_tellert_usd.tree</field>
+            <field name="model">spot_check.teller_usd</field>
+             <field name="arch" type="xml">
+                <tree string="All Teller Declarations" default_order='created_on desc'>
+
+                    <field name="unique_field"/>
+                    <field name="state"/>
+                    <field name="branch_code"/>
+                    <field name="sub_total_good"/>
+                    <field name="sub_total_mutilated"/>
+                    <field name="grand_total_ugx"/>
+                    <field name="shortage_cash"/>
+                    <field name="surplus_cash"/>
+                </tree>
+            </field>
+        </record>
+         <record id="spot_check_atm_tree" model="ir.ui.view">
             <field name="name">spot_check_atm.tree</field>
             <field name="model">spot_check.atm</field>
              <field name="arch" type="xml">
@@ -220,10 +236,10 @@
                 <form string="Create Certificate of cash balance" create="false" edit="false">
                   <xpath expr="//sheet" position="before">
                     <header> 
-                        <button name="%(spot_check.wizard_spot_check_accountant_cosent)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
-                        <button name="%(spot_check.wizard_spot_check_reject_cash_accountant)d" states='ongoing' type="action" string="Reject" class="btn btn-outline-danger" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
-                        <button name="%(spot_check.wizard_spot_check_manager_cosent)d" states='confirmed_one' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
-                        <button name="%(spot_check.wizard_spot_check_reject_reject_manager)d" states='confirmed_one' type="action" string="Reject" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
+                        <button name="%(spot_check.wizard_spot_check_accountant_cosent_usd)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
+                        <button name="%(spot_check.wizard_spot_check_reject_cash_accountant_usd)d" states='ongoing' type="action" string="Reject" class="btn btn-outline-danger" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
+                        <button name="%(spot_check.wizard_spot_check_manager_cosent_usd)d" states='confirmed_one' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
+                        <button name="%(spot_check.wizard_spot_check_reject_reject_manager_usd)d" states='confirmed_one' type="action" string="Reject" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
                         <field name ="current_to_branch_accountant" invisible ='1'/>
                         <field name ="current_to_branch_manager" invisible ='1'/>
                         <field name="state" widget="statusbar" statusbar_visible="ongoing,rejected_one,confirmed_one,rejected_two,confirmed_two" />
@@ -482,6 +498,137 @@
         </record>
 
 
+        <record id="teller_view_form_usd" model="ir.ui.view">
+            <field name="name">spot_check.teller_usd.form</field>
+            <field name="model">spot_check.teller_usd</field>
+            <field name="arch" type="xml">
+                <form string="Create Declaration Form" create="false" edit="false">
+                  <xpath expr="//sheet" position="before">
+                    <header> 
+                        <button name="%(spot_check.wizard_spot_check_tellers_usd)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_teller', '=', False)]}" />
+                        <button name="%(spot_check.wizard_spot_check_reject_cash_teller_usd)d" states='ongoing' type="action" string="Reject" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_teller', '=', False)]}" />
+                        <field name ="current_to_teller" invisible="1" />
+                        <field name="state" widget="statusbar" statusbar_visible="ongoing,reject_one,confirmed_one" />
+                    </header>
+                </xpath>
+                   <sheet>
+
+                        <group>
+                             <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"/>
+                        </group>
+                          <group>
+                             <field name = "branch_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"/>
+                        </group> 
+                        
+                          <group>
+                             <field name = "teller_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"/>
+                        </group>  
+                         <group>
+                              <field name ="till"/>
+                        </group>
+
+                          <notebook>
+                          <page string="GOOD CURRENCY (USD) ">
+                                    <group>
+                                       <field name ="hundred_dollar"/>
+                                    </group>
+                                    <group>
+                                       <field name ="fifty_dollar"/>
+                                    </group>
+                                    <group>
+                                       <field name ="twenty_dollar"/>
+                                    </group>
+                                     <group>
+                                       <field name ="ten_dollar"/>
+                                    </group>
+                                     <group>
+                                       <field name ="five_dollar"/>
+                                    </group>
+                                     <group>
+                                       <field name ="one_dollar"/>
+                                    </group>
+                                    <group>
+                                       <field name ="sub_total_good" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                                    </group>
+                                </page>
+                                <page string="MUTILATED CASH (USD)">
+                                    <group>
+                                       <field name ="mutilated_hundred_dollar"/>
+                                    </group>
+                                    <group>
+                                       <field name ="mutilated_fifty_dollar"/>
+                                    </group>
+                                    <group>
+                                       <field name ="mutilated_twenty_dollar"/>
+                                    </group>
+                                     <group>
+                                       <field name ="mutilated_ten_dollar"/>
+                                    </group>
+                                     <group>
+                                       <field name ="mutilated_five_dollar"/>
+                                    </group> 
+                                      <group>
+                                       <field name ="mutilated_five_dollar"/>
+                                    </group> 
+                                     <group>
+                                       <field name ="mutilated_one_dollar"/>
+                                    </group>
+                                    <group>
+                                       <field name ="sub_total_mutilated" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                                    </group>
+                                </page>
+                                   
+                          </notebook>  
+                            <group>
+                             <field name ="grand_total_ugx" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                            <group>
+                             <field name = "system_cash_balance" style="color: #e60911; font-weight: bold;" />
+                            </group>
+                            <group>
+                             <field name = "trx_proof" filename="Upload BRNET GL"/>
+                            </group>
+                            <group>
+                             <field name = "shortage_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                            <group>
+                             <field name = "surplus_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                             <group>
+                             <field name = "consent_status" widget="radio"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                            <group>
+                             <field name = "consent_comment" attrs="{'invisible':['|',('consent_status', '=', 'No')]}"/>
+                            </group>
+                           <group>
+                             <field name = "partner_id" invisible="1"/>
+                           </group>
+                           <group>
+                             <field name = "branch_manager" invisible="1"/>
+                            </group>
+                           <group>
+                             <field name = "branch_accountant" invisible="1"/>
+                            </group>
+                              <group>
+                             <field name = "from_branch_id" invisible="1"/>
+                            </group>
+                            <group>
+                             <field name ="created_on" invisible="1"/>
+                            </group> 
+                            <group>
+                             <field name ="created_by" invisible="1"/>
+                            </group>             
+                    </sheet>  
+                    <div class="oe_chatter">
+                           <field name="message_follower_ids" widget="mail_followers"/>
+                           <field name="message_ids" widget="mail_thread"/>
+                     </div>
+                </form>
+            </field>
+        </record>
+
+
+
 
           <record id="atm_view_form" model="ir.ui.view">
             <field name="name">spot_check.atm.form</field>
@@ -622,6 +769,19 @@
                 </search>
             </field>
         </record>
+             <record model="ir.ui.view" id="spot_check_teller_search_view_usd">
+            <field name="name">spot_check.telle_usdr.search</field>
+            <field name="model">spot_check.teller_usd</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name ="created_on"/>
+                    <field name="branch_code"/>
+                    <separator/>
+                     <filter name="created_ons" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
+                     <filter name="branch_codes" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_code'}"/>
+                </search>
+            </field>
+        </record>
 
          <record model="ir.ui.view" id="spot_check_atm_search_view">
             <field name="name">spot_check.atm.search</field>
@@ -663,8 +823,18 @@
         </record>
 
           <record model="ir.actions.act_window" id="teller_list_action">
-            <field name="name">Teller Spot Checks</field>
+            <field name="name">Teller Spot Checks (UGX)</field>
             <field name="res_model">spot_check.teller</field>
+            <field name="view_mode">tree,form</field>
+            <field name ="context">{"search_default_created_ons":1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Teller Declarations</p>
+            </field>
+        </record>
+
+         <record model="ir.actions.act_window" id="teller_list_action_usd">
+            <field name="name">Teller Spot Checks (USD)</field>
+            <field name="res_model">spot_check.teller_usd</field>
             <field name="view_mode">tree,form</field>
             <field name ="context">{"search_default_created_ons":1}</field>
             <field name="help" type="html">
@@ -685,7 +855,9 @@
         <menuitem id="main_spot_check_menu" name="Online Spot Check"/>
         <menuitem id="vault_request" name="Spot Checks" sequence="1" parent="main_spot_check_menu"/>
         <menuitem id="vault_spot__checkes" name="Vault Spot Checks (UGX)" sequence="2" parent="vault_request" action="vault_list_action"/>  
-         <menuitem id="vault_spckes" name="Vault Spot Checks (USD)" sequence="3" parent="vault_request" action="vault_list_usd_action"/> 
+        <menuitem id="vault_spckes" name="Vault Spot Checks (USD)" sequence="3" parent="vault_request" action="vault_list_usd_action"/> 
         <menuitem id="atm_spot__checkes" name="ATM Spot Checks" sequence="4" parent="vault_request" action="atm_list_action"/>   
-        <menuitem id="teller_spot__checkes" name="Teller Declarations" sequence="5" parent="vault_request" action="teller_list_action"/>    
+        <menuitem id="teller_spot__checkes" name="Teller Declarations (UGX)" sequence="5" parent="vault_request" action="teller_list_action"/> 
+        <menuitem id="teller_spot__checkes_usd" name="Teller Declarations (USD)" sequence="6" parent="vault_request" action="teller_list_action_usd"/> 
+           
 </odoo>
