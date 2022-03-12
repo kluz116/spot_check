@@ -58,6 +58,16 @@ class Tellers(models.Model):
     current_to_branch_manager = fields.Boolean('is current user ?', compute='_get_to_branch_manager')
     current_to_teller = fields.Boolean('is current user ?', compute='_get_to_teller')
     consent_status = fields.Char(string="Consent Status", compute='_get_consent')
+    base_url = fields.Char('Base Url', compute='_get_url_id', store='True')
+   
+    @api.depends('created_on')
+    def _get_url_id(self):
+        for e in self:
+            web_base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+            action_id = self.env.ref('spot_check.vault_list_action', raise_if_not_found=False)
+            e.base_url = """{}/web#id={}&view_type=form&model=spot_check.vault&action={}""".format(web_base_url,e.id,action_id.id)
+
+    
 
 
     @api.depends('deno_fifty_thounsand', 'deno_twenty_thounsand','deno_ten_thounsand','deno_five_thounsand','deno_two_thounsand','deno_one_thounsand')

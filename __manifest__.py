@@ -21,6 +21,7 @@
     'data': [
         'security/spot_check_security.xml',
         'security/ir.model.access.csv',
+        'data/email_template_cash_managment.xml',
         'wizard/spot_check_vault_consent_accountant.xml',
         'wizard/spot_check_vault_consent_manager.xml',
         'wizard/spot_check_atm_consent_accountant.xml',

@@ -21,7 +21,7 @@ class SpotCheckConsentTeller(models.TransientModel):
             req.teller_comment = self.teller_comment
             req.consent_date = self.consent_date
         
-            #template_id = self.env.ref('cash_managment.email_template_branch_bank_request_confirm').id
-            #template =  self.env['mail.template'].browse(template_id)
-            #template.send_mail(req.id,force_send=True)
+            template_id = self.env.ref('spot_check.email_template_create_teller_request_consent').id
+            template =  self.env['mail.template'].browse(template_id)
+            template.send_mail(req.id,force_send=True)
          
