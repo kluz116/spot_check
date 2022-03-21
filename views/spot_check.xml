@@ -114,27 +114,33 @@
                    <sheet>
 
                         <group>
-                             <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"/>
+                             <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" invisible='1'/>
                         </group> 
                          <notebook>
                                 <page string="GOOD CURRENCY">
                                     <group>
-                                       <field name ="deno_fifty_thounsand"/>
+                                       <field name="deno_fifty_thounsand_count"/>
+                                       <field name ="deno_fifty_thounsand" readonly='1'/>
                                     </group>
                                     <group>
-                                       <field name ="deno_twenty_thounsand"/>
+                                       <field name="deno_twenty_thounsand_count"/>
+                                       <field name ="deno_twenty_thounsand" readonly='1'/>
                                     </group>
                                     <group>
-                                       <field name ="deno_ten_thounsand"/>
+                                       <field name="deno_ten_thounsand_count"/>
+                                       <field name ="deno_ten_thounsand" readonly='1'/>
                                     </group>
                                      <group>
-                                       <field name ="deno_five_thounsand"/>
+                                       <field name ="deno_five_thounsand_count"/>
+                                       <field name ="deno_five_thounsand" readonly='1'/>
                                     </group>
                                      <group>
-                                       <field name ="deno_two_thounsand"/>
+                                       <field name ="deno_two_thounsand_count"/>
+                                       <field name ="deno_two_thounsand" readonly='1'/>
                                     </group>
                                      <group>
-                                       <field name ="deno_one_thounsand"/>
+                                       <field name ="deno_one_thounsand_count"/>
+                                        <field name ="deno_one_thounsand" readonly='1'/>
                                     </group>
                                     <group>
                                        <field name ="sub_total_good" readonly="1" style="color: #e60911; font-weight: bold;"/>
@@ -142,19 +148,24 @@
                                 </page>
                                 <page string="COINS CURRENCY">
                                     <group>
-                                       <field name ="coin_one_thounsand"/>
+                                       <field name ="coin_one_thounsand_count"/>
+                                       <field name ="coin_one_thounsand" readonly="1"/>
                                     </group>
                                     <group>
-                                       <field name ="coin_five_houndred"/>
+                                       <field name ="coin_five_houndred_count"/>
+                                       <field name ="coin_five_houndred" readonly="1"/>
                                     </group>
                                     <group>
-                                       <field name ="coin_two_hundred"/>
+                                       <field name ="coin_two_hundred_count"/>
+                                       <field name ="coin_two_hundred" readonly="1"/>
                                     </group>
                                      <group>
-                                       <field name ="coin_one_hundred"/>
+                                       <field name ="coin_one_hundred_count"/>
+                                       <field name ="coin_one_hundred" readonly="1"/>
                                     </group>
                                      <group>
-                                       <field name ="coin_fifty"/>
+                                       <field name ="coin_fifty_count"/>
+                                        <field name ="coin_fifty" readonly="1"/>
                                     </group> 
                                     <group>
                                        <field name ="sub_total_coins" readonly="1" style="color: #e60911; font-weight: bold;"/>
@@ -162,22 +173,29 @@
                                 </page>
                                 <page string="MUTILATED CASH">
                                     <group>
-                                       <field name ="mutilated_deno_fifty_thounsand"/>
+                                    
+                                       <field name ="mutilated_deno_fifty_thounsand_count"/>
+                                       <field name ="mutilated_deno_fifty_thounsand" readonly='1'/>
                                     </group>
                                     <group>
-                                       <field name ="mutilated_deno_twenty_thounsand"/>
+                                       <field name ="mutilated_deno_twenty_thounsand_count"/>
+                                       <field name ="mutilated_deno_twenty_thounsand" readonly='1'/>
                                     </group>
                                     <group>
-                                       <field name ="mutilated_deno_ten_thounsand"/>
+                                       <field name ="mutilated_deno_ten_thounsand_count"/>
+                                       <field name ="mutilated_deno_ten_thounsand" readonly='1'/>
                                     </group>
                                      <group>
-                                       <field name ="mutilated_deno_five_thounsand"/>
+                                       <field name ="mutilated_deno_five_thounsand_count" />
+                                       <field name ="mutilated_deno_five_thounsand" readonly='1'/>
                                     </group>
                                      <group>
-                                       <field name ="mutilated_deno_two_thounsand"/>
+                                      <field name ="mutilated_deno_two_thounsand_count"/>
+                                       <field name ="mutilated_deno_two_thounsand" readonly='1'/>
                                     </group>
                                      <group>
-                                       <field name ="mutilated_deno_one_thounsand"/>
+                                     <field name ="mutilated_deno_one_thounsand_count"/>
+                                       <field name ="mutilated_deno_one_thounsand" readonly='1'/>
                                     </group> 
                                     <group>
                                     <field name ="sub_total_mutilated" readonly="1" style="color: #e60911; font-weight: bold;"/>
@@ -737,7 +755,8 @@
                     <field name ="created_on"/>
                     <field name="branch_code"/>
                     <separator/>
-                     <filter name="created_ons" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
+                     <filter name="created_ons" string="Spot Check Category Month" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
+                     <filter name="created_on_week" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
                      <filter name="branch_codes" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_code'}"/>
                 </search>
             </field>
@@ -750,7 +769,8 @@
                     <field name ="created_on"/>
                     <field name="branch_code"/>
                     <separator/>
-                     <filter name="created_ons" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
+                     <filter name="created_ons" string="Spot Check Category Month" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
+                     <filter name="created_on_week" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
                      <filter name="branch_codes" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_code'}"/>
                 </search>
             </field>
@@ -764,7 +784,8 @@
                     <field name ="created_on"/>
                     <field name="branch_code"/>
                     <separator/>
-                     <filter name="created_ons" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
+                         <filter name="created_ons" string="Spot Check Category Month" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
+                     <filter name="created_on_week" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
                      <filter name="branch_codes" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_code'}"/>
                 </search>
             </field>
@@ -777,7 +798,8 @@
                     <field name ="created_on"/>
                     <field name="branch_code"/>
                     <separator/>
-                     <filter name="created_ons" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
+                         <filter name="created_ons" string="Spot Check Category Month" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
+                     <filter name="created_on_week" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
                      <filter name="branch_codes" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_code'}"/>
                 </search>
             </field>
@@ -792,7 +814,8 @@
                      <field name ="created_on"/>
                      <field name="branch_code"/>
                     <separator/>
-                     <filter name="created_ons" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
+                    <filter name="created_ons" string="Spot Check Category Month" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
+                     <filter name="created_on_week" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
                      <filter name="branch_codes" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_code'}"/>
                 </search>
             </field>

@@ -28,7 +28,7 @@ class ATM(models.Model):
     branch_code = fields.Integer(compute='_compute_branch',string='Branch',store=True)
     branch_manager = fields.Many2one(compute='_get_manager_id', comodel_name='res.partner', string='Branch Manger', store=True)
     branch_accountant = fields.Many2one(compute='_get_accountant_id', comodel_name='res.partner', string='Branch Accountant', store=True)
-    system_cash_balance = fields.Monetary(string="System Cash Balance")
+    system_cash_balance = fields.Monetary(string="System Cash Balance",required=True)
     shortage_cash = fields.Monetary(string="Shortage Cash",compute='_get_shortage')
     surplus_cash = fields.Monetary(string="Surplus Cash",compute='_get_surplus')
     consent_status = fields.Char(string="Consent Status", compute='_get_consent')

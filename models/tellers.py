@@ -34,7 +34,7 @@ class Tellers(models.Model):
     mutilated_deno_one_thounsand = fields.Monetary(string="1,000 Shs")
     sub_total_mutilated = fields.Monetary(compute='_compute_total_mutilated_currency',string="Sub Total Mutilated",store=True,track_visibility='always')
     grand_total_ugx = fields.Monetary(compute='_compute_grand_totol',string="Grand Total (UGX)",store=True)
-    system_cash_balance = fields.Monetary(string="System Cash Balance")
+    system_cash_balance = fields.Monetary(string="System Cash Balance",required=True)
     shortage_cash = fields.Monetary(string="Shortage Cash",compute='_get_shortage')
     surplus_cash = fields.Monetary(string="Surplus Cash",compute='_get_surplus')
     created_on =  fields.Datetime(string='Date', default=lambda self: fields.datetime.now())
