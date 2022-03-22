@@ -13,19 +13,32 @@ class TellersUsd(models.Model):
     teller_id = fields.Many2one('res.partner','Teller',domain="[('branch_id_spot_check', '=', branch_id),('user_role','=','teller')]")
     till = fields.Char(string='Till ID',compute='_get_till_id')
     state = fields.Selection([('ongoing', 'Pending Teller Consent'),('confirmed_one', 'Confirmed'),('reject_one', 'Rejected By Teller')],default="ongoing", string="Status")
-    hundred_dollar = fields.Monetary(string="$100")
-    fifty_dollar = fields.Monetary(string="$50")
-    twenty_dollar = fields.Monetary(string="$20")
-    ten_dollar = fields.Monetary(string="$10")
-    five_dollar = fields.Monetary(string="$5")
-    one_dollar = fields.Monetary(string="$1")
+    hundred_dollar_count = fields.Integer(string="100 Notes")
+    hundred_dollar = fields.Monetary(string="$100", compute='_compute_hundred_dollar')
+    fifty_dollar_count = fields.Integer(string="50 Notes")
+    fifty_dollar = fields.Monetary(string="$50",compute='_compute_fifty_dollar')
+    twenty_dollar_count = fields.Integer(string="20 Notes")
+    twenty_dollar = fields.Monetary(string="$20",compute='_compute_twenty_dollar')
+    ten_dollar_count = fields.Integer(string="10 Notes")
+    ten_dollar = fields.Monetary(string="$10",compute='_compute_ten_dollar')
+    five_dollar_count = fields.Integer(string="5 Notes")
+    five_dollar = fields.Monetary(string="$5",compute='_compute_five_dollar')
+    one_dollar_count = fields.Integer(string="1 Notes")
+    one_dollar = fields.Monetary(string="$1",compute='_compute_one_dollar')
     sub_total_good = fields.Monetary(compute='_compute_total_good_currency',string="Sub Total Good Currency",store=True,track_visibility='always')
-    mutilated_hundred_dollar = fields.Monetary(string="$100")
-    mutilated_fifty_dollar = fields.Monetary(string="$50")
-    mutilated_twenty_dollar = fields.Monetary(string="$20")
-    mutilated_ten_dollar = fields.Monetary(string="$10")
-    mutilated_five_dollar = fields.Monetary(string="$5")
-    mutilated_one_dollar = fields.Monetary(string="$1")
+    mutilated_hundred_dollar_count = fields.Integer(string="100 Notes")
+    mutilated_hundred_dollar = fields.Monetary(string="$100", compute='_compute_mutilated_hundred_dollar')
+    mutilated_fifty_dollar_count = fields.Integer(string="50 Notes")
+    mutilated_fifty_dollar = fields.Monetary(string="$50",compute='_compute_mutilated_fifty_dollar')
+    mutilated_twenty_dollar_count = fields.Integer(string="20 Notes")
+    mutilated_twenty_dollar = fields.Monetary(string="$20",compute='_compute_mutilated_twenty_dollar')
+    mutilated_ten_dollar_count = fields.Integer(string="10 Notes")
+    mutilated_ten_dollar = fields.Monetary(string="$10",compute='_compute_mutilated_ten_dollar')
+    mutilated_five_dollar_count = fields.Integer(string="5 Notes")
+    mutilated_five_dollar = fields.Monetary(string="$5",compute='_compute_mutilated_five_dollar')
+    mutilated_one_dollar_count = fields.Integer(string="1 Notes")
+    mutilated_one_dollar = fields.Monetary(string="$1",compute='_compute_mutilated_one_dollar')
+
     sub_total_mutilated = fields.Monetary(compute='_compute_total_mutilated_currency',string="Sub Total Mutilated",store=True,track_visibility='always')
     grand_total_ugx = fields.Monetary(compute='_compute_grand_totol',string="Grand Total (USD)",store=True)
     system_cash_balance = fields.Monetary(string="System Cash Balance")
@@ -52,6 +65,81 @@ class TellersUsd(models.Model):
     current_to_branch_manager = fields.Boolean('is current user ?', compute='_get_to_branch_manager')
     current_to_teller = fields.Boolean('is current user ?', compute='_get_to_teller')
     consent_status = fields.Char(string="Consent Status", compute='_get_consent')
+    base_url = fields.Char('Base Url', compute='_get_url_id', store='True')
+   
+    @api.depends('created_on')
+    def _get_url_id(self):
+        for e in self:
+            web_base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+            action_id = self.env.ref('spot_check.vault_list_action', raise_if_not_found=False)
+            e.base_url = """{}/web#id={}&view_type=form&model=spot_check.teller_usd&action={}""".format(web_base_url,e.id,action_id.id)
+
+
+    
+    @api.depends('mutilated_hundred_dollar_count')
+    def _compute_mutilated_hundred_dollar(self):
+        for record in self:
+           record.mutilated_hundred_dollar = record.mutilated_hundred_dollar_count * 100
+
+    @api.depends('mutilated_fifty_dollar_count')
+    def _compute_mutilated_fifty_dollar(self):
+        for record in self:
+           record.mutilated_fifty_dollar = record.mutilated_fifty_dollar_count * 50
+
+    @api.depends('mutilated_twenty_dollar_count')
+    def _compute_mutilated_twenty_dollar(self):
+        for record in self:
+           record.mutilated_twenty_dollar = record.mutilated_twenty_dollar_count * 20
+
+    @api.depends('mutilated_ten_dollar_count')
+    def _compute_mutilated_ten_dollar(self):
+        for record in self:
+           record.mutilated_ten_dollar = record.mutilated_ten_dollar_count * 10
+
+    @api.depends('mutilated_five_dollar_count')
+    def _compute_mutilated_five_dollar(self):
+        for record in self:
+           record.mutilated_five_dollar = record.mutilated_five_dollar_count * 5
+
+    @api.depends('mutilated_one_dollar_count')
+    def _compute_mutilated_one_dollar(self):
+        for record in self:
+           record.mutilated_one_dollar = record.mutilated_one_dollar_count * 1
+
+
+    
+
+
+    
+    @api.depends('hundred_dollar_count')
+    def _compute_hundred_dollar(self):
+        for record in self:
+           record.hundred_dollar = record.hundred_dollar_count * 100
+
+    @api.depends('fifty_dollar_count')
+    def _compute_fifty_dollar(self):
+        for record in self:
+           record.fifty_dollar = record.fifty_dollar_count * 50
+
+    @api.depends('twenty_dollar_count')
+    def _compute_twenty_dollar(self):
+        for record in self:
+           record.twenty_dollar = record.twenty_dollar_count * 20
+
+    @api.depends('ten_dollar_count')
+    def _compute_ten_dollar(self):
+        for record in self:
+           record.ten_dollar = record.ten_dollar_count * 10
+
+    @api.depends('five_dollar_count')
+    def _compute_five_dollar(self):
+        for record in self:
+           record.five_dollar = record.five_dollar_count * 5
+
+    @api.depends('one_dollar_count')
+    def _compute_one_dollar(self):
+        for record in self:
+           record.one_dollar = record.one_dollar_count * 1
 
 
     @api.depends('hundred_dollar', 'fifty_dollar','twenty_dollar','ten_dollar','five_dollar','one_dollar')

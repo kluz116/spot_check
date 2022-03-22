@@ -48,7 +48,7 @@ class Vault(models.Model):
     mutilated_deno_two_thounsand_count = fields.Integer(string="2,000 Notes")
     mutilated_deno_two_thounsand = fields.Monetary(string="2,000 Shs" ,compute='_compute_deno_two_thounsand_mutilated_')
     mutilated_deno_one_thounsand_count = fields.Integer(string="1,000 Notes")
-    mutilated_deno_one_thounsand = fields.Monetary(string="2,000 Shs" ,compute='_compute_deno_one_thounsand_mutilated_')
+    mutilated_deno_one_thounsand = fields.Monetary(string="1,000 Shs" ,compute='_compute_deno_one_thounsand_mutilated_')
 
     sub_total_mutilated = fields.Monetary(compute='_compute_total_mutilated_currency',string="Sub Total Mutilated",store=True,track_visibility='always')
     grand_total_ugx = fields.Monetary(compute='_compute_grand_totol',string="Grand Total (UGX)",store=True)

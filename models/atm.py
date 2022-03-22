@@ -10,12 +10,18 @@ class ATM(models.Model):
     currency_id = fields.Many2one('res.currency', string='Currency' )
 
     state = fields.Selection([('ongoing', 'Pending Accountant Consent'),('confirmed_one', 'Pending Manager Consent'),('rejected_one', 'Rejected By Accountant'),('confirmed_two', 'Confirmed') ,('rejected_two', 'Rejected By Manager')],default="ongoing", string="Status",track_visibility='always')
-    deno_fifty_thounsand = fields.Monetary(string="50,000 Shs")
-    deno_twenty_thounsand = fields.Monetary(string="20,000 Shs")
-    deno_ten_thounsand = fields.Monetary(string="10,000 Shs")
-    deno_five_thounsand = fields.Monetary(string="5,000 Shs")
-    deno_two_thounsand = fields.Monetary(string="2,000 Shs")
-    deno_one_thounsand = fields.Monetary(string="1,000 Shs")
+    deno_fifty_thounsand_count = fields.Integer(string="50,000 Notes")
+    deno_fifty_thounsand = fields.Monetary(compute='_compute_deno_fifty_thounsand',string="50,000 Shs")
+    deno_twenty_thounsand_count = fields.Integer(string="20,000 Notes")
+    deno_twenty_thounsand = fields.Monetary(compute='_compute_deno_twenty_thounsand',string="20,000 Shs")
+    deno_ten_thounsand_count = fields.Integer(string="10,000 Notes")
+    deno_ten_thounsand = fields.Monetary(string="10,000 Shs",compute='_compute_deno_ten_thounsand')
+    deno_five_thounsand_count = fields.Integer(string="5,000 Notes")
+    deno_five_thounsand = fields.Monetary(string="5,000 Shs" ,compute='_compute_deno_five_thounsand')
+    deno_two_thounsand_count = fields.Integer(string="2,000 Notes")
+    deno_two_thounsand = fields.Monetary(string="2,000 Shs" ,compute='_compute_deno_two_thounsand')
+    deno_one_thounsand_count = fields.Integer(string="1,000 Notes")
+    deno_one_thounsand = fields.Monetary(string="1,000 Shs",compute='_compute_deno_one_thounsand')
     sub_total_good = fields.Monetary(compute='_compute_total_good_currency',string="Sub Total Good Currency",store=True)
    
     grand_total_ugx = fields.Monetary(compute='_compute_grand_totol',string="Grand Total (UGX)",store=True,track_visibility='always')
@@ -56,7 +62,36 @@ class ATM(models.Model):
             action_id = self.env.ref('spot_check.vault_list_action', raise_if_not_found=False)
             e.base_url = """{}/web#id={}&view_type=form&model=spot_check.vault&action={}""".format(web_base_url,e.id,action_id.id)
 
+    @api.depends('deno_fifty_thounsand_count')
+    def _compute_deno_fifty_thounsand(self):
+        for record in self:
+           record.deno_fifty_thounsand = record.deno_fifty_thounsand_count * 50000
     
+    @api.depends('deno_twenty_thounsand_count')
+    def _compute_deno_twenty_thounsand(self):
+        for record in self:
+           record.deno_twenty_thounsand = record.deno_twenty_thounsand_count * 20000
+
+    @api.depends('deno_ten_thounsand_count')
+    def _compute_deno_ten_thounsand(self):
+        for record in self:
+           record.deno_ten_thounsand = record.deno_ten_thounsand_count * 10000
+
+    @api.depends('deno_five_thounsand_count')
+    def _compute_deno_five_thounsand(self):
+        for record in self:
+           record.deno_five_thounsand = record.deno_five_thounsand_count * 5000
+
+    @api.depends('deno_two_thounsand_count')
+    def _compute_deno_two_thounsand(self):
+        for record in self:
+           record.deno_two_thounsand = record.deno_two_thounsand_count * 2000
+
+    @api.depends('deno_one_thounsand_count')
+    def _compute_deno_one_thounsand(self):
+        for record in self:
+           record.deno_one_thounsand = record.deno_one_thounsand_count * 1000
+
 
     @api.depends('deno_fifty_thounsand', 'deno_twenty_thounsand','deno_ten_thounsand','deno_five_thounsand','deno_two_thounsand','deno_one_thounsand')
     def _compute_total_good_currency(self):
