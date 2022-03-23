@@ -1,4 +1,4 @@
-from odoo import models,api,fields
+from odoo import models,api,fields,exceptions
 
 class VaultUsd(models.Model):
     _name = "spot_check.vault_usd"
@@ -223,6 +223,11 @@ class VaultUsd(models.Model):
         self.unique_field = (value or '')+''+(str(self.branch_code))+'-'+(date_time or '')+'-'+(last or '')+''+(str(self.id))
 
   
-    
+    @api.one
+    @api.constrains('system_cash_balance')
+    def _check_system_cash_balance(self):
+        if self.system_cash_balance <= 0.0:
+            raise exceptions.ValidationError("Sorry, BR System Cash Balance Can Not Be {system_cash_balance} USD. Please Fill In The Right Figures Before You Proceed. Contact Operations Department for assistance".format(system_cash_balance=self.system_cash_balance))
+        
         
     

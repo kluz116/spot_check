@@ -279,9 +279,9 @@ class Vault(models.Model):
 
     @api.one
     @api.constrains('system_cash_balance')
-    def _check_hours(self):
-        if self.system_cash_balance < 0:
-            raise exceptions.ValidationError("Sorry, System Cash Balance Can Not Be {system_cash_balance}. Please Fill In The Right Figures Before You Proceed. Contact Operations Department for assistance".format(system_cash_balance=system_cash_balance))
+    def _check_system_cash_balance(self):
+        if self.system_cash_balance <= 0.0:
+            raise exceptions.ValidationError("Sorry, BR System Cash Balance Can Not Be {system_cash_balance} UGX. Please Fill In The Right Figures Before You Proceed. Contact Operations Department for assistance".format(system_cash_balance=self.system_cash_balance))
         
     
         

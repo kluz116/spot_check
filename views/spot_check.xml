@@ -116,8 +116,20 @@
                         <group>
                              <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" invisible='1'/>
                         </group> 
+                            <group>
+                             <field name ="grand_total_ugx" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                             <group>
+                             <field name = "shortage_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                            <group>
+                             <field name = "surplus_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
                          <notebook>
                                 <page string="GOOD CURRENCY">
+                                  <group>
+                                       <field name ="sub_total_good" readonly="1" style="color: #f44336; font-weight: bold;"/>
+                                    </group>
                                     <group>
                                        <field name="deno_fifty_thounsand_count"/>
                                        <field name ="deno_fifty_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
@@ -142,11 +154,12 @@
                                        <field name ="deno_one_thounsand_count"/>
                                         <field name ="deno_one_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
-                                    <group>
-                                       <field name ="sub_total_good" readonly="1" style="color: #f44336; font-weight: bold;"/>
-                                    </group>
+                                   
                                 </page>
                                 <page string="COINS CURRENCY">
+                                   <group>
+                                       <field name ="sub_total_coins" readonly="1" style="color: #f44336; font-weight: bold;"/>
+                                    </group>
                                     <group>
                                        <field name ="coin_one_thounsand_count"/>
                                        <field name ="coin_one_thounsand" readonly="1" style="color: #0373c7; font-weight: bold;"/>
@@ -167,11 +180,12 @@
                                        <field name ="coin_fifty_count"/>
                                         <field name ="coin_fifty" readonly="1" style="color: #0373c7; font-weight: bold;"/>
                                     </group> 
-                                    <group>
-                                       <field name ="sub_total_coins" readonly="1" style="color: #f44336; font-weight: bold;"/>
-                                    </group>
+                                    
                                 </page>
                                 <page string="MUTILATED CASH">
+                                   <group>
+                                    <field name ="sub_total_mutilated" readonly="1" style="color: #f44336; font-weight: bold;"/>
+                                    </group>
                                     <group>
                                     
                                        <field name ="mutilated_deno_fifty_thounsand_count"/>
@@ -197,25 +211,15 @@
                                      <field name ="mutilated_deno_one_thounsand_count"/>
                                        <field name ="mutilated_deno_one_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group> 
-                                    <group>
-                                    <field name ="sub_total_mutilated" readonly="1" style="color: #f44336; font-weight: bold;"/>
-                                    </group>
+                                    
                                 </page>
                           </notebook>  
-                            <group>
-                             <field name ="grand_total_ugx" readonly="1" style="color: #f44336; font-weight: bold;"/>
-                            </group>
+                           
                             <group>
                              <field name = "system_cash_balance" style="color: #f44336; font-weight: bold;" />
                             </group>
                             <group>
                              <field name = "trx_proof" filename="Upload BRNET GL"/>
-                            </group>
-                            <group>
-                             <field name = "shortage_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
-                            </group>
-                            <group>
-                             <field name = "surplus_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
                             </group>
                              <group>
                              <field name = "consent_status" widget="radio"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;"/>
@@ -268,8 +272,20 @@
                         <group>
                              <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" invisible='1'/>
                         </group> 
+                         <group>
+                             <field name ="grand_total_ugx" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                             <group>
+                             <field name = "shortage_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                            <group>
+                             <field name = "surplus_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
                          <notebook>
                                 <page string="GOOD CURRENCY (USD) ">
+                                 <group>
+                                       <field name ="sub_total_good" readonly="1" style="color: #f44336; font-weight: bold;"/>
+                                    </group>
                                     <group>
                                        <field name ="hundred_dollar_count"/>
                                        <field name ="hundred_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
@@ -294,11 +310,12 @@
                                        <field name ="one_dollar_count"/>
                                        <field name ="one_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
-                                    <group>
-                                       <field name ="sub_total_good" readonly="1" style="color: #f44336; font-weight: bold;"/>
-                                    </group>
+                                   
                                 </page>
                                 <page string="MUTILATED CASH (USD)">
+                                    <group>
+                                       <field name ="sub_total_mutilated" readonly="1" style="color: #f44336; font-weight: bold;"/>
+                                    </group>
                                     <group>
                                        <field name ="mutilated_hundred_dollar_count"/>
                                        <field name ="mutilated_hundred_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
@@ -323,27 +340,18 @@
                                        <field name ="mutilated_one_dollar_count"/>
                                        <field name ="mutilated_one_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
-                                    <group>
-                                       <field name ="sub_total_mutilated" readonly="1" style="color: #f44336; font-weight: bold;"/>
-                                    </group>
+                                    
                                 </page>
                  
                           </notebook>  
-                            <group>
-                             <field name ="grand_total_ugx" readonly="1" style="color: #f44336; font-weight: bold;"/>
-                            </group>
+                        
                             <group>
                              <field name = "system_cash_balance" style="color: #f44336; font-weight: bold;" />
                             </group>
                             <group>
                              <field name = "trx_proof" filename="Upload BRNET GL"/>
                             </group>
-                            <group>
-                             <field name = "shortage_cash" readonly="1" style="color: #f44336; font-weight: bold;"/>
-                            </group>
-                            <group>
-                             <field name = "surplus_cash" readonly="1" style="color: #f44336; font-weight: bold;"/>
-                            </group>
+                          
                              <group>
                              <field name = "consent_status" widget="radio"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;"/>
                             </group>
@@ -407,9 +415,21 @@
                          <group>
                               <field name ="till"/>
                         </group>
+                            <group>
+                             <field name ="grand_total_ugx" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                             <group>
+                             <field name = "shortage_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                            <group>
+                             <field name = "surplus_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
 
                          <notebook>
                                 <page string="GOOD CURRENCY">
+                                    <group>
+                                       <field name ="sub_total_good" readonly="1" style="color: #f44336; font-weight: bold;"/>
+                                    </group>
                                     <group>
                                        <field name="deno_fifty_thounsand_count"/>
                                        <field name ="deno_fifty_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
@@ -435,11 +455,12 @@
                                         <field name ="deno_one_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                     
-                                    <group>
-                                       <field name ="sub_total_good" readonly="1" style="color: #f44336; font-weight: bold;"/>
-                                    </group>
+                                
                                 </page>
                                 <page string="COINS CURRENCY">
+                                    <group>
+                                       <field name ="sub_total_coins" readonly="1" style="color: #f44336; font-weight: bold;"/>
+                                    </group>
                                     <group>
                                        <field name ="coin_one_thounsand_count"/>
                                        <field name ="coin_one_thounsand" readonly="1" style="color: #0373c7; font-weight: bold;"/>
@@ -460,11 +481,12 @@
                                        <field name ="coin_fifty_count"/>
                                         <field name ="coin_fifty" readonly="1" style="color: #0373c7; font-weight: bold;"/>
                                     </group> 
-                                    <group>
-                                       <field name ="sub_total_coins" readonly="1" style="color: #f44336; font-weight: bold;"/>
-                                    </group>
+                                  
                                 </page>
                                 <page string="MUTILATED CASH">
+                                  <group>
+                                    <field name ="sub_total_mutilated" readonly="1" style="color: #f44336; font-weight: bold;"/>
+                                    </group>
                                     <group>
                                     
                                        <field name ="mutilated_deno_fifty_thounsand_count"/>
@@ -490,27 +512,17 @@
                                      <field name ="mutilated_deno_one_thounsand_count"/>
                                        <field name ="mutilated_deno_one_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group> 
-                                    <group>
-                                    <field name ="sub_total_mutilated" readonly="1" style="color: #f44336; font-weight: bold;"/>
-                                    </group>
+                                  
                                 </page>
                           </notebook>  
-                            <group>
-                             <field name ="grand_total_ugx" readonly="1" style="color: #f44336; font-weight: bold;"/>
-                            </group>
+                           
                             <group>
                              <field name = "system_cash_balance" style="color: #f44336; font-weight: bold;" />
                             </group>
                             <group>
                              <field name = "trx_proof" filename="Upload BRNET GL"/>
                             </group>
-                            <group>
-                             <field name = "shortage_cash" readonly="1" style="color: #f44336; font-weight: bold;"/>
-                            </group>
-                            <group>
-                             <field name = "surplus_cash" readonly="1" style="color: #f44336; font-weight: bold;"/>
-                            </group>
-                             <group>
+                           <group>
                              <field name = "consent_status" widget="radio"  options="{'horizontal': true}" style="color: #f44336; font-weight: bold;"/>
                             </group>
                             <group>
@@ -572,9 +584,21 @@
                          <group>
                               <field name ="till"/>
                         </group>
+                            <group>
+                             <field name ="grand_total_ugx" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                             <group>
+                             <field name = "shortage_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                            <group>
+                             <field name = "surplus_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
 
                         <notebook>
                           <page string="GOOD CURRENCY (USD) ">
+                                   <group>
+                                       <field name ="sub_total_good" readonly="1" style="color: #f44336; font-weight: bold;"/>
+                                    </group>
                                     <group>
                                        <field name ="hundred_dollar_count"/>
                                        <field name ="hundred_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
@@ -599,11 +623,12 @@
                                        <field name ="one_dollar_count"/>
                                        <field name ="one_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
-                                    <group>
-                                       <field name ="sub_total_good" readonly="1" style="color: #f44336; font-weight: bold;"/>
-                                    </group>
+                                  
                                 </page>
                                 <page string="MUTILATED CASH (USD)">
+                                   <group>
+                                       <field name ="sub_total_mutilated" readonly="1" style="color: #f44336; font-weight: bold;"/>
+                                    </group>
                                     <group>
                                        <field name ="mutilated_hundred_dollar_count"/>
                                        <field name ="mutilated_hundred_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
@@ -628,26 +653,15 @@
                                        <field name ="mutilated_one_dollar_count"/>
                                        <field name ="mutilated_one_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
-                                    <group>
-                                       <field name ="sub_total_mutilated" readonly="1" style="color: #f44336; font-weight: bold;"/>
-                                    </group>
+                                 
                                 </page>
                                    
                         </notebook>  
-                            <group>
-                             <field name ="grand_total_ugx" readonly="1" style="color: #e60911; font-weight: bold;"/>
-                            </group>
                             <group>
                              <field name = "system_cash_balance" style="color: #e60911; font-weight: bold;" />
                             </group>
                             <group>
                              <field name = "trx_proof" filename="Upload BRNET GL"/>
-                            </group>
-                            <group>
-                             <field name = "shortage_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
-                            </group>
-                            <group>
-                             <field name = "surplus_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
                             </group>
                              <group>
                              <field name = "consent_status" widget="radio"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;"/>
@@ -708,8 +722,20 @@
                         <group>
                              <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" invisible='1'/>
                         </group> 
+                            <group>
+                             <field name ="grand_total_ugx" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                             <group>
+                             <field name = "shortage_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
+                            <group>
+                             <field name = "surplus_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                            </group>
                          <notebook>
                                 <page string="GOOD CURRENCY (UGX)">
+                                    <group>
+                                       <field name ="sub_total_good" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                                    </group>
                                     <group>
                                        <field name="deno_fifty_thounsand_count" />
                                        <field name ="deno_fifty_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
@@ -726,15 +752,11 @@
                                        <field name ="deno_five_thounsand_count" />
                                        <field name ="deno_five_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
-                                    <group>
-                                       <field name ="sub_total_good" readonly="1" style="color: #e60911; font-weight: bold;"/>
-                                    </group>
+                                    
                                 </page>
                                 
                           </notebook>  
-                            <group>
-                             <field name ="grand_total_ugx" readonly="1" style="color: #e60911; font-weight: bold;"/>
-                            </group>
+                           
                            <group>
                              <field name = "system_cash_balance" style="color: #e60911; font-weight: bold;" />
                             </group>
@@ -746,12 +768,6 @@
                             </group>
                              <group>
                              <field name = "trx_proof2" />
-                            </group>
-                            <group>
-                             <field name = "shortage_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
-                            </group>
-                            <group>
-                             <field name = "surplus_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
                             </group>
                              <group>
                              <field name = "consent_status" widget="radio"  options="{'horizontal': true}" style="color: #e60911; font-weight: bold;"/>
