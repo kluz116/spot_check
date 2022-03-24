@@ -41,7 +41,7 @@
         </record>
 
           <record id="spot_check_teller_tree" model="ir.ui.view">
-            <field name="name">spot_check_tellert.tree</field>
+            <field name="name">spot_check_teller.tree</field>
             <field name="model">spot_check.teller</field>
              <field name="arch" type="xml">
                 <tree string="All Teller Declarations" default_order='created_on desc'>
@@ -59,7 +59,7 @@
             </field>
         </record>
 
-         <record id="spot_check_teller_tree" model="ir.ui.view">
+         <record id="spot_check_teller_tree_usd" model="ir.ui.view">
             <field name="name">spot_check_tellert_usd.tree</field>
             <field name="model">spot_check.teller_usd</field>
              <field name="arch" type="xml">
@@ -114,7 +114,7 @@
                    <sheet>
 
                         <group>
-                             <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" invisible='1'/>
+                             <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" readonly='1'/>
                         </group> 
                             <group>
                              <field name ="grand_total_ugx" readonly="1" style="color: #e60911; font-weight: bold;"/>
@@ -270,7 +270,7 @@
                    <sheet>
 
                         <group>
-                             <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" invisible='1'/>
+                             <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" readonly='1' />
                         </group> 
                          <group>
                              <field name ="grand_total_ugx" readonly="1" style="color: #e60911; font-weight: bold;"/>
@@ -403,7 +403,7 @@
                    <sheet>
 
                         <group>
-                             <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" invisible='1'/>
+                             <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" readonly='1' />
                         </group>
                           <group>
                              <field name = "branch_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"/>
@@ -572,7 +572,7 @@
                    <sheet>
 
                         <group>
-                             <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" invisible='1'/>
+                             <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" readonly='1' />
                         </group>
                           <group>
                              <field name = "branch_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"/>
@@ -720,7 +720,7 @@
                    <sheet>
 
                         <group>
-                             <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" invisible='1'/>
+                             <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"  readonly='1'/>
                         </group> 
                             <group>
                              <field name ="grand_total_ugx" readonly="1" style="color: #e60911; font-weight: bold;"/>

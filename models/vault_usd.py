@@ -7,7 +7,7 @@ class VaultUsd(models.Model):
     _rec_name ="grand_total_ugx"
     
     partner_id = fields.Many2one ('res.partner', 'Credit supervisor', default = lambda self: self.env.user.partner_id )
-    currency_id = fields.Many2one('res.currency', string='Currency' )
+    currency_id = fields.Many2one('res.currency', string='Currency',default=2  )
 
     state = fields.Selection([('ongoing', 'Pending Accountant Consent'),('confirmed_one', 'Pending Manager Consent'),('rejected_one', 'Rejected By Accountant'),('confirmed_two', 'Confirmed') ,('rejected_two', 'Rejected By Manager')],default="ongoing", string="Status",track_visibility='onchange')
     hundred_dollar_count = fields.Integer(string="100 Notes")
