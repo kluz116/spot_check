@@ -131,28 +131,34 @@
                                        <field name ="sub_total_good" readonly="1" style="color: #f44336; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                      <field name="deno_fifty_thounsand_bundle"/>
                                        <field name="deno_fifty_thounsand_count"/>
                                        <field name ="deno_fifty_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name="deno_twenty_thounsand_bundle"/>
                                        <field name="deno_twenty_thounsand_count"/>
                                        <field name ="deno_twenty_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name="deno_ten_thounsand_bundle"/>
                                        <field name="deno_ten_thounsand_count"/>
                                        <field name ="deno_ten_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                       <field name ="deno_five_thounsand_bundle"/>
                                        <field name ="deno_five_thounsand_count"/>
                                        <field name ="deno_five_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                       <field name ="deno_two_thounsand_bundle"/>
                                        <field name ="deno_two_thounsand_count"/>
                                        <field name ="deno_two_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                       <field name ="deno_one_thounsand_bundle"/>
                                        <field name ="deno_one_thounsand_count"/>
-                                        <field name ="deno_one_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
+                                       <field name ="deno_one_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                    
                                 </page>
@@ -187,27 +193,32 @@
                                     <field name ="sub_total_mutilated" readonly="1" style="color: #f44336; font-weight: bold;"/>
                                     </group>
                                     <group>
-                                    
+                                       <field name ="mutilated_deno_fifty_thounsand_bundle"/>
                                        <field name ="mutilated_deno_fifty_thounsand_count"/>
                                        <field name ="mutilated_deno_fifty_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name ="mutilated_deno_twenty_thounsand_bundle"/>
                                        <field name ="mutilated_deno_twenty_thounsand_count"/>
                                        <field name ="mutilated_deno_twenty_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name ="mutilated_deno_ten_thounsand_bundle"/>
                                        <field name ="mutilated_deno_ten_thounsand_count"/>
                                        <field name ="mutilated_deno_ten_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                       <field name ="mutilated_deno_five_thounsand_bundle" />
                                        <field name ="mutilated_deno_five_thounsand_count" />
                                        <field name ="mutilated_deno_five_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                     <field name ="mutilated_deno_two_thounsand_bundle"/>
                                       <field name ="mutilated_deno_two_thounsand_count"/>
                                        <field name ="mutilated_deno_two_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                     <field name ="mutilated_deno_one_thounsand_bundle"/>
                                      <field name ="mutilated_deno_one_thounsand_count"/>
                                        <field name ="mutilated_deno_one_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group> 

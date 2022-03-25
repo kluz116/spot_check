@@ -11,17 +11,23 @@ class Vault(models.Model):
     currency_id = fields.Many2one('res.currency', string='Currency', default=43)
 
     state = fields.Selection([('ongoing', 'Pending Accountant Consent'),('confirmed_one', 'Pending Manager Consent'),('rejected_one', 'Rejected By Accountant'),('confirmed_two', 'Confirmed') ,('rejected_two', 'Rejected By Manager')],default="ongoing", string="Status",track_visibility='onchange')
-    deno_fifty_thounsand_count = fields.Integer(string="50,000 Notes")
-    deno_fifty_thounsand = fields.Monetary(compute='_compute_deno_fifty_thounsand',string="50,000 Shs",store=True)
-    deno_twenty_thounsand_count = fields.Integer(string="20,000 Notes")
+    deno_fifty_thounsand_bundle = fields.Integer(string="Bundles")
+    deno_fifty_thounsand_count = fields.Integer(string="50,000 Loose Notes")
+    deno_fifty_thounsand = fields.Monetary(compute='_compute_deno_fifty_thounsand',string="Total 50,000 Shs",store=True)
+    deno_twenty_thounsand_bundle = fields.Integer(string="Bundles")
+    deno_twenty_thounsand_count = fields.Integer(string="20,000 Loose Notes")
     deno_twenty_thounsand = fields.Monetary(compute='_compute_deno_twenty_thounsand',string="20,000 Shs",store=True)
-    deno_ten_thounsand_count = fields.Integer(string="10,000 Notes")
+    deno_ten_thounsand_bundle = fields.Integer(string="Bundles")
+    deno_ten_thounsand_count = fields.Integer(string="10,000 Loose Notes")
     deno_ten_thounsand = fields.Monetary(string="10,000 Shs",compute='_compute_deno_ten_thounsand',store=True)
-    deno_five_thounsand_count = fields.Integer(string="5,000 Notes")
+    deno_five_thounsand_bundle = fields.Integer(string="Bundles")
+    deno_five_thounsand_count = fields.Integer(string="5,000 Loose Notes")
     deno_five_thounsand = fields.Monetary(string="5,000 Shs" ,compute='_compute_deno_five_thounsand',store=True)
-    deno_two_thounsand_count = fields.Integer(string="2,000 Notes")
+    deno_two_thounsand_bundle = fields.Integer(string="Bundles")
+    deno_two_thounsand_count = fields.Integer(string="2,000 Loose Notes")
     deno_two_thounsand = fields.Monetary(string="2,000 Shs" ,compute='_compute_deno_two_thounsand',store=True)
-    deno_one_thounsand_count = fields.Integer(string="1,000 Notes")
+    deno_one_thounsand_bundle = fields.Integer(string="Bundles")
+    deno_one_thounsand_count = fields.Integer(string="1,000 Loose Notes")
     deno_one_thounsand = fields.Monetary(string="1,000 Shs",compute='_compute_deno_one_thounsand',store=True)
     sub_total_good = fields.Monetary(compute='_compute_total_good_currency',string="Sub Total Good Currency",store=True,track_visibility='always')
 
@@ -37,18 +43,23 @@ class Vault(models.Model):
     coin_fifty = fields.Monetary(string="50 Shs", compute='_compute_coin_fifty',store=True)
     
     sub_total_coins = fields.Monetary(compute='_compute_total_coins',string="Sub Total Coins",store=True,track_visibility='always')
-
-    mutilated_deno_fifty_thounsand_count = fields.Integer(string="50,000 Notes")
+    mutilated_deno_fifty_thounsand_bundle = fields.Integer(string="Bundles")
+    mutilated_deno_fifty_thounsand_count = fields.Integer(string="50,000 Loose Notes")
     mutilated_deno_fifty_thounsand = fields.Monetary(compute='_compute_deno_fifty_thounsand_mutilated_',string="50,000 Shs",store=True)
-    mutilated_deno_twenty_thounsand_count = fields.Integer(string="20,000 Notes")
+    mutilated_deno_twenty_thounsand_bundle = fields.Integer(string="Bundles")
+    mutilated_deno_twenty_thounsand_count = fields.Integer(string="20,000 Loose Notes")
     mutilated_deno_twenty_thounsand = fields.Monetary(compute='_compute_deno_twenty_thounsand_mutilated_',string="20,000 Shs",store=True)
-    mutilated_deno_ten_thounsand_count = fields.Integer(string="10,000 Notes")
+    mutilated_deno_ten_thounsand_bundle = fields.Integer(string="Bundles")
+    mutilated_deno_ten_thounsand_count = fields.Integer(string="10,000 Loose Notes")
     mutilated_deno_ten_thounsand = fields.Monetary(string="10,000 Shs",compute='_compute_deno_ten_thounsand_mutilated_',store=True)
-    mutilated_deno_five_thounsand_count = fields.Integer(string="5,000 Notes")
+    mutilated_deno_five_thounsand_bundle = fields.Integer(string="Bundles")
+    mutilated_deno_five_thounsand_count = fields.Integer(string="5,000 Loose  Notes")
     mutilated_deno_five_thounsand = fields.Monetary(string="5,000 Shs" ,compute='_compute_deno_five_thounsand_mutilated_',store=True)
-    mutilated_deno_two_thounsand_count = fields.Integer(string="2,000 Notes")
+    mutilated_deno_two_thounsand_bundle = fields.Integer(string="Bundles")
+    mutilated_deno_two_thounsand_count = fields.Integer(string="2,000 Loose Notes")
     mutilated_deno_two_thounsand = fields.Monetary(string="2,000 Shs" ,compute='_compute_deno_two_thounsand_mutilated_',store=True)
-    mutilated_deno_one_thounsand_count = fields.Integer(string="1,000 Notes")
+    mutilated_deno_one_thounsand_bundle = fields.Integer(string="Bundles")
+    mutilated_deno_one_thounsand_count = fields.Integer(string="1,000 Loose Notes")
     mutilated_deno_one_thounsand = fields.Monetary(string="1,000 Shs" ,compute='_compute_deno_one_thounsand_mutilated_',store=True)
 
     sub_total_mutilated = fields.Monetary(compute='_compute_total_mutilated_currency',string="Sub Total Mutilated",store=True,track_visibility='always')
@@ -114,35 +125,35 @@ class Vault(models.Model):
         for record in self:
            record.grand_total_ugx = record.sub_total_good + record.sub_total_coins + record.sub_total_mutilated 
 
-    @api.depends('mutilated_deno_fifty_thounsand_count')
+    @api.depends('mutilated_deno_fifty_thounsand_count','mutilated_deno_fifty_thounsand_bundle')
     def _compute_deno_fifty_thounsand_mutilated_(self):
         for record in self:
-           record.mutilated_deno_fifty_thounsand = record.mutilated_deno_fifty_thounsand_count * 50000
+           record.mutilated_deno_fifty_thounsand = (record.mutilated_deno_fifty_thounsand_bundle * (100 * 50000)) + record.mutilated_deno_fifty_thounsand_count * 50000
     
-    @api.depends('mutilated_deno_twenty_thounsand_count')
+    @api.depends('mutilated_deno_twenty_thounsand_count','mutilated_deno_twenty_thounsand_bundle')
     def _compute_deno_twenty_thounsand_mutilated_(self):
         for record in self:
-           record.mutilated_deno_twenty_thounsand = record.mutilated_deno_twenty_thounsand_count * 20000
+           record.mutilated_deno_twenty_thounsand = (record.mutilated_deno_twenty_thounsand_bundle * (100 * 50000)) + record.mutilated_deno_twenty_thounsand_count * 20000
 
-    @api.depends('mutilated_deno_ten_thounsand_count')
+    @api.depends('mutilated_deno_ten_thounsand_count','mutilated_deno_ten_thounsand_bundle')
     def _compute_deno_ten_thounsand_mutilated_(self):
         for record in self:
-           record.mutilated_deno_ten_thounsand = record.mutilated_deno_ten_thounsand_count * 10000
+           record.mutilated_deno_ten_thounsand = (record.mutilated_deno_five_thounsand_bundle * (100 * 1000)) + record.mutilated_deno_ten_thounsand_count * 10000
 
-    @api.depends('mutilated_deno_five_thounsand_count')
+    @api.depends('mutilated_deno_five_thounsand_count','mutilated_deno_five_thounsand_bundle')
     def _compute_deno_five_thounsand_mutilated_(self):
         for record in self:
-           record.mutilated_deno_five_thounsand = record.mutilated_deno_five_thounsand_count * 5000
+           record.mutilated_deno_five_thounsand = (record.mutilated_deno_five_thounsand_bundle * (100 * 5000)) + record.mutilated_deno_five_thounsand_count * 5000
 
-    @api.depends('mutilated_deno_two_thounsand_count')
+    @api.depends('mutilated_deno_two_thounsand_count','mutilated_deno_two_thounsand_bundle')
     def _compute_deno_two_thounsand_mutilated_(self):
         for record in self:
-           record.mutilated_deno_two_thounsand = record.mutilated_deno_two_thounsand_count * 2000
+           record.mutilated_deno_two_thounsand = (record.mutilated_deno_two_thounsand_bundle * (100 * 2000)) + record.mutilated_deno_two_thounsand_count * 2000
 
-    @api.depends('mutilated_deno_one_thounsand_count')
+    @api.depends('mutilated_deno_one_thounsand_count','mutilated_deno_one_thounsand_bundle')
     def _compute_deno_one_thounsand_mutilated_(self):
         for record in self:
-           record.mutilated_deno_one_thounsand = record.mutilated_deno_one_thounsand_count * 1000
+           record.mutilated_deno_one_thounsand = (record.mutilated_deno_one_thounsand_bundle * (100 * 1000))+ record.mutilated_deno_one_thounsand_count * 1000
 
 
     
@@ -182,37 +193,37 @@ class Vault(models.Model):
 
 
     
-    @api.depends('deno_fifty_thounsand_count')
+    @api.depends('deno_fifty_thounsand_count','deno_fifty_thounsand_bundle')
     def _compute_deno_fifty_thounsand(self):
         for record in self:
-           record.deno_fifty_thounsand = record.deno_fifty_thounsand_count * 50000
+           record.deno_fifty_thounsand = (record.deno_fifty_thounsand_bundle * (100 * 50000)) + record.deno_fifty_thounsand_count * 50000
     
-    @api.depends('deno_twenty_thounsand_count')
+    @api.depends('deno_twenty_thounsand_count','deno_twenty_thounsand_bundle')
     def _compute_deno_twenty_thounsand(self):
         for record in self:
-           record.deno_twenty_thounsand = record.deno_twenty_thounsand_count * 20000
+           record.deno_twenty_thounsand = (record.deno_twenty_thounsand_bundle * (100 * 20000)) + record.deno_twenty_thounsand_count * 20000
 
-    @api.depends('deno_ten_thounsand_count')
+    @api.depends('deno_ten_thounsand_count','deno_ten_thounsand_bundle')
     def _compute_deno_ten_thounsand(self):
         for record in self:
-           record.deno_ten_thounsand = record.deno_ten_thounsand_count * 10000
+           record.deno_ten_thounsand = (record.deno_ten_thounsand_bundle * (100 * 10000)) + record.deno_ten_thounsand_count * 10000
 
-    @api.depends('deno_five_thounsand_count')
+    @api.depends('deno_five_thounsand_count','deno_five_thounsand_bundle')
     def _compute_deno_five_thounsand(self):
         for record in self:
-           record.deno_five_thounsand = record.deno_five_thounsand_count * 5000
+           record.deno_five_thounsand = (record.deno_five_thounsand_bundle * (100 * 5000)) + record.deno_five_thounsand_count * 5000
 
-    @api.depends('deno_two_thounsand_count')
+    @api.depends('deno_two_thounsand_count','deno_two_thounsand_bundle')
     def _compute_deno_two_thounsand(self):
         for record in self:
-           record.deno_two_thounsand = record.deno_two_thounsand_count * 2000
+           record.deno_two_thounsand = (record.deno_two_thounsand_bundle * (100 * 2000))+  record.deno_two_thounsand_count * 2000
 
-    @api.depends('deno_one_thounsand_count')
+    @api.depends('deno_one_thounsand_count','deno_one_thounsand_bundle')
     def _compute_deno_one_thounsand(self):
         for record in self:
-           record.deno_one_thounsand = record.deno_one_thounsand_count * 1000
+           record.deno_one_thounsand = (record.deno_one_thounsand_bundle * (100 * 2000)) + record.deno_one_thounsand_count * 1000
 
-    
+
 
     
     @api.depends('grand_total_ugx','system_cash_balance')
