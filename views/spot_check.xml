@@ -167,22 +167,27 @@
                                        <field name ="sub_total_coins" readonly="1" style="color: #f44336; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name ="coin_one_thounsand_bundle"/>
                                        <field name ="coin_one_thounsand_count"/>
                                        <field name ="coin_one_thounsand" readonly="1" style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name ="coin_five_houndred_bundle"/>
                                        <field name ="coin_five_houndred_count"/>
                                        <field name ="coin_five_houndred" readonly="1" style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                    <field name ="coin_two_hundred_bundle"/>
                                        <field name ="coin_two_hundred_count"/>
                                        <field name ="coin_two_hundred" readonly="1" style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                       <field name ="coin_one_hundred_bundle"/>
                                        <field name ="coin_one_hundred_count"/>
                                        <field name ="coin_one_hundred" readonly="1" style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                     <field name ="coin_fifty_bundle"/>
                                        <field name ="coin_fifty_count"/>
                                         <field name ="coin_fifty" readonly="1" style="color: #0373c7; font-weight: bold;"/>
                                     </group> 
@@ -221,6 +226,37 @@
                                      <field name ="mutilated_deno_one_thounsand_bundle"/>
                                      <field name ="mutilated_deno_one_thounsand_count"/>
                                        <field name ="mutilated_deno_one_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
+                                    </group> 
+                                    
+                                </page>
+                                 <page string="COINS MUTILATED">
+                                   <group>
+                                       <field name ="mutilated_sub_total_coins" readonly="1" style="color: #f44336; font-weight: bold;"/>
+                                    </group>
+                                    <group>
+                                       <field name ="mutilated_coin_one_thounsand_bundle"/>
+                                       <field name ="mutilated_coin_one_thounsand_count"/>
+                                       <field name ="mutilated_coin_one_thounsand" readonly="1" style="color: #0373c7; font-weight: bold;"/>
+                                    </group>
+                                    <group>
+                                       <field name ="mutilated_coin_five_houndred_bundle"/>
+                                       <field name ="mutilated_coin_five_houndred_count"/>
+                                       <field name ="mutilated_coin_five_houndred" readonly="1" style="color: #0373c7; font-weight: bold;"/>
+                                    </group>
+                                    <group>
+                                    <field name ="mutilated_coin_two_hundred_bundle"/>
+                                       <field name ="mutilated_coin_two_hundred_count"/>
+                                       <field name ="mutilated_coin_two_hundred" readonly="1" style="color: #0373c7; font-weight: bold;"/>
+                                    </group>
+                                     <group>
+                                       <field name ="mutilated_coin_one_hundred_bundle"/>
+                                       <field name ="mutilated_coin_one_hundred_count"/>
+                                       <field name ="mutilated_coin_one_hundred" readonly="1" style="color: #0373c7; font-weight: bold;"/>
+                                    </group>
+                                     <group>
+                                     <field name ="mutilated_coin_fifty_bundle"/>
+                                       <field name ="mutilated_coin_fifty_count"/>
+                                        <field name ="mutilated_coin_fifty" readonly="1" style="color: #0373c7; font-weight: bold;"/>
                                     </group> 
                                     
                                 </page>
@@ -298,26 +334,32 @@
                                        <field name ="sub_total_good" readonly="1" style="color: #f44336; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name ="hundred_dollar_bundle"/>
                                        <field name ="hundred_dollar_count"/>
                                        <field name ="hundred_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name ="fifty_dollar_bundle"/>
                                        <field name ="fifty_dollar_count"/>
                                        <field name ="fifty_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name ="twenty_dollar_bundle"/>
                                        <field name ="twenty_dollar_count"/>
                                        <field name ="twenty_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                       <field name ="ten_dollar_bundle"/>
                                        <field name ="ten_dollar_count"/>
                                        <field name ="ten_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                       <field name ="five_dollar_bundle"/>
                                        <field name ="five_dollar_count"/>
                                        <field name ="five_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                       <field name ="one_dollar_bundle"/>
                                        <field name ="one_dollar_count"/>
                                        <field name ="one_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
@@ -328,26 +370,32 @@
                                        <field name ="sub_total_mutilated" readonly="1" style="color: #f44336; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name ="mutilated_hundred_dollar_bundle"/>
                                        <field name ="mutilated_hundred_dollar_count"/>
                                        <field name ="mutilated_hundred_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name ="mutilated_fifty_dollar_bundle"/>
                                        <field name ="mutilated_fifty_dollar_count"/>
                                        <field name ="mutilated_fifty_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name ="mutilated_twenty_dollar_bundle"/>
                                        <field name ="mutilated_twenty_dollar_count"/>
                                        <field name ="mutilated_twenty_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                       <field name ="mutilated_ten_dollar_bundle"/>
                                        <field name ="mutilated_ten_dollar_count"/>
                                        <field name ="mutilated_ten_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                       <field name ="mutilated_five_dollar_bundle"/>
                                        <field name ="mutilated_five_dollar_count"/>
                                        <field name ="mutilated_five_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group> 
                                      <group>
+                                       <field name ="mutilated_one_dollar_bundle"/>
                                        <field name ="mutilated_one_dollar_count"/>
                                        <field name ="mutilated_one_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
@@ -436,94 +484,140 @@
                              <field name = "surplus_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
                             </group>
 
-                         <notebook>
+                          <notebook>
                                 <page string="GOOD CURRENCY">
-                                    <group>
+                                  <group>
                                        <field name ="sub_total_good" readonly="1" style="color: #f44336; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                      <field name="deno_fifty_thounsand_bundle"/>
                                        <field name="deno_fifty_thounsand_count"/>
                                        <field name ="deno_fifty_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name="deno_twenty_thounsand_bundle"/>
                                        <field name="deno_twenty_thounsand_count"/>
                                        <field name ="deno_twenty_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name="deno_ten_thounsand_bundle"/>
                                        <field name="deno_ten_thounsand_count"/>
                                        <field name ="deno_ten_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                       <field name ="deno_five_thounsand_bundle"/>
                                        <field name ="deno_five_thounsand_count"/>
                                        <field name ="deno_five_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                       <field name ="deno_two_thounsand_bundle"/>
                                        <field name ="deno_two_thounsand_count"/>
                                        <field name ="deno_two_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                       <field name ="deno_one_thounsand_bundle"/>
                                        <field name ="deno_one_thounsand_count"/>
-                                        <field name ="deno_one_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
+                                       <field name ="deno_one_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
-                                    
-                                
+                                   
                                 </page>
                                 <page string="COINS CURRENCY">
-                                    <group>
+                                   <group>
                                        <field name ="sub_total_coins" readonly="1" style="color: #f44336; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name ="coin_one_thounsand_bundle"/>
                                        <field name ="coin_one_thounsand_count"/>
                                        <field name ="coin_one_thounsand" readonly="1" style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name ="coin_five_houndred_bundle"/>
                                        <field name ="coin_five_houndred_count"/>
                                        <field name ="coin_five_houndred" readonly="1" style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                    <field name ="coin_two_hundred_bundle"/>
                                        <field name ="coin_two_hundred_count"/>
                                        <field name ="coin_two_hundred" readonly="1" style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                       <field name ="coin_one_hundred_bundle"/>
                                        <field name ="coin_one_hundred_count"/>
                                        <field name ="coin_one_hundred" readonly="1" style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                     <field name ="coin_fifty_bundle"/>
                                        <field name ="coin_fifty_count"/>
                                         <field name ="coin_fifty" readonly="1" style="color: #0373c7; font-weight: bold;"/>
                                     </group> 
-                                  
+                                    
                                 </page>
                                 <page string="MUTILATED CASH">
-                                  <group>
+                                   <group>
                                     <field name ="sub_total_mutilated" readonly="1" style="color: #f44336; font-weight: bold;"/>
                                     </group>
                                     <group>
-                                    
+                                       <field name ="mutilated_deno_fifty_thounsand_bundle"/>
                                        <field name ="mutilated_deno_fifty_thounsand_count"/>
                                        <field name ="mutilated_deno_fifty_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name ="mutilated_deno_twenty_thounsand_bundle"/>
                                        <field name ="mutilated_deno_twenty_thounsand_count"/>
                                        <field name ="mutilated_deno_twenty_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name ="mutilated_deno_ten_thounsand_bundle"/>
                                        <field name ="mutilated_deno_ten_thounsand_count"/>
                                        <field name ="mutilated_deno_ten_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                       <field name ="mutilated_deno_five_thounsand_bundle" />
                                        <field name ="mutilated_deno_five_thounsand_count" />
                                        <field name ="mutilated_deno_five_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                     <field name ="mutilated_deno_two_thounsand_bundle"/>
                                       <field name ="mutilated_deno_two_thounsand_count"/>
                                        <field name ="mutilated_deno_two_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                     <field name ="mutilated_deno_one_thounsand_bundle"/>
                                      <field name ="mutilated_deno_one_thounsand_count"/>
                                        <field name ="mutilated_deno_one_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group> 
-                                  
+                                    
+                                </page>
+                                 <page string="COINS MUTILATED">
+                                   <group>
+                                       <field name ="mutilated_sub_total_coins" readonly="1" style="color: #f44336; font-weight: bold;"/>
+                                    </group>
+                                    <group>
+                                       <field name ="mutilated_coin_one_thounsand_bundle"/>
+                                       <field name ="mutilated_coin_one_thounsand_count"/>
+                                       <field name ="mutilated_coin_one_thounsand" readonly="1" style="color: #0373c7; font-weight: bold;"/>
+                                    </group>
+                                    <group>
+                                       <field name ="mutilated_coin_five_houndred_bundle"/>
+                                       <field name ="mutilated_coin_five_houndred_count"/>
+                                       <field name ="mutilated_coin_five_houndred" readonly="1" style="color: #0373c7; font-weight: bold;"/>
+                                    </group>
+                                    <group>
+                                    <field name ="mutilated_coin_two_hundred_bundle"/>
+                                       <field name ="mutilated_coin_two_hundred_count"/>
+                                       <field name ="mutilated_coin_two_hundred" readonly="1" style="color: #0373c7; font-weight: bold;"/>
+                                    </group>
+                                     <group>
+                                       <field name ="mutilated_coin_one_hundred_bundle"/>
+                                       <field name ="mutilated_coin_one_hundred_count"/>
+                                       <field name ="mutilated_coin_one_hundred" readonly="1" style="color: #0373c7; font-weight: bold;"/>
+                                    </group>
+                                     <group>
+                                     <field name ="mutilated_coin_fifty_bundle"/>
+                                       <field name ="mutilated_coin_fifty_count"/>
+                                        <field name ="mutilated_coin_fifty" readonly="1" style="color: #0373c7; font-weight: bold;"/>
+                                    </group> 
+                                    
                                 </page>
                           </notebook>  
                            
@@ -588,8 +682,7 @@
                           <group>
                              <field name = "branch_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"/>
                         </group> 
-                        
-                          <group>
+                        <group>
                              <field name = "teller_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"/>
                         </group>  
                          <group>
@@ -604,70 +697,80 @@
                             <group>
                              <field name = "surplus_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
                             </group>
-
-                        <notebook>
-                          <page string="GOOD CURRENCY (USD) ">
-                                   <group>
+                           <notebook>
+                                <page string="GOOD CURRENCY (USD) ">
+                                    <group>
                                        <field name ="sub_total_good" readonly="1" style="color: #f44336; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name ="hundred_dollar_bundle"/>
                                        <field name ="hundred_dollar_count"/>
                                        <field name ="hundred_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name ="fifty_dollar_bundle"/>
                                        <field name ="fifty_dollar_count"/>
                                        <field name ="fifty_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name ="twenty_dollar_bundle"/>
                                        <field name ="twenty_dollar_count"/>
                                        <field name ="twenty_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                       <field name ="ten_dollar_bundle"/>
                                        <field name ="ten_dollar_count"/>
                                        <field name ="ten_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                       <field name ="five_dollar_bundle"/>
                                        <field name ="five_dollar_count"/>
                                        <field name ="five_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                       <field name ="one_dollar_bundle"/>
                                        <field name ="one_dollar_count"/>
                                        <field name ="one_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
-                                  
+                                   
                                 </page>
                                 <page string="MUTILATED CASH (USD)">
-                                   <group>
+                                    <group>
                                        <field name ="sub_total_mutilated" readonly="1" style="color: #f44336; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name ="mutilated_hundred_dollar_bundle"/>
                                        <field name ="mutilated_hundred_dollar_count"/>
                                        <field name ="mutilated_hundred_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name ="mutilated_fifty_dollar_bundle"/>
                                        <field name ="mutilated_fifty_dollar_count"/>
                                        <field name ="mutilated_fifty_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                     <group>
+                                       <field name ="mutilated_twenty_dollar_bundle"/>
                                        <field name ="mutilated_twenty_dollar_count"/>
                                        <field name ="mutilated_twenty_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                       <field name ="mutilated_ten_dollar_bundle"/>
                                        <field name ="mutilated_ten_dollar_count"/>
                                        <field name ="mutilated_ten_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
+                                       <field name ="mutilated_five_dollar_bundle"/>
                                        <field name ="mutilated_five_dollar_count"/>
                                        <field name ="mutilated_five_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group> 
                                      <group>
+                                       <field name ="mutilated_one_dollar_bundle"/>
                                        <field name ="mutilated_one_dollar_count"/>
                                        <field name ="mutilated_one_dollar" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
-                                 
+                                    
                                 </page>
-                                   
-                        </notebook>  
+                          </notebook> 
                             <group>
                              <field name = "system_cash_balance" style="color: #e60911; font-weight: bold;" />
                             </group>
@@ -742,31 +845,30 @@
                             <group>
                              <field name = "surplus_cash" readonly="1" style="color: #e60911; font-weight: bold;"/>
                             </group>
-                         <notebook>
-                                <page string="GOOD CURRENCY (UGX)">
                                     <group>
-                                       <field name ="sub_total_good" readonly="1" style="color: #e60911; font-weight: bold;"/>
+                                       <field name ="sub_total_good" readonly="1" style="color: #f44336; font-weight: bold;"/>
                                     </group>
                                     <group>
-                                       <field name="deno_fifty_thounsand_count" />
+                                      <field name="deno_fifty_thounsand_bundle"/>
+                                       <field name="deno_fifty_thounsand_count"/>
                                        <field name ="deno_fifty_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                     <group>
-                                       <field name="deno_twenty_thounsand_count" />
+                                       <field name="deno_twenty_thounsand_bundle"/>
+                                       <field name="deno_twenty_thounsand_count"/>
                                        <field name ="deno_twenty_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                     <group>
-                                       <field name="deno_ten_thounsand_count" />
+                                       <field name="deno_ten_thounsand_bundle"/>
+                                       <field name="deno_ten_thounsand_count"/>
                                        <field name ="deno_ten_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
                                      <group>
-                                       <field name ="deno_five_thounsand_count" />
+                                       <field name ="deno_five_thounsand_bundle"/>
+                                       <field name ="deno_five_thounsand_count"/>
                                        <field name ="deno_five_thounsand" readonly='1' style="color: #0373c7; font-weight: bold;"/>
                                     </group>
-                                    
-                                </page>
-                                
-                          </notebook>  
+                           
                            
                            <group>
                              <field name = "system_cash_balance" style="color: #e60911; font-weight: bold;" />

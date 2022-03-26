@@ -10,19 +10,20 @@ class ATM(models.Model):
     currency_id = fields.Many2one('res.currency', string='Currency',default=43 )
 
     state = fields.Selection([('ongoing', 'Pending Accountant Consent'),('confirmed_one', 'Pending Manager Consent'),('rejected_one', 'Rejected By Accountant'),('confirmed_two', 'Confirmed') ,('rejected_two', 'Rejected By Manager')],default="ongoing", string="Status",track_visibility='always')
-    deno_fifty_thounsand_count = fields.Integer(string="50,000 Notes")
-    deno_fifty_thounsand = fields.Monetary(compute='_compute_deno_fifty_thounsand',string="50,000 Shs")
-    deno_twenty_thounsand_count = fields.Integer(string="20,000 Notes")
-    deno_twenty_thounsand = fields.Monetary(compute='_compute_deno_twenty_thounsand',string="20,000 Shs")
-    deno_ten_thounsand_count = fields.Integer(string="10,000 Notes")
-    deno_ten_thounsand = fields.Monetary(string="10,000 Shs",compute='_compute_deno_ten_thounsand')
-    deno_five_thounsand_count = fields.Integer(string="5,000 Notes")
-    deno_five_thounsand = fields.Monetary(string="5,000 Shs" ,compute='_compute_deno_five_thounsand')
-    deno_two_thounsand_count = fields.Integer(string="2,000 Notes")
-    deno_two_thounsand = fields.Monetary(string="2,000 Shs" ,compute='_compute_deno_two_thounsand')
-    deno_one_thounsand_count = fields.Integer(string="1,000 Notes")
-    deno_one_thounsand = fields.Monetary(string="1,000 Shs",compute='_compute_deno_one_thounsand')
-    sub_total_good = fields.Monetary(compute='_compute_total_good_currency',string="Sub Total Good Currency",store=True)
+    deno_fifty_thounsand_bundle = fields.Integer(string="Bundles")
+    deno_fifty_thounsand_count = fields.Integer(string="50,000 Loose Notes")
+    deno_fifty_thounsand = fields.Monetary(compute='_compute_deno_fifty_thounsand',string="50,000 Shs",store=True)
+    deno_twenty_thounsand_bundle = fields.Integer(string="Bundles")
+    deno_twenty_thounsand_count = fields.Integer(string="20,000 Loose Notes")
+    deno_twenty_thounsand = fields.Monetary(compute='_compute_deno_twenty_thounsand',string="20,000 Shs",store=True)
+    deno_ten_thounsand_bundle = fields.Integer(string="Bundles")
+    deno_ten_thounsand_count = fields.Integer(string="10,000 Loose Notes")
+    deno_ten_thounsand = fields.Monetary(string="10,000 Shs",compute='_compute_deno_ten_thounsand',store=True)
+    deno_five_thounsand_bundle = fields.Integer(string="Bundles")
+    deno_five_thounsand_count = fields.Integer(string="5,000 Loose Notes")
+    deno_five_thounsand = fields.Monetary(string="5,000 Shs" ,compute='_compute_deno_five_thounsand',store=True)
+    sub_total_good = fields.Monetary(compute='_compute_total_good_currency',string="Sub Total Good Currency",store=True,track_visibility='always')
+    
    
     grand_total_ugx = fields.Monetary(compute='_compute_grand_totol',string="Grand Total (UGX)",store=True,track_visibility='always')
     created_on =  fields.Datetime(string='Date', default=lambda self: fields.datetime.now())
@@ -62,41 +63,35 @@ class ATM(models.Model):
             action_id = self.env.ref('spot_check.vault_list_action', raise_if_not_found=False)
             e.base_url = """{}/web#id={}&view_type=form&model=spot_check.vault&action={}""".format(web_base_url,e.id,action_id.id)
 
-    @api.depends('deno_fifty_thounsand_count')
+
+    
+    @api.depends('deno_fifty_thounsand_count','deno_fifty_thounsand_bundle')
     def _compute_deno_fifty_thounsand(self):
         for record in self:
-           record.deno_fifty_thounsand = record.deno_fifty_thounsand_count * 50000
+           record.deno_fifty_thounsand = (record.deno_fifty_thounsand_bundle * (100 * 50000)) + record.deno_fifty_thounsand_count * 50000
     
-    @api.depends('deno_twenty_thounsand_count')
+    @api.depends('deno_twenty_thounsand_count','deno_twenty_thounsand_bundle')
     def _compute_deno_twenty_thounsand(self):
         for record in self:
-           record.deno_twenty_thounsand = record.deno_twenty_thounsand_count * 20000
+           record.deno_twenty_thounsand = (record.deno_twenty_thounsand_bundle * (100 * 20000)) + record.deno_twenty_thounsand_count * 20000
 
-    @api.depends('deno_ten_thounsand_count')
+    @api.depends('deno_ten_thounsand_count','deno_ten_thounsand_bundle')
     def _compute_deno_ten_thounsand(self):
         for record in self:
-           record.deno_ten_thounsand = record.deno_ten_thounsand_count * 10000
+           record.deno_ten_thounsand = (record.deno_ten_thounsand_bundle * (100 * 10000)) + record.deno_ten_thounsand_count * 10000
 
-    @api.depends('deno_five_thounsand_count')
+    @api.depends('deno_five_thounsand_count','deno_five_thounsand_bundle')
     def _compute_deno_five_thounsand(self):
         for record in self:
-           record.deno_five_thounsand = record.deno_five_thounsand_count * 5000
-
-    @api.depends('deno_two_thounsand_count')
-    def _compute_deno_two_thounsand(self):
-        for record in self:
-           record.deno_two_thounsand = record.deno_two_thounsand_count * 2000
-
-    @api.depends('deno_one_thounsand_count')
-    def _compute_deno_one_thounsand(self):
-        for record in self:
-           record.deno_one_thounsand = record.deno_one_thounsand_count * 1000
+           record.deno_five_thounsand = (record.deno_five_thounsand_bundle * (100 * 5000)) + record.deno_five_thounsand_count * 5000
 
 
-    @api.depends('deno_fifty_thounsand', 'deno_twenty_thounsand','deno_ten_thounsand','deno_five_thounsand','deno_two_thounsand','deno_one_thounsand')
+
+
+    @api.depends('deno_fifty_thounsand', 'deno_twenty_thounsand','deno_ten_thounsand','deno_five_thounsand')
     def _compute_total_good_currency(self):
         for record in self:
-            record.sub_total_good = record.deno_fifty_thounsand + record.deno_twenty_thounsand + record.deno_ten_thounsand + record.deno_five_thounsand + record.deno_two_thounsand + record.deno_one_thounsand
+            record.sub_total_good = record.deno_fifty_thounsand + record.deno_twenty_thounsand + record.deno_ten_thounsand + record.deno_five_thounsand 
         
 
     @api.depends('sub_total_good')

@@ -30,19 +30,42 @@ class Vault(models.Model):
     deno_one_thounsand_count = fields.Integer(string="1,000 Loose Notes")
     deno_one_thounsand = fields.Monetary(string="1,000 Shs",compute='_compute_deno_one_thounsand',store=True)
     sub_total_good = fields.Monetary(compute='_compute_total_good_currency',string="Sub Total Good Currency",store=True,track_visibility='always')
-
+    coin_one_thounsand_bundle = fields.Integer(string="Bundles")
     coin_one_thounsand_count = fields.Integer(string="1,000 Coins")
     coin_one_thounsand = fields.Monetary(string="1,000 Shs", compute='_compute_coin_one_thounsand',store=True)
+    coin_five_houndred_bundle = fields.Integer(string="Bundles")
     coin_five_houndred_count = fields.Integer(string="500 Coins")
     coin_five_houndred = fields.Monetary(string="500 Shs",compute='_compute_coin_five_houndred',store=True)
+    coin_two_hundred_bundle = fields.Integer(string="Bundles")
     coin_two_hundred_count = fields.Integer(string="200 Coins")
     coin_two_hundred = fields.Monetary(string="200 Shs",compute='_compute_coin_two_hundred',store=True)
+    coin_one_hundred_bundle = fields.Integer(string="Bundles")
     coin_one_hundred_count = fields.Integer(string="100 Coins")
     coin_one_hundred = fields.Monetary(string="100 Shs",compute='_compute_coin_one_hundred',store=True)
+    coin_fifty_bundle = fields.Integer(string="Bundle")
     coin_fifty_count = fields.Integer(string="50 Coins")
     coin_fifty = fields.Monetary(string="50 Shs", compute='_compute_coin_fifty',store=True)
     
     sub_total_coins = fields.Monetary(compute='_compute_total_coins',string="Sub Total Coins",store=True,track_visibility='always')
+
+    mutilated_coin_one_thounsand_bundle = fields.Integer(string="Bundles")
+    mutilated_coin_one_thounsand_count = fields.Integer(string="1,000 Coins")
+    mutilated_coin_one_thounsand = fields.Monetary(string="1,000 Shs", compute='_compute_coin_one_thounsand_mutilated',store=True)
+    mutilated_coin_five_houndred_bundle = fields.Integer(string="Bundles")
+    mutilated_coin_five_houndred_count = fields.Integer(string="500 Coins")
+    mutilated_coin_five_houndred = fields.Monetary(string="500 Shs",compute='_compute_coin_five_houndred_mutilated',store=True)
+    mutilated_coin_two_hundred_bundle = fields.Integer(string="Bundles")
+    mutilated_coin_two_hundred_count = fields.Integer(string="200 Coins")
+    mutilated_coin_two_hundred = fields.Monetary(string="200 Shs",compute='_compute_coin_two_hundred_mutilated',store=True)
+    mutilated_coin_one_hundred_bundle = fields.Integer(string="Bundles")
+    mutilated_coin_one_hundred_count = fields.Integer(string="100 Coins")
+    mutilated_coin_one_hundred = fields.Monetary(string="100 Shs",compute='_compute_coin_one_hundred_mutilated',store=True)
+    mutilated_coin_fifty_bundle = fields.Integer(string="Bundle")
+    mutilated_coin_fifty_count = fields.Integer(string="50 Coins")
+    mutilated_coin_fifty = fields.Monetary(string="50 Shs", compute='_compute_coin_fifty_mutilated',store=True)
+    
+    mutilated_sub_total_coins = fields.Monetary(compute='_compute_total_coins_mutilated',string="Sub Total Coins",store=True,track_visibility='always')
+
     mutilated_deno_fifty_thounsand_bundle = fields.Integer(string="Bundles")
     mutilated_deno_fifty_thounsand_count = fields.Integer(string="50,000 Loose Notes")
     mutilated_deno_fifty_thounsand = fields.Monetary(compute='_compute_deno_fifty_thounsand_mutilated_',string="50,000 Shs",store=True)
@@ -119,11 +142,17 @@ class Vault(models.Model):
     def _compute_total_mutilated_currency(self):
         for record in self:
             record.sub_total_mutilated = record.mutilated_deno_fifty_thounsand + record.mutilated_deno_twenty_thounsand + record.mutilated_deno_ten_thounsand + record.mutilated_deno_five_thounsand + record.mutilated_deno_two_thounsand + record.mutilated_deno_one_thounsand
+    
+    @api.depends('mutilated_coin_one_thounsand','mutilated_coin_five_houndred','mutilated_coin_two_hundred','mutilated_coin_one_hundred','mutilated_coin_fifty')
+    def _compute_total_coins_mutilated(self):
+        for record in self:
+            record.mutilated_sub_total_coins =  record.mutilated_coin_one_thounsand + record.mutilated_coin_five_houndred + record.mutilated_coin_two_hundred + record.mutilated_coin_one_hundred + record.mutilated_coin_fifty
 
-    @api.depends('sub_total_good', 'sub_total_coins','sub_total_mutilated')
+
+    @api.depends('sub_total_good', 'sub_total_coins','sub_total_mutilated','mutilated_sub_total_coins')
     def _compute_grand_totol(self):
         for record in self:
-           record.grand_total_ugx = record.sub_total_good + record.sub_total_coins + record.sub_total_mutilated 
+           record.grand_total_ugx = record.sub_total_good + record.sub_total_coins + record.sub_total_mutilated + record.mutilated_sub_total_coins 
 
     @api.depends('mutilated_deno_fifty_thounsand_count','mutilated_deno_fifty_thounsand_bundle')
     def _compute_deno_fifty_thounsand_mutilated_(self):
@@ -157,31 +186,60 @@ class Vault(models.Model):
 
 
     
-    @api.depends('coin_one_thounsand_count')
-    def _compute_coin_one_thounsand(self):
+    @api.depends('mutilated_coin_one_thounsand_count','mutilated_coin_one_thounsand_bundle')
+    def _compute_coin_one_thounsand_mutilated(self):
         for record in self:
-            record.coin_one_thounsand = record.coin_one_thounsand_count * 1000
+            record.mutilated_coin_one_thounsand = (record.mutilated_coin_one_thounsand_bundle * (1000 * 1000)) + record.mutilated_coin_one_thounsand_count * 1000
      
-    @api.depends('coin_five_houndred_count')
-    def _compute_coin_five_houndred(self):
+    @api.depends('mutilated_coin_five_houndred_count','mutilated_coin_five_houndred_bundle')
+    def _compute_coin_five_houndred_mutilated(self):
         for record in self:
-            record.coin_five_houndred = record.coin_five_houndred_count * 500
+            record.mutilated_coin_five_houndred = (record.mutilated_coin_five_houndred_bundle * (1000 * 500)) + record.mutilated_coin_five_houndred_count * 500
 
-    @api.depends('coin_two_hundred_count')
-    def _compute_coin_two_hundred(self):
+    @api.depends('mutilated_coin_two_hundred_count','mutilated_coin_two_hundred_bundle')
+    def _compute_coin_two_hundred_mutilated(self):
         for record in self:
-            record.coin_two_hundred = record.coin_two_hundred_count * 500
+            record.mutilated_coin_two_hundred = (record.coin_two_hundred_bundle * (1000 * 200)) + record.mutilated_coin_two_hundred_count * 200
 
     
-    @api.depends('coin_one_hundred_count')
+    @api.depends('mutilated_coin_one_hundred_count','mutilated_coin_one_hundred_bundle')
+    def _compute_coin_one_hundred_mutilated(self):
+        for record in self:
+            record.mutilated_coin_one_hundred = (record.mutilated_coin_one_hundred_bundle * (1000 * 100)) + record.mutilated_coin_one_hundred_count *100
+
+    @api.depends('mutilated_coin_fifty_count','mutilated_coin_fifty_bundle')
+    def _compute_coin_fifty_mutilated(self):
+        for record in self:
+            record.mutilated_coin_fifty =(record.mutilated_coin_fifty_bundle * (1000 * 50))+ record.mutilated_coin_fifty_count *50
+
+
+    
+    @api.depends('coin_one_thounsand_count','coin_one_thounsand_bundle')
+    def _compute_coin_one_thounsand(self):
+        for record in self:
+            record.coin_one_thounsand = (record.coin_one_thounsand_bundle * (1000 * 1000)) + record.coin_one_thounsand_count * 1000
+     
+    @api.depends('coin_five_houndred_count','coin_five_houndred_bundle')
+    def _compute_coin_five_houndred(self):
+        for record in self:
+            record.coin_five_houndred = (record.coin_five_houndred_bundle * (1000 * 500)) + record.coin_five_houndred_count * 500
+
+    @api.depends('coin_two_hundred_count','coin_two_hundred_bundle')
     def _compute_coin_two_hundred(self):
         for record in self:
-            record.coin_one_hundred = record.coin_one_hundred_count *100
+            record.coin_two_hundred = (record.coin_two_hundred_bundle * (1000 * 200)) + record.coin_two_hundred_count * 200
 
-    @api.depends('coin_fifty_count')
+    
+    @api.depends('coin_one_hundred_count','coin_one_hundred_bundle')
+    def _compute_coin_two_hundred(self):
+        for record in self:
+            record.coin_one_hundred = (record.coin_one_hundred_bundle * (1000 * 100)) + record.coin_one_hundred_count *100
+
+    @api.depends('coin_fifty_count','coin_fifty_bundle')
     def _compute_coin_fifty(self):
         for record in self:
-            record.coin_fifty = record.coin_fifty_count *50
+            record.coin_fifty =(record.coin_fifty_bundle * (1000 * 50))+ record.coin_fifty_count *50
+
 
             
 
