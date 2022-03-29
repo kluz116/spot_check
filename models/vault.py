@@ -7,8 +7,13 @@ class Vault(models.Model):
     _description = "This is a a vault model"
     _rec_name ="grand_total_ugx"
     
-    partner_id = fields.Many2one ('res.partner', 'Credit supervisor', default = lambda self: self.env.user.partner_id )
+    partner_id = fields.Many2one ('res.partner', 'Name', default = lambda self: self.env.user.partner_id )
+    from_branch_id = fields.Integer(related='partner_id.branch_id_spot_check.id')
     currency_id = fields.Many2one('res.currency', string='Currency', default=43)
+    branch_id = fields.Many2one('spot_check.branch',string ='Branch', required=True, default=from_branch_id)
+    #from_branch_id = fields.Integer(related='branch_id.id')
+    branch_accountant = fields.Many2one('res.partner','Accountant',domain="[('branch_id_spot_check', '=', branch_id),('user_role','=','accountant')]")
+    branch_manager = fields.Many2one('res.partner','Manager',domain="[('branch_id_spot_check', '=', branch_id),('user_role','=','manager')]")
 
     state = fields.Selection([('ongoing', 'Pending Accountant Consent'),('confirmed_one', 'Pending Manager Consent'),('rejected_one', 'Rejected By Accountant'),('confirmed_two', 'Confirmed') ,('rejected_two', 'Rejected By Manager')],default="ongoing", string="Status",track_visibility='onchange')
     deno_fifty_thounsand_bundle = fields.Integer(string="Bundles")
@@ -92,8 +97,8 @@ class Vault(models.Model):
     user_id = fields.Many2one('res.users', string='User', track_visibility='onchange', readonly=True, default=lambda self: self.env.user.id)
     trx_proof = fields.Binary(string='Upload BRNET GL', attachment=True,required=True)
     branch_code = fields.Integer(compute='_compute_branch',string='Branch',store=True)
-    branch_manager = fields.Many2one(compute='_get_manager_id', comodel_name='res.partner', string='Branch Manger', store=True)
-    branch_accountant = fields.Many2one(compute='_get_accountant_id', comodel_name='res.partner', string='Branch Accountant', store=True)
+    #branch_manager = fields.Many2one(compute='_get_manager_id', comodel_name='res.partner', string='Branch Manger', store=True)
+    #branch_accountant = fields.Many2one(compute='_get_accountant_id', comodel_name='res.partner', string='Branch Accountant', store=True)
     system_cash_balance = fields.Monetary(string="System Cash Balance",required=True)
     shortage_cash = fields.Monetary(string="Shortage Cash",compute='_get_shortage')
     surplus_cash = fields.Monetary(string="Surplus Cash",compute='_get_surplus')

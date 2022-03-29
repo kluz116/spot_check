@@ -9,6 +9,12 @@ class ATM(models.Model):
     partner_id = fields.Many2one ('res.partner', 'Customer', default = lambda self: self.env.user.partner_id )
     currency_id = fields.Many2one('res.currency', string='Currency',default=43 )
 
+    branch_id = fields.Many2one('spot_check.branch',string ='Branch', required=True)
+    #from_branch_id = fields.Integer(related='branch_id.id')
+    branch_accountant = fields.Many2one('res.partner','Accountant',domain="[('branch_id_spot_check', '=', branch_id),('user_role','=','accountant')]")
+    branch_manager = fields.Many2one('res.partner','Manager',domain="[('branch_id_spot_check', '=', branch_id),('user_role','=','manager')]")
+
+
     state = fields.Selection([('ongoing', 'Pending Accountant Consent'),('confirmed_one', 'Pending Manager Consent'),('rejected_one', 'Rejected By Accountant'),('confirmed_two', 'Confirmed') ,('rejected_two', 'Rejected By Manager')],default="ongoing", string="Status",track_visibility='always')
     deno_fifty_thounsand_bundle = fields.Integer(string="Bundles")
     deno_fifty_thounsand_count = fields.Integer(string="50,000 Loose Notes")
@@ -33,8 +39,8 @@ class ATM(models.Model):
     trx_proof1 = fields.Binary(string='ATM Counters', attachment=True,required=True)
     trx_proof2 = fields.Binary(string='ATM Spot Recooncilations', attachment=True,required=True)
     branch_code = fields.Integer(compute='_compute_branch',string='Branch',store=True)
-    branch_manager = fields.Many2one(compute='_get_manager_id', comodel_name='res.partner', string='Branch Manger', store=True)
-    branch_accountant = fields.Many2one(compute='_get_accountant_id', comodel_name='res.partner', string='Branch Accountant', store=True)
+    #branch_manager = fields.Many2one(compute='_get_manager_id', comodel_name='res.partner', string='Branch Manger', store=True)
+    #branch_accountant = fields.Many2one(compute='_get_accountant_id', comodel_name='res.partner', string='Branch Accountant', store=True)
     system_cash_balance = fields.Monetary(string="System Cash Balance",required=True)
     shortage_cash = fields.Monetary(string="Shortage Cash",compute='_get_shortage')
     surplus_cash = fields.Monetary(string="Surplus Cash",compute='_get_surplus')

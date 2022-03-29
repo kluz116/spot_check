@@ -18,7 +18,7 @@
         <field name="category_id" ref="module_spot_check"/>       
     </record>
     <record id="Cash_Managment_Support_Team" model="res.groups">
-        <field name="name">Cash Managment Support Spot Check</field>
+        <field name="name">Spot Check - Category A</field>
         <field name="category_id" ref="module_spot_check"/>
     </record>
     <record id="Branch_Teller" model="res.groups">

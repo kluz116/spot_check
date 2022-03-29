@@ -8,6 +8,10 @@ class VaultUsd(models.Model):
     
     partner_id = fields.Many2one ('res.partner', 'Credit supervisor', default = lambda self: self.env.user.partner_id )
     currency_id = fields.Many2one('res.currency', string='Currency',default=2  )
+    branch_id = fields.Many2one('spot_check.branch',string ='Branch', required=True)
+    #from_branch_id = fields.Integer(related='branch_id.id')
+    branch_accountant = fields.Many2one('res.partner','Accountant',domain="[('branch_id_spot_check', '=', branch_id),('user_role','=','accountant')]")
+    branch_manager = fields.Many2one('res.partner','Manager',domain="[('branch_id_spot_check', '=', branch_id),('user_role','=','manager')]")
 
     state = fields.Selection([('ongoing', 'Pending Accountant Consent'),('confirmed_one', 'Pending Manager Consent'),('rejected_one', 'Rejected By Accountant'),('confirmed_two', 'Confirmed') ,('rejected_two', 'Rejected By Manager')],default="ongoing", string="Status",track_visibility='onchange')
     hundred_dollar_bundle = fields.Integer(string="Bundles")
@@ -55,8 +59,8 @@ class VaultUsd(models.Model):
     user_id = fields.Many2one('res.users', string='User', track_visibility='onchange', readonly=True, default=lambda self: self.env.user.id)
     trx_proof = fields.Binary(string='Upload BRNET GL', attachment=True,required=True)
     branch_code = fields.Integer(compute='_compute_branch',string='Branch',store=True)
-    branch_manager = fields.Many2one(compute='_get_manager_id', comodel_name='res.partner', string='Branch Manger', store=True)
-    branch_accountant = fields.Many2one(compute='_get_accountant_id', comodel_name='res.partner', string='Branch Accountant', store=True)
+    #branch_manager = fields.Many2one(compute='_get_manager_id', comodel_name='res.partner', string='Branch Manger', store=True)
+    #branch_accountant = fields.Many2one(compute='_get_accountant_id', comodel_name='res.partner', string='Branch Accountant', store=True)
     system_cash_balance = fields.Monetary(string="System Cash Balance")
     shortage_cash = fields.Monetary(string="Shortage Cash",compute='_get_shortage')
     surplus_cash = fields.Monetary(string="Surplus Cash",compute='_get_surplus')
@@ -199,17 +203,6 @@ class VaultUsd(models.Model):
     def _compute_branch(self):
         for record in self:
             record.branch_code = record.user_id.branch_id_spot_check.branch_code
-
-    @api.depends('partner_id')    
-    def _get_manager_id(self):
-        if self.partner_id:
-            self.branch_manager = self.partner_id.supervises
-
-    @api.depends('branch_manager')    
-    def _get_accountant_id(self):
-        if self.branch_manager:
-            self.branch_accountant = self.branch_manager.supervises  
-
     
     @api.depends('branch_accountant')
     def _get_to_branch_accountant(self):
