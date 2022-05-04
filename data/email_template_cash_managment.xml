@@ -6,13 +6,13 @@
             <field name="name">Spot Check: Pending Consent</field>
             <field name="model_id" ref="model_spot_check_vault"/>
             <field name="email_from">${object.user_id.email}</field>
-            <field name="email_to">${object.partner_id.supervises.email},${object.branch_accountant.email}</field>
+            <field name="email_to">${object.branch_manager.email},${object.branch_accountant.email}</field>
             <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) pending your consent</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
                 <p style="margin: 0px; padding: 0px; font-size: 18px;">
-                    Hello ${object.partner_id.supervises.name} and ${object.branch_accountant.name},
+                    Hello ${object.branch_manager.name} and ${object.branch_accountant.name},
                     <br /><br />
 
                     Vault Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} UGX is still pending your consent. Vault Spot Check created on ${object.created_on} by ${object.created_by.name} from Branch ${object.branch_code}.
@@ -38,20 +38,20 @@
             <field name="name">Spot Check: Pending Consent Manager</field>
             <field name="model_id" ref="model_spot_check_vault"/>
             <field name="email_from">${object.branch_accountant.email}</field>
-            <field name="email_to">${object.partner_id.supervises.email},${object.user_id.email}</field>
+            <field name="email_to">${object.branch_manager.email},${object.user_id.email}</field>
             <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) pending your consent</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
                 <p style="margin: 0px; padding: 0px; font-size: 18px;">
-                    Hello ${object.partner_id.supervises.name},
+                    Hello ${object.branch_manager.name},
                     <br /><br />
 
                     Vault Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} UGX is still pending your consent, please note you can either confirm or reject consent. Vault Spot Check created on ${object.created_on} by ${object.created_by.name} from Branch ${object.branch_code}.
                     <br/>
                     <br/>
                     <div class="col text-center">
-                        <a class="btn btn-success btn-sm" role="button" href="${object.base_url}"> ${object.partner_id.supervises.name} please click on this link to consent.</a>
+                        <a class="btn btn-success btn-sm" role="button" href="${object.base_url}"> ${object.branch_manager.name} please click on this link to consent.</a>
                     </div>
                     <br/><br/>
                     Regards,<br/>
@@ -67,13 +67,13 @@
             <field name="name">Spot Check: Vault Accountant Rejected</field>
             <field name="model_id" ref="model_spot_check_vault"/>
             <field name="email_from">${object.branch_accountant.email}</field>
-            <field name="email_to">${object.partner_id.supervises.email},${object.user_id.email}</field>
+            <field name="email_to">${object.branch_manager.email},${object.user_id.email}</field>
             <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) rejected</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
                 <p style="margin: 0px; padding: 0px; font-size: 18px;">
-                    Hello ${object.partner_id.supervises.name},
+                    Hello ${object.branch_manager.name},
                     <br /><br />
 
                     Vault Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} UGX has been rejected by ${object.branch_accountant.name}.
@@ -101,7 +101,7 @@
         <record id="email_template_create_vault_request_manager_rejected" model="mail.template">
             <field name="name">Spot Check: Vault Manager Rejected</field>
             <field name="model_id" ref="model_spot_check_vault"/>
-            <field name="email_from">${object.partner_id.supervises.email}</field>
+            <field name="email_from">${object.branch_manager.email}</field>
             <field name="email_to">${object.branch_accountant.email},${object.user_id.email}</field>
             <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) rejected</field>
@@ -136,14 +136,14 @@
         <record id="email_template_create_vault_request_final" model="mail.template">
             <field name="name">Spot Check: Pending Consent Manager</field>
             <field name="model_id" ref="model_spot_check_vault"/>
-            <field name="email_from"> ${object.partner_id.supervises.email}</field>
+            <field name="email_from"> ${object.branch_manager.email}</field>
             <field name="email_to">${object.branch_accountant.email},${object.user_id.email}</field>
             <field name="email_cc">Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,Allan.Musembya@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) has been confirmed</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
                 <p style="margin: 0px; padding: 0px; font-size: 18px;">
-                    Hello ${object.partner_id.supervises.name},
+                    Hello ${object.branch_manager.name},
                     <br /><br />
 
                     Vault Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} UGX has been confirmed by ${object.partner_id.supervises.name} and closed. Vault Spot Check created on ${object.created_on} by ${object.created_by.name} from Branch ${object.branch_code}.
@@ -182,13 +182,13 @@
             <field name="name">Spot Check: Pending Consent USD</field>
             <field name="model_id" ref="model_spot_check_vault_usd"/>
             <field name="email_from">${object.user_id.email}</field>
-            <field name="email_to">${object.partner_id.supervises.email},${object.branch_accountant.email}</field>
+            <field name="email_to">${object.branch_manager.email},${object.branch_accountant.email}</field>
             <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) pending your consent</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
                 <p style="margin: 0px; padding: 0px; font-size: 18px;">
-                    Hello ${object.partner_id.supervises.name} and ${object.branch_accountant.name},
+                    Hello ${object.branch_manager.name} and ${object.branch_accountant.name},
                     <br /><br />
 
                     Vault Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} USD is still pending your consent. Vault Spot Check created on ${object.created_on} by ${object.created_by.name} from Branch ${object.branch_code}.
@@ -214,13 +214,13 @@
             <field name="name">Spot Check: Pending Consent Manager USD</field>
             <field name="model_id" ref="model_spot_check_vault_usd"/>
             <field name="email_from">${object.branch_accountant.email}</field>
-            <field name="email_to">${object.partner_id.supervises.email},${object.user_id.email}</field>
+            <field name="email_to">${object.branch_manager.email},${object.user_id.email}</field>
             <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) pending your consent</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
                 <p style="margin: 0px; padding: 0px; font-size: 18px;">
-                    Hello ${object.partner_id.supervises.name},
+                    Hello ${object.branch_manager.name},
                     <br /><br />
 
                     Vault Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} USD is still pending your consent, please note you can either confirm or reject consent. Vault Spot Check created on ${object.created_on} by ${object.created_by.name} from Branch ${object.branch_code}.
@@ -243,13 +243,13 @@
             <field name="name">Spot Check: Vault Accountant Rejected</field>
             <field name="model_id" ref="model_spot_check_vault_usd"/>
             <field name="email_from">${object.branch_accountant.email}</field>
-            <field name="email_to">${object.partner_id.supervises.email},${object.user_id.email}</field>
+            <field name="email_to">${object.branch_manager.email},${object.user_id.email}</field>
             <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) rejected</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
                 <p style="margin: 0px; padding: 0px; font-size: 18px;">
-                    Hello ${object.partner_id.supervises.name},
+                    Hello ${object.branch_manager.name},
                     <br /><br />
 
                     Vault Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} USD has been rejected by ${object.branch_accountant.name}.
@@ -277,7 +277,7 @@
         <record id="email_template_create_vault_request_manager_rejected_usd" model="mail.template">
             <field name="name">Spot Check: Vault Manager Rejected</field>
             <field name="model_id" ref="model_spot_check_vault"/>
-            <field name="email_from">${object.partner_id.supervises.email}</field>
+            <field name="email_from">${object.branch_manager.email}</field>
             <field name="email_to">${object.branch_accountant.email},${object.user_id.email}</field>
             <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) rejected</field>
@@ -287,7 +287,7 @@
                     Hello Team,
                     <br /><br />
 
-                    Vault Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} USD has been rejected by ${object.partner_id.supervises.name}.
+                    Vault Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} USD has been rejected by ${object.branch_manager.name}.
                     <br/>
                     Rejection Reason: ${object.manager_reject_comment}
                     <br/>
@@ -312,14 +312,14 @@
         <record id="email_template_create_vault_request_final_usd" model="mail.template">
             <field name="name">Spot Check: Pending Consent Manager</field>
             <field name="model_id" ref="model_spot_check_vault_usd"/>
-            <field name="email_from"> ${object.partner_id.supervises.email}</field>
+            <field name="email_from"> ${object.branch_manager.email}</field>
             <field name="email_to">${object.branch_accountant.email},${object.user_id.email}</field>
             <field name="email_cc">Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,Allan.Musembya@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) has been confirmed</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
                 <p style="margin: 0px; padding: 0px; font-size: 18px;">
-                    Hello ${object.partner_id.supervises.name},
+                    Hello ${object.branch_manager.name},
                     <br /><br />
 
                     Vault Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} USD has been confirmed by ${object.partner_id.supervises.name} and closed. Vault Spot Check created on ${object.created_on} by ${object.created_by.name} from Branch ${object.branch_code}.
@@ -338,13 +338,13 @@
             <field name="name">Spot Check: Pending Consent ATM</field>
             <field name="model_id" ref="model_spot_check_atm"/>
             <field name="email_from">${object.user_id.email}</field>
-            <field name="email_to">${object.partner_id.supervises.email},${object.branch_accountant.email}</field>
+            <field name="email_to">${object.branch_manager.email},${object.branch_accountant.email}</field>
             <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
             <field name="subject">ATM Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) pending your consent</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
                 <p style="margin: 0px; padding: 0px; font-size: 18px;">
-                    Hello ${object.partner_id.supervises.name} and ${object.branch_accountant.name},
+                    Hello ${object.branch_manager.name} and ${object.branch_accountant.name},
                     <br /><br />
 
                     ATM Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} UGX is still pending your consent. Vault Spot Check created on ${object.created_on} by ${object.created_by.name} from Branch ${object.branch_code}.
@@ -369,13 +369,13 @@
             <field name="name">Spot Check: Pending Consent Manager ATM</field>
             <field name="model_id" ref="model_spot_check_atm"/>
             <field name="email_from">${object.branch_accountant.email}</field>
-            <field name="email_to">${object.partner_id.supervises.email},${object.user_id.email}</field>
+            <field name="email_to">${object.branch_manager.email},${object.user_id.email}</field>
             <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) pending your consent</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
                 <p style="margin: 0px; padding: 0px; font-size: 18px;">
-                    Hello ${object.partner_id.supervises.name},
+                    Hello ${object.branch_manager.name},
                     <br /><br />
 
                     ATM Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} UGX is still pending your consent, please note you can either confirm or reject consent. Vault Spot Check created on ${object.created_on} by ${object.created_by.name} from Branch ${object.branch_code}.
@@ -398,13 +398,13 @@
             <field name="name">Spot Check: ATM Accountant Rejected</field>
             <field name="model_id" ref="model_spot_check_atm"/>
             <field name="email_from">${object.branch_accountant.email}</field>
-            <field name="email_to">${object.partner_id.supervises.email},${object.user_id.email}</field>
+            <field name="email_to">${object.branch_manager.email},${object.user_id.email}</field>
             <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
             <field name="subject">ATM Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) rejected</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
                 <p style="margin: 0px; padding: 0px; font-size: 18px;">
-                    Hello ${object.partner_id.supervises.name},
+                    Hello ${object.branch_manager.name},
                     <br /><br />
 
                     ATM Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} UGX has been rejected by ${object.branch_accountant.name}.
@@ -432,7 +432,7 @@
         <record id="email_template_create_atm_request_manager_rejected" model="mail.template">
             <field name="name">Spot Check: Vault Manager Rejected</field>
             <field name="model_id" ref="model_spot_check_atm"/>
-            <field name="email_from">${object.partner_id.supervises.email}</field>
+            <field name="email_from">${object.branch_manager.email}</field>
             <field name="email_to">${object.branch_accountant.email},${object.user_id.email}</field>
             <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) rejected</field>
@@ -442,7 +442,7 @@
                     Hello Team,
                     <br /><br />
 
-                    ATM Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} UGX has been rejected by ${object.partner_id.supervises.name}.
+                    ATM Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} UGX has been rejected by ${object.branch_manager.name}.
                     <br/>
                     Rejection Reason: ${object.manager_reject_comment}
                     <br/>
@@ -467,14 +467,14 @@
         <record id="email_template_create_atm_request_final" model="mail.template">
             <field name="name">Spot Check: Pending Consent Manager</field>
             <field name="model_id" ref="model_spot_check_atm"/>
-            <field name="email_from"> ${object.partner_id.supervises.email}</field>
+            <field name="email_from"> ${object.branch_manager.email}</field>
             <field name="email_to">${object.branch_accountant.email},${object.user_id.email}</field>
             <field name="email_cc">Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,Allan.Musembya@financetrust.co.ug</field>
             <field name="subject">ATM Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) has been confirmed</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
                 <p style="margin: 0px; padding: 0px; font-size: 18px;">
-                    Hello ${object.partner_id.supervises.name},
+                    Hello ${object.branch_manager.name},
                     <br /><br />
 
                     ATM Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} UGX has been confirmed by ${object.partner_id.supervises.name} and closed. Vault Spot Check created on ${object.created_on} by ${object.created_by.name} from Branch ${object.branch_code}.
@@ -706,6 +706,171 @@
            <!--<field name="report_template" ref="account_invoices"/>
             <field name="report_name"></field>-->  
         </record>
+
+
+
+
+
+
+
+
+        <record id="email_template_create_mm_request" model="mail.template">
+            <field name="name">Mobile Money: Pending Consent</field>
+            <field name="model_id" ref="model_spot_check_mobile_money"/>
+            <field name="email_from">${object.user_id.email}</field>
+            <field name="email_to">${object.branch_manager.email},${object.branch_accountant.email}</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+            <field name="subject">Mobile Money Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) pending your consent</field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Hello ${object.branch_manager.name} and ${object.branch_accountant.name},
+                    <br /><br />
+
+                    Mobile Money  Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} UGX is still pending your consent. Mobile Money Spot Check created on ${object.created_on} by ${object.created_by.name} from Branch ${object.branch_code}.
+                    <br/>
+                    <br/>
+                    
+
+                    <div class="col text-center">
+                        <a class="btn btn-success btn-sm" role="button" href="${object.base_url}"> ${object.branch_accountant.name} For confirmation please click on this link.</a>
+                    </div>
+                    
+                    <br/><br/>
+                    Regards,<br/>
+                    Cash Center Team.
+                
+                </p>
+            </div>
+            </field>
+           <!--<field name="report_template" ref="account_invoices"/>
+            <field name="report_name"></field>-->  
+        </record>
+        <record id="email_template_create_mm_request_to_manager" model="mail.template">
+            <field name="name">Spot Check: Pending Consent Manager</field>
+            <field name="model_id" ref="model_spot_check_mobile_money"/>
+            <field name="email_from">${object.branch_accountant.email}</field>
+            <field name="email_to">${object.branch_manager.email},${object.user_id.email}</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+            <field name="subject">Mobile Money Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) pending your consent</field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Hello ${object.branch_manager.name},
+                    <br /><br />
+
+                    Mobile Money Check of ${'{:,.2f}'.format(object.grand_total_ugx)} UGX is still pending your consent, please note you can either confirm or reject consent. Spot Check created on ${object.created_on} by ${object.created_by.name} from Branch ${object.branch_code}.
+                    <br/>
+                    <br/>
+                    <div class="col text-center">
+                        <a class="btn btn-success btn-sm" role="button" href="${object.base_url}"> ${object.branch_manager.name} please click on this link to consent.</a>
+                    </div>
+                    <br/><br/>
+                    Regards,<br/>
+                    Cash Center Team.
+                
+                </p>
+            </div>
+            </field>
+           <!--<field name="report_template" ref="account_invoices"/>
+            <field name="report_name"></field>-->  
+        </record>
+        <record id="email_template_create_mm_request_accountant_rejected" model="mail.template">
+            <field name="name">Spot Check: Vault Accountant Rejected</field>
+            <field name="model_id" ref="model_spot_check_mobile_money"/>
+            <field name="email_from">${object.branch_accountant.email}</field>
+            <field name="email_to">${object.branch_manager.email},${object.user_id.email}</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+            <field name="subject">Mobile Money Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) rejected</field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Hello ${object.branch_manager.name},
+                    <br /><br />
+
+                    Mobile Money Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} UGX has been rejected by ${object.branch_accountant.name}.
+                    <br/>
+                    Rejection Reason: ${object.accountant_reject_comment}
+                    <br/>
+                    Rejection Date: ${object.reeject_one_date}
+                    <br/>
+                    <br/>
+                    <div class="col text-center">
+
+                        <a class="btn btn-success btn-sm" role="button" href="${object.base_url}">  please click on this link.</a>
+                    </div>
+                    <br/><br/>
+                    Regards,<br/>
+                    Cash Center Team.
+                
+                </p>
+            </div>
+            </field>
+           <!--<field name="report_template" ref="account_invoices"/>
+            <field name="report_name"></field>-->  
+        </record>
+
+        <record id="email_template_create_mm_request_manager_rejected" model="mail.template">
+            <field name="name">Spot Check: Vault Manager Rejected</field>
+            <field name="model_id" ref="model_spot_check_mobile_money"/>
+            <field name="email_from">${object.branch_manager.email}</field>
+            <field name="email_to">${object.branch_accountant.email},${object.user_id.email}</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug</field>
+            <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) rejected</field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Hello Team,
+                    <br /><br />
+
+                    Mobile Money Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} UGX has been rejected by ${object.partner_id.supervises.name}.
+                    <br/>
+                    Rejection Reason: ${object.manager_reject_comment}
+                    <br/>
+                    Rejection Date: ${object.reeject_two_date}
+                    <br/>
+                    <br/>
+                    <div class="col text-center">
+
+                        <a class="btn btn-success btn-sm" role="button" href="${object.base_url}">  please click on this link.</a>
+                    </div>
+                    <br/><br/>
+                    Regards,<br/>
+                    Cash Center Team.
+                
+                </p>
+            </div>
+            </field>
+           <!--<field name="report_template" ref="account_invoices"/>
+            <field name="report_name"></field>-->  
+        </record>
+
+        <record id="email_template_create_mm_request_final" model="mail.template">
+            <field name="name">Spot Check: Pending Consent Manager</field>
+            <field name="model_id" ref="model_spot_check_mobile_money"/>
+            <field name="email_from"> ${object.branch_manager.email}</field>
+            <field name="email_to">${object.branch_accountant.email},${object.user_id.email}</field>
+            <field name="email_cc">Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,Allan.Musembya@financetrust.co.ug</field>
+            <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) has been confirmed</field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Hello ${object.branch_manager.name},
+                    <br /><br />
+
+                    Mobile Money Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} UGX has been confirmed by ${object.branch_manager.name} and closed. Spot Check created on ${object.created_on} by ${object.created_by.name} from Branch ${object.branch_code}.
+                    
+                    <br/><br/>
+                    Regards,<br/>
+                    Cash Center Team.
+                
+                </p>
+            </div>
+            </field>
+           <!--<field name="report_template" ref="account_invoices"/>
+            <field name="report_name"></field>-->  
+        </record>
+
 
 
 

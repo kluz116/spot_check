@@ -31,3 +31,9 @@ access_spot_check_branch3,spot_check,model_spot_check_branch,Branch_Accountant_s
 access_spot_check_branch4,spot_check,model_spot_check_branch,Credit_Supervisor,1,1,1,0
 
 
+access_spot_check_credit_supervisor_x,spot_check,model_spot_check_mobile_money,Credit_Supervisor,1,1,1,0
+access_spot_check_credit_Branch_Accountant_x,spot_check,model_spot_check_mobile_money,Branch_Accountant_spot_check,1,1,0,0
+access_spot_check_credit_Branch_Manager_x,spot_check,model_spot_check_mobile_money,Branch_Manager_spot_check,1,1,0,0
+
+
+
