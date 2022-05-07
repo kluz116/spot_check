@@ -1,29 +1,29 @@
 <?xml version="1.0"?>
 <odoo>
-        <record id="spot_check_consent_cash_accountant_mm" model="ir.ui.view">
-            <field name="name">spot_check.consent_accountant_mm.form</field>
-            <field name="model">spot_check.consent_accountant_mm</field>
+        <record id="spot_check_consent_teller_mm" model="ir.ui.view">
+            <field name="name">spot_check.consent_teller_mm.form</field>
+            <field name="model">spot_check.consent_teller_mm</field>
             <field name="arch" type="xml">
                 <form string="Cash Consent">
                     <group class="oe_title">
                         <field name="state" invisible="1"/>
-                        <field name="accountant_comment"/>
+                        <field name="teller_comment"/>
                         <field name="consent_date" readonly="1"/>
                     </group>
                     <footer>
-                        <button name="consent_mm" string="Consent" type="object" class="btn btn-outline-primary"/>
+                        <button name="consent_teller_mm" string="Consent" type="object" class="btn btn-outline-primary"/>
                         <button string="Cancel" class="btn-outline-dark" special="cancel"/>
                     </footer>
                 </form>
             </field>
         </record>
 
-        <record id="wizard_spot_check_accountant_cosent_mm" model="ir.actions.act_window">
+        <record id="wizard_spot_check_tellers_mm" model="ir.actions.act_window">
             <field name="name">Consent</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">spot_check.consent_accountant_mm</field>
+            <field name="res_model">spot_check.consent_teller_mm</field>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="spot_check_consent_cash_accountant_mm"/>
+            <field name="view_id" ref="spot_check_consent_teller_mm"/>
             <field name="target">new</field>
         </record>
 </odoo>

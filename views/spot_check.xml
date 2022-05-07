@@ -120,29 +120,28 @@
                 <form string="Create Certificate of cash balance" create="false" edit="false">
                   <xpath expr="//sheet" position="before">
                     <header> 
-                        <button name="%(spot_check.wizard_spot_check_accountant_cosent_mm)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
-                        <button name="%(spot_check.wizard_spot_check_reject_cash_accountant_mm)d" states='ongoing' type="action" string="Reject" class="btn btn-outline-danger" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
-                        <button name="%(spot_check.wizard_spot_check_manager_cosent_mm)d" states='confirmed_one' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
-                        <button name="%(spot_check.wizard_spot_check_reject_reject_manager_mm)d" states='confirmed_one' type="action" string="Reject" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
-                        <field name ="current_to_branch_accountant" invisible ='1'/>
-                        <field name ="current_to_branch_manager" invisible ='1'/>
-                        <field name="state" widget="statusbar" statusbar_visible="ongoing,rejected_one,confirmed_one,rejected_two,confirmed_two" />
+                        <button name="%(spot_check.wizard_spot_check_tellers_mm)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_teller', '=', False)]}" />
+                        <button name="%(spot_check.wizard_spot_check_reject_cash_teller_mm)d" states='ongoing' type="action" string="Reject" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_teller', '=', False)]}" />
+               
+                        <field name ="current_to_teller" invisible="1" />
+                        <field name="state" widget="statusbar" statusbar_visible="ongoing,reject_one,confirmed_one" />
                     </header>
                 </xpath>
                    <sheet>
 
-                        <group>
-                             <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" readonly='1'/>
-                        </group> 
                          <group>
-                             <field name = "branch_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
-                        </group> 
+                             <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" readonly='1' />
+                        </group>
                           <group>
-                             <field name = "branch_accountant" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
+                             <field name = "branch_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"/>
                         </group> 
+                        
                           <group>
-                             <field name = "branch_manager" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
-                        </group> 
+                             <field name = "teller_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}"/>
+                        </group>  
+                         <group>
+                              <field name ="till"/>
+                        </group>
                         <group>
                              <field name = "system_cash_balance" style="color: #f44336; font-weight: bold;" />
                             </group>
@@ -173,14 +172,22 @@
                             </group>
                            <group>
                              <field name = "partner_id" invisible="1"/>
+                           </group>
+                           <group>
+                             <field name = "branch_manager" invisible="1"/>
                             </group>
-                        
+                           <group>
+                             <field name = "branch_accountant" invisible="1"/>
+                            </group>
+                              <group>
+                             <field name = "from_branch_id" invisible="1"/>
+                            </group>
                             <group>
                              <field name ="created_on" invisible="1"/>
                             </group> 
                             <group>
                              <field name ="created_by" invisible="1"/>
-                            </group>             
+                            </group>              
                     </sheet> 
                       <div class="oe_chatter">
                            <field name="message_follower_ids" widget="mail_followers"/>

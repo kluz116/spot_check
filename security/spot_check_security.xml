@@ -25,6 +25,7 @@
         <field name="name">Teller</field>
         <field name="category_id" ref="module_spot_check"/>
     </record>
+    
   
     <record model="ir.rule" id="partner_view_rule_credit_supervisor">
         <field name="name">Credit Supervisor Viee</field>
@@ -78,6 +79,14 @@
     <record model="ir.rule" id="partner_view_rules_branch_teller">
         <field name="name">Branch Teller</field>
         <field name="model_id" ref="model_spot_check_teller"/>
+        <field name="groups" eval="[(4, ref('spot_check.Branch_Teller'))]" />
+        <field name="domain_force">[('teller_id','=', user.partner_id.id)]</field>    
+    </record>
+
+    
+    <record model="ir.rule" id="partner_view_rules_branch_teller">
+        <field name="name">Branch Teller Mobile Money</field>
+        <field name="model_id" ref="model_spot_check_mobile_money"/>
         <field name="groups" eval="[(4, ref('spot_check.Branch_Teller'))]" />
         <field name="domain_force">[('teller_id','=', user.partner_id.id)]</field>    
     </record>
