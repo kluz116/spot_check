@@ -11,3 +11,4 @@ from . import TellerNotify
 from . import bundles
 from . import mobile_money
 from . import MobileMoneyNotify
+from . import Vaulty_Settings

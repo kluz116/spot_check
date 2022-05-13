@@ -11,6 +11,19 @@
                 </tree>
             </field>
         </record>
+        <record id="view_spot_check_vault_tree" model="ir.ui.view">
+            <field name="name">spot_check.vault_setting.tree</field>
+            <field name="model">spot_check.vault_setting</field>
+             <field name="arch" type="xml">
+                <tree string="Vault">
+                    <field name="branch_id" />
+                    <field name="from_date" />
+                    <field name="to_date" />
+                    <field name="expected_no" />
+                    <field name="spot_check_date" />    
+                </tree>
+            </field>
+        </record>
          
 
        <record model="ir.ui.view" id="branch_form_spot_check_view">
@@ -29,6 +42,33 @@
                 </form>
             </field>
         </record>
+
+        <record model="ir.ui.view" id="vault_setting_form_spot_check_view">
+            <field name="name">spot_check.vault_setting.form</field>
+            <field name="model">spot_check.vault_setting</field>
+            <field name="arch" type="xml">
+                <form string="Add vault setting" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <field name="branch_id"/>
+                        </group>
+                        <group>
+                            <field name="from_date"/>
+                        </group>
+                         <group>
+                            <field name="to_date"/>
+                        </group>
+                         <group>
+                            <field name="expected_no"/>
+                        </group>
+                        <group>
+                              <field name="spot_check_date" /> 
+                        </group>
+                         
+                    </sheet>
+                </form>
+            </field>
+        </record>
       
         <record model="ir.ui.view" id="branch_search_spot_check_view">
             <field name="name">spot_check.branch.search</field>
@@ -37,6 +77,19 @@
                 <search>
                       <field name="branch_code" />
                       <field name="branch_name" />
+                      
+                </search>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="vault_setting_search_spot_check_view">
+            <field name="name">spot_check.vault_setting.search</field>
+            <field name="model">spot_check.vault_setting</field>
+            <field name="arch" type="xml">
+                <search>
+                      <field name="branch_id" />
+                      <field name="from_date" />
+                      <field name="to_date" />
                       
                 </search>
             </field>
@@ -51,9 +104,19 @@
             </field>
         </record>
 
+        <record model="ir.actions.act_window" id="vault_setting_lists_action">
+            <field name="name">Vaul Settings</field>
+            <field name="res_model">spot_check.vault_setting</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create new Settings</p>
+            </field>
+        </record>
+
         <!-- top level menu: no parent -->
         <menuitem id="main_spot_check_menu" name="Online Spot Checks"/>
         <menuitem id="config_menu_spot_check" name="Configurations" sequence="11"  parent="main_spot_check_menu" groups="spot_check.Cash_Managment_Support_Team" />
         <menuitem id="config_branches" name="Branches" parent="config_menu_spot_check" sequence="5"  action="branch_lists_action" />
+        <menuitem id="vault_settings" name="Vault Settings" parent="config_menu_spot_check" sequence="6"  action="vault_setting_lists_action" />
  
 </odoo>

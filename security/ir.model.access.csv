@@ -37,5 +37,7 @@ access_spot_check_credit_Branch_Manager_x,spot_check,model_spot_check_mobile_mon
 access_spot_check_credit_Branch_tellexr,spot_check,model_spot_check_mobile_money,Branch_Teller,1,1,0,0
 access_spot_check_branch11,spot_check,model_spot_check_mobile_money,Cash_Managment_Support_Team,1,1,1,0
 
+access_spot_check_br1,spot_check,model_spot_check_vault_setting,Cash_Managment_Support_Team,1,1,1,0
+
 
 
