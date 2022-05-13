@@ -236,7 +236,7 @@ class Vault(models.Model):
 
     
     @api.depends('coin_one_hundred_count','coin_one_hundred_bundle')
-    def _compute_coin_two_hundred(self):
+    def _compute_coin_one_hundred(self):
         for record in self:
             record.coin_one_hundred = (record.coin_one_hundred_bundle * (1000 * 100)) + record.coin_one_hundred_count *100
 
