@@ -17,9 +17,12 @@
              <field name="arch" type="xml">
                 <tree string="Vault">
                     <field name="branch_id" />
+                    <field name="spot_type" />
+                    <field name="currency_type" />
                     <field name="from_date" />
                     <field name="to_date" />
                     <field name="expected_no" />
+                    <field name ="actual_no"/>
                     <field name="spot_check_date" />    
                 </tree>
             </field>
@@ -52,6 +55,13 @@
                         <group>
                             <field name="branch_id"/>
                         </group>
+                        
+                        <group>
+                        <field name="spot_type" />
+                        </group>
+                         <group>
+                        <field name="currency_type" />
+                        </group>
                         <group>
                             <field name="from_date"/>
                         </group>
@@ -61,9 +71,7 @@
                          <group>
                             <field name="expected_no"/>
                         </group>
-                        <group>
-                              <field name="spot_check_date" /> 
-                        </group>
+                
                          
                     </sheet>
                 </form>
