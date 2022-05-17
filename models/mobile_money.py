@@ -25,7 +25,7 @@ class MobileMoney(models.Model):
     trx_proof = fields.Binary(string='GL screen shot', attachment=True,required=True)
     trx_proof1 = fields.Binary(string='Mobile Money Register', attachment=True,required=True)
     trx_proof2 = fields.Binary(string='Mobile Money System Screen Shot', attachment=True,required=True)
-    branch_code = fields.Integer(compute='_compute_branch',string='Branch',store=True)
+    branch_code =  fields.Integer(related='branch_id.branch_code')
     branch_manager = fields.Many2one(compute='_get_manager_id', comodel_name='res.partner', string='Branch Manger', store=True)
     branch_accountant = fields.Many2one(compute='_get_accountant_id', comodel_name='res.partner', string='Branch Accountant', store=True)
     consent_status = fields.Char(string="Consent Status", compute='_get_consent')
@@ -79,11 +79,7 @@ class MobileMoney(models.Model):
             else:
                 record.consent_status = 'No'
 
-    @api.depends('user_id')
-    def _compute_branch(self):
-        for record in self:
-            record.branch_code = record.user_id.branch_id_spot_check.branch_code
- 
+    
 
     @api.depends('partner_id')    
     def _get_manager_id(self):
