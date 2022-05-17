@@ -12,3 +12,5 @@ from . import bundles
 from . import mobile_money
 from . import MobileMoneyNotify
 from . import Vaulty_Settings
+from . import AtmNotify
+from . import TellerUsdNotify

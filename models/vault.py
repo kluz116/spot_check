@@ -8,9 +8,8 @@ class Vault(models.Model):
     _rec_name ="grand_total_ugx"
     
     partner_id = fields.Many2one ('res.partner', 'Name', default = lambda self: self.env.user.partner_id )
-    from_branch_id = fields.Integer(related='partner_id.branch_id_spot_check.id')
     currency_id = fields.Many2one('res.currency', string='Currency', default=43)
-    branch_id = fields.Many2one('spot_check.branch',string ='Branch', required=True, default=from_branch_id)
+    branch_id = fields.Many2one('spot_check.branch',string ='Branch', required=True)
     #from_branch_id = fields.Integer(related='branch_id.id')
     branch_accountant = fields.Many2one('res.partner','Accountant',domain="[('branch_id_spot_check', '=', branch_id),('user_role','=','accountant')]")
     branch_manager = fields.Many2one('res.partner','Manager',domain="[('branch_id_spot_check', '=', branch_id),('user_role','=','manager')]")
@@ -96,7 +95,7 @@ class Vault(models.Model):
     created_by = fields.Many2one('res.users','Confirmed By:',default=lambda self: self.env.user)
     user_id = fields.Many2one('res.users', string='User', track_visibility='onchange', readonly=True, default=lambda self: self.env.user.id)
     trx_proof = fields.Binary(string='Upload BRNET GL', attachment=True,required=True)
-    branch_code = fields.Integer(compute='_compute_branch',string='Branch',store=True)
+    branch_code =  fields.Integer(related='branch_id.branch_code')
     #branch_manager = fields.Many2one(compute='_get_manager_id', comodel_name='res.partner', string='Branch Manger', store=True)
     #branch_accountant = fields.Many2one(compute='_get_accountant_id', comodel_name='res.partner', string='Branch Accountant', store=True)
     system_cash_balance = fields.Monetary(string="System Cash Balance",required=True)
@@ -316,11 +315,6 @@ class Vault(models.Model):
             else:
                 record.consent_status = 'No'
             
-    @api.depends('user_id')
-    def _compute_branch(self):
-        for record in self:
-            record.branch_code = record.user_id.branch_id_spot_check.branch_code
-
     @api.depends('partner_id')    
     def _get_manager_id(self):
         if self.partner_id:

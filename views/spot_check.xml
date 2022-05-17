@@ -9,7 +9,7 @@
 
                     <field name="unique_field"/>
                     <field name="state"/>
-                    <field name="branch_code"/>
+                    <field name="branch_id"/>
                     <field name="grand_total_ugx"/>
                     <field name="system_cash_balance"/>
                     <field name="shortage_cash"/>
@@ -26,7 +26,7 @@
 
                     <field name="unique_field"/>
                     <field name="state"/>
-                    <field name="branch_code"/>
+                    <field name="branch_id"/>
                     <field name="sub_total_good"/>
                     <field name="sub_total_coins"/>
                     <field name="sub_total_mutilated"/>
@@ -46,7 +46,7 @@
 
                     <field name="unique_field"/>
                     <field name="state"/>
-                    <field name="branch_code"/>
+                    <field name="branch_id"/>
                     <field name="sub_total_good"/>
                     <field name="sub_total_mutilated"/>
                     <field name="grand_total_ugx"/>
@@ -66,7 +66,7 @@
 
                     <field name="unique_field"/>
                     <field name="state"/>
-                    <field name="branch_code"/>
+                    <field name="branch_id"/>
                     <field name="sub_total_good"/>
                     <field name="sub_total_coins"/>
                     <field name="sub_total_mutilated" />
@@ -85,7 +85,7 @@
 
                     <field name="unique_field"/>
                     <field name="state"/>
-                    <field name="branch_code"/>
+                    <field name="branch_id"/>
                     <field name="sub_total_good"/>
                     <field name="sub_total_mutilated"/>
                     <field name="grand_total_ugx"/>
@@ -102,7 +102,7 @@
 
                     <field name="unique_field"/>
                     <field name="state"/>
-                    <field name="branch_code"/>
+                    <field name="branch_id"/>
                     <field name="sub_total_good"/>
                     <field name="grand_total_ugx"/>
                     <field name="system_cash_balance"/>
@@ -1038,7 +1038,7 @@
                     <separator/>
                      <filter name="created_ons" string="Spot Check Category Month" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
                      <filter name="created_on_week" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
-                     <filter name="branch_codes" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_code'}"/>
+                     <filter name="branch_ids" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_id'}"/>
                 </search>
             </field>
         </record>
@@ -1048,11 +1048,11 @@
             <field name="arch" type="xml">
                 <search>
                     <field name ="created_on"/>
-                    <field name="branch_code"/>
+                    <field name="branch_id"/>
                     <separator/>
                      <filter name="created_ons" string="Spot Check Category Month" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
                      <filter name="created_on_week" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
-                     <filter name="branch_codes" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_code'}"/>
+                     <filter name="branch_ids" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_id'}"/>
                 </search>
             </field>
         </record>
@@ -1063,11 +1063,11 @@
             <field name="arch" type="xml">
                 <search>
                     <field name ="created_on"/>
-                    <field name="branch_code"/>
+                    <field name="branch_id"/>
                     <separator/>
                      <filter name="created_ons" string="Spot Check Category Month" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
                      <filter name="created_on_week" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
-                     <filter name="branch_codes" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_code'}"/>
+                     <filter name="branch_ids" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_id'}"/>
                 </search>
             </field>
         </record>
@@ -1078,11 +1078,11 @@
             <field name="arch" type="xml">
                 <search>
                     <field name ="created_on"/>
-                    <field name="branch_code"/>
+                    <field name="branch_id"/>
                     <separator/>
                          <filter name="created_ons" string="Spot Check Category Month" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
                      <filter name="created_on_week" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
-                     <filter name="branch_codes" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_code'}"/>
+                     <filter name="branch_ids" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_id'}"/>
                 </search>
             </field>
         </record>
@@ -1092,11 +1092,11 @@
             <field name="arch" type="xml">
                 <search>
                     <field name ="created_on"/>
-                    <field name="branch_code"/>
+                    <field name="branch_id"/>
                     <separator/>
                          <filter name="created_ons" string="Spot Check Category Month" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
                      <filter name="created_on_week" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
-                     <filter name="branch_codes" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_code'}"/>
+                     <filter name="branch_ids" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_id'}"/>
                 </search>
             </field>
         </record>
@@ -1108,11 +1108,11 @@
                 <search>
                     
                      <field name ="created_on"/>
-                     <field name="branch_code"/>
+                     <field name="branch_id"/>
                     <separator/>
                     <filter name="created_ons" string="Spot Check Category Month" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
                      <filter name="created_on_week" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
-                     <filter name="branch_codes" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_code'}"/>
+                     <filter name="branch_ids" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_id'}"/>
                 </search>
             </field>
         </record>
