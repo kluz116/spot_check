@@ -26,19 +26,19 @@
             <field name="model">spot_check.report</field>
             <field name="arch" type="xml">
                 <search>
-                   
+                    <field name="spot_check_type" />
                     <field name ="created_on"/>
                     <field name="branch_id" />
                     <separator/>
                     <filter name="created_ons" string="Group By Month" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
-                    <filter name="created_on_week" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
                     <filter name="branch_ids" string="Group By Branch" icon="terp-partner" context="{'group_by':'branch_id'}"/>
+                    <filter name="spot_check_types" string="Group By Spt Check Type" icon="terp-partner" context="{'group_by':'spot_check_type'}"/>
                       
                 </search>
             </field>
         </record>
         <record model="ir.actions.act_window" id="report_lists_action">
-            <field name="name">Reports</field>
+            <field name="name">Spot Check Report</field>
             <field name="res_model">spot_check.report</field>
             <field name="view_mode">tree</field>
             <field name ="context">{"search_default_created_ons":1}</field>
