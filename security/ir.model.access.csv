@@ -41,5 +41,8 @@ access_spot_check_br1,spot_check,model_spot_check_vault_setting,Cash_Managment_S
 access_spot_check_br31,spot_check,model_spot_check_vault_setting,Credit_Supervisor,1,1,1,0
 access_spot_check_br3s1,spot_check,model_spot_check_vault_setting,Branch_Accountant_spot_check,1,1,1,0
 
+access_spot_check_report1,spot_check,model_spot_check_report,Cash_Managment_Support_Team,1,1,0,0
+access_spot_check_reports,spot_check,model_spot_check_report,Branch_Manager_spot_check,1,1,0,0
+
 
 

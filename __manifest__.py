@@ -43,6 +43,7 @@
         'views/branch.xml',
         'views/spot_check.xml',
         'views/spots_user.xml',
+        'views/reports.xml',
         'reports/report_spot.xml',
         'reports/report_vault.xml',
         'reports/report_atm.xml',

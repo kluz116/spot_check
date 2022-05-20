@@ -17,8 +17,8 @@ class MobileMoney(models.Model):
 
     grand_total_ugx = fields.Monetary(string="Mobile Balance (UGX)",store=True)
     system_cash_balance = fields.Monetary(string="GL Balance (UGX)",required=True)
-    shortage_cash = fields.Monetary(string="Shortage Cash",compute='_get_shortage')
-    surplus_cash = fields.Monetary(string="Surplus Cash",compute='_get_surplus')
+    shortage_cash = fields.Monetary(string="Shortage Cash",compute='_get_shortage',store=True)
+    surplus_cash = fields.Monetary(string="Surplus Cash",compute='_get_surplus',store=True)
     created_on =  fields.Datetime(string='Date', default=lambda self: fields.datetime.now())
     created_by = fields.Many2one('res.users','Confirmed By:',default=lambda self: self.env.user)
     user_id = fields.Many2one('res.users', string='User', track_visibility='onchange', readonly=True, default=lambda self: self.env.user.id)

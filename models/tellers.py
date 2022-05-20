@@ -91,8 +91,8 @@ class Tellers(models.Model):
     sub_total_mutilated = fields.Monetary(compute='_compute_total_mutilated_currency',string="Sub Total Mutilated",store=True,track_visibility='always')
     grand_total_ugx = fields.Monetary(compute='_compute_grand_totol',string="Grand Total (UGX)",store=True)
     system_cash_balance = fields.Monetary(string="System Cash Balance",required=True)
-    shortage_cash = fields.Monetary(string="Shortage Cash",compute='_get_shortage')
-    surplus_cash = fields.Monetary(string="Surplus Cash",compute='_get_surplus')
+    shortage_cash = fields.Monetary(string="Shortage Cash",compute='_get_shortage',store=True)
+    surplus_cash = fields.Monetary(string="Surplus Cash",compute='_get_surplus',store=True)
     created_on =  fields.Datetime(string='Date', default=lambda self: fields.datetime.now())
     created_by = fields.Many2one('res.users','Confirmed By:',default=lambda self: self.env.user)
     user_id = fields.Many2one('res.users', string='User', track_visibility='onchange', readonly=True, default=lambda self: self.env.user.id)
@@ -199,7 +199,7 @@ class Tellers(models.Model):
 
     
     @api.depends('coin_one_hundred_count','coin_one_hundred_bundle')
-    def _compute_coin_two_hundred(self):
+    def _compute_coin_one_hundred(self):
         for record in self:
             record.coin_one_hundred = (record.coin_one_hundred_bundle * (1000 * 100)) + record.coin_one_hundred_count *100
 
