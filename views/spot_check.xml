@@ -562,7 +562,7 @@
             <field name="name">spot_check.teller.form</field>
             <field name="model">spot_check.teller</field>
             <field name="arch" type="xml">
-                <form string="Create Declaration Form" create="false" edit="true">
+                <form string="Create Declaration Form" create="false" edit="false">
                   <xpath expr="//sheet" position="before">
                     <header> 
                         <button name="%(spot_check.wizard_spot_check_tellers)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_teller', '=', False)]}" />
