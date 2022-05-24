@@ -16,7 +16,7 @@
             <field name="model">spot_check.vault_setting</field>
              <field name="arch" type="xml">
                 <tree string="Vault">
-                    <field name="branch_id" />
+                    <field name="branch_id" widget="many2many_tags" />
                     <field name="spot_type" />
                     <field name="currency_type" />
                     <field name="from_date" />
@@ -53,7 +53,7 @@
                 <form string="Add vault setting" create="false" edit="false">
                     <sheet>
                         <group>
-                            <field name="branch_id"/>
+                            <field name="branch_id" widget="many2many_tags" />
                         </group>
                         
                         <group>

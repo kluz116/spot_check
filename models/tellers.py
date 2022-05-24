@@ -9,9 +9,9 @@ class Tellers(models.Model):
     partner_id = fields.Many2one ('res.partner', 'Accountant', default = lambda self: self.env.user.partner_id )
     from_branch_id = fields.Integer(related='partner_id.branch_id_spot_check.id')
     currency_id = fields.Many2one('res.currency', string='Currency',default=43 )
-    branch_id = fields.Many2one('spot_check.branch',string ='Branch' ,required=True, default = lambda self:self.from_branch_id)
-    teller_id = fields.Many2one('res.partner','Teller',domain="[('branch_id_spot_check', '=', branch_id),('user_role','=','teller')]")
-    till = fields.Char(string='Till ID',compute='_get_till_id')
+    branch_id = fields.Many2one('spot_check.branch',string ='Branch' ,required=True)
+    teller_id = fields.Many2one('res.partner','Teller',domain="[('branch_id_spot_check', '=', branch_id),('user_role','=','teller')]",required=True)
+    till = fields.Char(string='Till ID',compute='_get_till_id',required=True)
     state = fields.Selection([('ongoing', 'Pending Teller Consent'),('confirmed_one', 'Confirmed'),('reject_one', 'Rejected By Teller')],default="ongoing", string="Status")
     
     deno_fifty_thounsand_bundle = fields.Integer(string="Bundles")
