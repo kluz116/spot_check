@@ -245,6 +245,13 @@ class TellersUsd(models.Model):
             raise exceptions.ValidationError("Sorry, BR System Cash Balance Can Not Be {system_cash_balance} USD. Please Fill In The Right Figures Before You Proceed. Contact Operations Department for assistance".format(system_cash_balance=self.system_cash_balance))
 
 
-
+    @api.model
+    def _update_notified_pending_confirmation_tellers_usd(self):
+        pending_conf = self.env['spot_check.teller_usd'].search([('state', 'not in', ['reject_one','confirmed_one'])])
+        for req in pending_conf:
+            if req.state =='ongoing':
+                template_id = self.env.ref('spot_check.email_template_create_teller_request_usd').id
+                template =  self.env['mail.template'].browse(template_id)
+                template.send_mail(req.id,force_send=True)
 
             
