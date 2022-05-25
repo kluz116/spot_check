@@ -64,7 +64,7 @@ class Reporting(models.Model):
                 SELECT  a.currency_id, a.branch_id,
                 a.branch_accountant, a.branch_manager, a.state,0 AS sub_total_good, 0 AS sub_total_coins, 0 AS sub_total_mutilated, 0 AS mutilated_sub_total_coins, a.grand_total_ugx,  a.system_cash_balance,a.shortage_cash, a.surplus_cash,CAST(a.created_on AS DATE) AS created_on, a.created_by,'Mobile Money' AS spot_check_type
                 FROM public.spot_check_mobile_money a 
-                ) AS x order by x.created_on desc)""")
+                ) AS x where x.state not in ('ongoing','rejected_one') order by x.created_on desc)""")
 
 
 

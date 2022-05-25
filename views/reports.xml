@@ -49,6 +49,6 @@
 
         <menuitem id="main_spot_check_menu" name="Online Spot Checks"/>
         <menuitem id="config_reporting" name="Reporting" sequence="11"  parent="main_spot_check_menu" groups="spot_check.Cash_Managment_Support_Team" />
-        <menuitem id="config_reports" name="Spot Check Listing" parent="config_reporting" sequence="6"  action="report_lists_action" />
+        <menuitem id="config_reports" name="Confirmed Spot Checks" parent="config_reporting" sequence="6"  action="report_lists_action" />
        
 </odoo>
