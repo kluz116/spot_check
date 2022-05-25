@@ -21,6 +21,28 @@
             </field>
         </record>
 
+        <record id="view_spot_check_ongoing_checks_tree" model="ir.ui.view">
+            <field name="name">spot_check.ongoing_checks.tree</field>
+            <field name="model">spot_check.ongoing_checks</field>
+             <field name="arch" type="xml">
+                <tree string="">
+                    <field name="currency_id" />
+                    <field name="branch_id" />
+                    <field name="sub_total_good" />
+                    <field name="sub_total_coins" />
+                    <field name="sub_total_mutilated" />
+                    <field name="mutilated_sub_total_coins" />
+                    <field name="grand_total_ugx" />
+                    <field name="system_cash_balance" />
+                    <field name="shortage_cash" />
+                    <field name="surplus_cash" />
+                    <field name="spot_check_type" />
+                    
+                </tree>
+            </field>
+        </record>
+
+
         <record model="ir.ui.view" id="view_spot_check_report_tree_report">
             <field name="name">spot_check.report.search</field>
             <field name="model">spot_check.report</field>
@@ -37,18 +59,44 @@
                 </search>
             </field>
         </record>
+        <record model="ir.ui.view" id="view_spot_check_ongoing_checks_tree_report">
+            <field name="name">spot_check.ongoing_checks.search</field>
+            <field name="model">spot_check.ongoing_checks</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="spot_check_type" />
+                    <field name ="created_on"/>
+                    <field name="branch_id" />
+                    <separator/>
+                    <filter name="created_ons" string="Group By Month" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
+                    <filter name="branch_ids" string="Group By Branch" icon="terp-partner" context="{'group_by':'branch_id'}"/>
+                    <filter name="spot_check_types" string="Group By Spt Check Type" icon="terp-partner" context="{'group_by':'spot_check_type'}"/>
+                      
+                </search>
+            </field>
+        </record>
         <record model="ir.actions.act_window" id="report_lists_action">
-            <field name="name">Spot Check Report</field>
+            <field name="name">Confirmed Spot Checks</field>
             <field name="res_model">spot_check.report</field>
             <field name="view_mode">tree</field>
             <field name ="context">{"search_default_created_ons":1}</field>
             <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">Create new Branch</p>
+                <p class="o_view_nocontent_smiling_face">Confirmed Spot Checks</p>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="report_lists_ongoing_action">
+            <field name="name">Ongoing Spot Checks</field>
+            <field name="res_model">spot_check.ongoing_checks</field>
+            <field name="view_mode">tree</field>
+            <field name ="context">{"search_default_created_ons":1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Ongoing Spot Checks</p>
             </field>
         </record>
 
         <menuitem id="main_spot_check_menu" name="Online Spot Checks"/>
         <menuitem id="config_reporting" name="Reporting" sequence="11"  parent="main_spot_check_menu" groups="spot_check.Cash_Managment_Support_Team" />
         <menuitem id="config_reports" name="Confirmed Spot Checks" parent="config_reporting" sequence="6"  action="report_lists_action" />
+        <menuitem id="config_ongoing" name="Ongoing Spot Checks" parent="config_reporting" sequence="7"  action="report_lists_ongoing_action" />
        
 </odoo>
