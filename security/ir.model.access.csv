@@ -44,8 +44,8 @@ access_spot_check_br3s1,spot_check,model_spot_check_vault_setting,Branch_Account
 access_spot_check_report1,spot_check,model_spot_check_report,Cash_Managment_Support_Team,1,1,0,0
 access_spot_check_reports,spot_check,model_spot_check_report,Branch_Manager_spot_check,1,1,0,0
 
-access_spot_check_reportongoing_checks,spot_check,model_spot_ongoing_checks,Cash_Managment_Support_Team,1,1,0,0
-access_spot_check_reports_ongoing_checks,spot_check,model_spot_ongoing_checks,Branch_Manager_spot_check,1,1,0,0
+access_spot_check_reportongoing_checks,spot_check,model_spot_check_ongoing_checks,Cash_Managment_Support_Team,1,1,0,0
+access_spot_check_reports_ongoing_checks,spot_check,model_spot_check_ongoing_checks,Branch_Manager_spot_check,1,1,0,0
 
 
 
