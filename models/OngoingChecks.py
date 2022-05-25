@@ -27,8 +27,8 @@ class OngoingSpotcChecks(models.Model):
 
     @api.model_cr
     def init(self):
-        tools.drop_view_if_exists(self._cr, 'spot_check_report')
-        self._cr.execute(""" CREATE OR REPLACE VIEW spot_check_report AS(
+        tools.drop_view_if_exists(self._cr, 'spot_check_ongoing_checks')
+        self._cr.execute(""" CREATE OR REPLACE VIEW spot_check_ongoing_checks AS(
             
                 select row_number() OVER (ORDER BY 1) AS id,* from (
                  SELECT a.currency_id, a.branch_id,
