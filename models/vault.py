@@ -91,7 +91,7 @@ class Vault(models.Model):
 
     sub_total_mutilated = fields.Monetary(compute='_compute_total_mutilated_currency',string="Sub Total Mutilated",store=True,track_visibility='always')
     grand_total_ugx = fields.Monetary(compute='_compute_grand_totol',string="Grand Total (UGX)",store=True)
-    created_on =  fields.Datetime(string='Date', default=lambda self: fields.datetime.now())
+    created_on =  fields.Date(string='Date', default=lambda self: fields.Date.today())
     created_by = fields.Many2one('res.users','Confirmed By:',default=lambda self: self.env.user)
     user_id = fields.Many2one('res.users', string='User', track_visibility='onchange', readonly=True, default=lambda self: self.env.user.id)
     trx_proof = fields.Binary(string='Upload BRNET GL', attachment=True,required=True)
@@ -245,16 +245,6 @@ class Vault(models.Model):
             record.coin_fifty =(record.coin_fifty_bundle * (1000 * 50))+ record.coin_fifty_count *50
 
 
-            
-
-    
-    
-            
-
-
-
-
-    
     @api.depends('deno_fifty_thounsand_count','deno_fifty_thounsand_bundle')
     def _compute_deno_fifty_thounsand(self):
         for record in self:
@@ -353,5 +343,24 @@ class Vault(models.Model):
             raise exceptions.ValidationError("Sorry, BR System Cash Balance Can Not Be {system_cash_balance} UGX. Please Fill In The Right Figures Before You Proceed. Contact Operations Department for assistance".format(system_cash_balance=self.system_cash_balance))
         
     
+    @api.one
+    @api.constrains('branch_id')
+    def _checkbranchspotcheck(self):
+        pending_conf = self.env['spot_check.vault'].search([('state', 'in', ['ongoing','confirmed_one'])])
+        for res in pending_conf:
+            if  res.branch_id.id == self.branch_id.id and res.state =='ongoing' and res.id is not self.id:
+                raise exceptions.ValidationError(f"Hello {res.partner_id.name},  {res.branch_id.branch_name} still has a pending spot check confirmantion  of {res.grand_total_ugx:,.2f} UGX created on {res.created_on} by {res.created_by.name} . Kindly inform Accountant {res.branch_accountant.name} to cosent all the spot checks before you proceed. For any more assistance please contact operations ")
+            elif res.branch_id.id == self.branch_id.id and res.state =='confirmed_one' and res.id is not self.id:
+                raise exceptions.ValidationError(f"Hello {res.partner_id.name},  {res.branch_id.branch_name} still has a pending spot check confirmantion  of {res.grand_total_ugx:,.2f} UGX created on {res.created_on} by {res.created_by.name} . Kindly inform Manager {res.branch_manager.name} to cosent all the spot checks before you proceed. For any more assistance please contact operations ")
+    @api.one
+    @api.constrains('created_on')
+    def _checkbranchspotcheckToDay(self):
+        pending_conf = self.env['spot_check.vault'].search([('state', 'in', ['ongoing','confirmed_one','reject_one','confirmed_two'])])
+        for res in pending_conf:
+            if  res.created_on == self.created_on and res.branch_id.id == self.branch_id.id and res.id is not self.id:
+                raise exceptions.ValidationError(f"Hello {res.partner_id.name},  {res.branch_id.branch_name} has already spot checked ATM today of {res.created_on} by {res.created_by.name}. For any more assistance please contact operations cash section.")
+      
+    
+        
         
     

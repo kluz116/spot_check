@@ -57,7 +57,7 @@ class TellersUsd(models.Model):
     system_cash_balance = fields.Monetary(string="System Cash Balance")
     shortage_cash = fields.Monetary(string="Shortage Cash",compute='_get_shortage',store=True)
     surplus_cash = fields.Monetary(string="Surplus Cash",compute='_get_surplus',store=True)
-    created_on =  fields.Datetime(string='Date', default=lambda self: fields.datetime.now())
+    created_on =  fields.Date(string='Date', default=lambda self: fields.Date.today())
     created_by = fields.Many2one('res.users','Confirmed By:',default=lambda self: self.env.user)
     user_id = fields.Many2one('res.users', string='User', track_visibility='onchange', readonly=True, default=lambda self: self.env.user.id)
     trx_proof = fields.Binary(string='Upload Teller Declaration', attachment=True,required=True)
@@ -253,5 +253,23 @@ class TellersUsd(models.Model):
                 template_id = self.env.ref('spot_check.email_template_create_teller_request_usd').id
                 template =  self.env['mail.template'].browse(template_id)
                 template.send_mail(req.id,force_send=True)
+
+    @api.one
+    @api.constrains('branch_id')
+    def _checkbranchspotcheck(self):
+        pending_conf = self.env['spot_check.teller_usd'].search([('state', 'in', ['ongoing'])])
+        for res in pending_conf:
+            if  res.branch_id.id == self.branch_id.id and res.state =='ongoing' and res.id is not self.id:
+                raise exceptions.ValidationError(f"Hello {res.partner_id.name},  {res.branch_id.branch_name} still has a pending spot check confirmantion  of {res.grand_total_ugx:,.2f} USD created on {res.created_on} by {res.created_by.name} . Kindly inform Teller {res.teller_id.name} to cosent all the spot checks before you proceed. For any more assistance please contact operations ")
+
+    @api.one
+    @api.constrains('created_on')
+    def _checkbranchspotcheckToDay(self):
+        pending_conf = self.env['spot_check.teller_usd'].search([('state', 'in', ['ongoing','confirmed_one','reject_one'])])
+        for res in pending_conf:
+            if  res.created_on == self.created_on and res.branch_id.id == self.branch_id.id and res.id is not self.id:
+                raise exceptions.ValidationError(f"Hello {res.partner_id.name},  {res.branch_id.branch_name} has already spot checked teller {res.teller_id.name} today of {res.created_on} by {res.created_by.name}. For any more assistance please contact operations cash section.")
+      
+    
 
             
