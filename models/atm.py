@@ -66,8 +66,8 @@ class ATM(models.Model):
     def _get_url_id(self):
         for e in self:
             web_base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-            action_id = self.env.ref('spot_check.vault_list_action', raise_if_not_found=False)
-            e.base_url = """{}/web#id={}&view_type=form&model=spot_check.vault&action={}""".format(web_base_url,e.id,action_id.id)
+            action_id = self.env.ref('spot_check.atm_list_action', raise_if_not_found=False)
+            e.base_url = """{}/web#id={}&view_type=form&model=spot_check.atm&action={}""".format(web_base_url,e.id,action_id.id)
 
 
     
