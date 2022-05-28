@@ -248,3 +248,15 @@ class VaultUsd(models.Model):
       
     
         
+    @api.model
+    def _update_notified_pending_confirmation_vault_usd(self):
+        pending_conf = self.env['spot_check.vault_usd'].search([('state', 'in', ['ongoing','confirmed_one'])])
+        for req in pending_conf:
+            if req.state =='ongoing':
+                template_id = self.env.ref('spot_check.email_template_create_vault_request_usd').id
+                template =  self.env['mail.template'].browse(template_id)
+                template.send_mail(req.id,force_send=True)  
+            elif  req.state =='confirmed_one':
+                template_id = self.env.ref('spot_check.email_template_create_vault_request_to_manager_usd').id
+                template =  self.env['mail.template'].browse(template_id)
+                template.send_mail(req.id,force_send=True)    

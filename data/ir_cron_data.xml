@@ -23,6 +23,28 @@
         <field name="doall" eval="True"/>
     </record>
 
+    <record id="teller_consent_requests_cron_vault" model="ir.cron">
+        <field name="name">Notify Accountant Vault Confirmation</field>
+        <field name="model_id" ref="model_spot_check_vault"/>
+        <field name="state">code</field>
+        <field name="code">model._update_notified_pending_confirmation_vault()</field>
+        <field name="interval_number">230</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+    <record id="teller_consent_requests_cron_vault_usd" model="ir.cron">
+        <field name="name">Notify Accountant Vault Confirmation USD</field>
+        <field name="model_id" ref="model_spot_check_vault_usd"/>
+        <field name="state">code</field>
+        <field name="code">model._update_notified_pending_confirmation_vault_usd()</field>
+        <field name="interval_number">230</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
 
 
 
