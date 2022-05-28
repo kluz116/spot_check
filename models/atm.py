@@ -191,6 +191,16 @@ class ATM(models.Model):
             if  res.created_on == self.created_on and res.branch_id.id == self.branch_id.id and res.id is not self.id:
                 raise exceptions.ValidationError(f"Hello {res.partner_id.name},  {res.branch_id.branch_name} has already spot checked ATM today of {res.created_on} by {res.created_by.name}. For any more assistance please contact operations cash section.")
       
-    
-        
-    
+       
+    @api.model
+    def _update_notified_pending_confirmation_atm(self):
+        pending_conf = self.env['spot_check.atm'].search([('state', 'in', ['ongoing','confirmed_one'])])
+        for req in pending_conf:
+            if req.state =='ongoing':
+                template_id = self.env.ref('spot_check.email_template_create_atm_request').id
+                template =  self.env['mail.template'].browse(template_id)
+                template.send_mail(req.id,force_send=True)  
+            elif  req.state =='confirmed_one':
+                template_id = self.env.ref('spot_check.email_template_create_atm_request_to_manager').id
+                template =  self.env['mail.template'].browse(template_id)
+                template.send_mail(req.id,force_send=True)  

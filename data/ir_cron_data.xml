@@ -45,7 +45,31 @@
         <field name="doall" eval="True"/>
     </record>
 
+    <record id="teller_consent_requests_cron_atm" model="ir.cron">
+        <field name="name">Notify Accountant ATM</field>
+        <field name="model_id" ref="model_spot_check_atm"/>
+        <field name="state">code</field>
+        <field name="code">model._update_notified_pending_confirmation_atm()</field>
+        <field name="interval_number">230</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+    <record id="teller_consent_requests_cron_mobile_money" model="ir.cron">
+        <field name="name">Notify Accountant ATM</field>
+        <field name="model_id" ref="model_spot_check_mobile_money"/>
+        <field name="state">code</field>
+        <field name="code">model._update_notified_pending_confirmation_tellers_mobile_money()</field>
+        <field name="interval_number">230</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
 
 
+    
+
+    
 
 </odoo>

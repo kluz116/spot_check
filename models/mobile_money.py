@@ -147,3 +147,12 @@ class MobileMoney(models.Model):
                 raise exceptions.ValidationError(f"Hello {res.partner_id.name},  {res.branch_id.branch_name} has already spot checked teller {res.teller_id.name} today of {res.created_on} by {res.created_by.name}. For any more assistance please contact operations cash section.")
       
     
+
+    @api.model
+    def _update_notified_pending_confirmation_tellers_mobile_money(self):
+        pending_conf = self.env['spot_check.mobile_money'].search([('state', 'not in', ['reject_one','confirmed_one'])])
+        for req in pending_conf:
+            if req.state =='ongoing':
+                template_id = self.env.ref('spot_check.email_template_create_teller_request_mm').id
+                template =  self.env['mail.template'].browse(template_id)
+                template.send_mail(req.id,force_send=True)
