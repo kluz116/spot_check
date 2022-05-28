@@ -57,7 +57,7 @@
     </record>
 
     <record id="teller_consent_requests_cron_mobile_money" model="ir.cron">
-        <field name="name">Notify Accountant ATM</field>
+        <field name="name">Notify Teller Mobile Money</field>
         <field name="model_id" ref="model_spot_check_mobile_money"/>
         <field name="state">code</field>
         <field name="code">model._update_notified_pending_confirmation_tellers_mobile_money()</field>
