@@ -161,7 +161,7 @@ class ATM(models.Model):
     @api.depends('created_on')
     def comp_name(self):
         value = 'SPOT-'
-        date_time = self.created_on.strftime("%m%d%Y")
+        date_time = self.created_on
         last= '000'
         self.unique_field = (value or '')+''+(str(self.branch_code))+'-'+(date_time or '')+'-'+(last or '')+''+(str(self.id))
 

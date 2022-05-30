@@ -168,7 +168,7 @@ class Tellers(models.Model):
     @api.depends('mutilated_coin_two_hundred_count','mutilated_coin_two_hundred_bundle')
     def _compute_coin_two_hundred_mutilated(self):
         for record in self:
-            record.mutilated_coin_two_hundred = (record.coin_two_hundred_bundle * (1000 * 200)) + record.mutilated_coin_two_hundred_count * 200
+            record.mutilated_coin_two_hundred = (record.mutilated_coin_two_hundred_bundle * (1000 * 200)) + record.mutilated_coin_two_hundred_count * 200
 
     
     @api.depends('mutilated_coin_one_hundred_count','mutilated_coin_one_hundred_bundle')
@@ -338,7 +338,7 @@ class Tellers(models.Model):
     @api.depends('created_on')
     def comp_name(self):
         value = 'SPOT-'
-        date_time = self.created_on.strftime("%m%d%Y")
+        date_time = self.created_on
         last= '000'
         self.unique_field = (value or '')+''+(str(self.branch_code))+'-'+(date_time or '')+'-'+(last or '')+''+(str(self.id))
     
