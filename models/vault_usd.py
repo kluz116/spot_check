@@ -219,7 +219,7 @@ class VaultUsd(models.Model):
         value = 'SPOT-'
         date_time = self.created_on
         last= '000'
-        self.unique_field = (value or '')+''+(str(self.branch_code))+'-'+(date_time or '')+'-'+(last or '')+''+(str(self.id))
+        self.unique_field = (value or '')+''+(str(self.branch_code))+'-'+(str(date_time) or '')+'-'+(last or '')+''+(str(self.id))
 
   
     @api.one
