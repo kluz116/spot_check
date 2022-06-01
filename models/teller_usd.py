@@ -261,7 +261,7 @@ class TellersUsd(models.Model):
         for res in pending_conf:
             if  res.branch_id.id == self.branch_id.id and res.state =='ongoing' and res.id is not self.id:
                 raise exceptions.ValidationError(f"Hello {res.partner_id.name},  {res.branch_id.branch_name} still has a pending spot check confirmantion  of {res.grand_total_ugx:,.2f} USD created on {res.created_on} by {res.created_by.name} . Kindly inform Teller {res.teller_id.name} to cosent all the spot checks before you proceed. For any more assistance please contact operations ")
-
+    '''
     @api.one
     @api.constrains('created_on')
     def _checkbranchspotcheckToDay(self):
@@ -270,6 +270,6 @@ class TellersUsd(models.Model):
             if  res.created_on == self.created_on and res.branch_id.id == self.branch_id.id and res.id is not self.id:
                 raise exceptions.ValidationError(f"Hello {res.partner_id.name},  {res.branch_id.branch_name} has already spot checked teller {res.teller_id.name} today of {res.created_on} by {res.created_by.name}. For any more assistance please contact operations cash section.")
       
-    
+    '''
 
             

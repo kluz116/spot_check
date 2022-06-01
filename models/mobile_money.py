@@ -129,6 +129,7 @@ class MobileMoney(models.Model):
             raise exceptions.ValidationError("Sorry, BR System Cash Balance Can Not Be {system_cash_balance} UGX. Please Fill In The Right Figures Before You Proceed. Contact Operations Department for assistance".format(system_cash_balance=self.system_cash_balance))
 
     
+    '''
     @api.one
     @api.constrains('branch_id')
     def _checkbranchspotcheck(self):
@@ -136,7 +137,7 @@ class MobileMoney(models.Model):
         for res in pending_conf:
             if  res.branch_id.id == self.branch_id.id and res.state =='ongoing' and res.id is not self.id:
                 raise exceptions.ValidationError(f"Hello {res.partner_id.name},  {res.branch_id.branch_name} still has a pending spot check confirmantion  of {res.grand_total_ugx:,.2f} UGX created on {res.created_on} by {res.created_by.name} . Kindly inform Teller {res.teller_id.name} to cosent all the spot checks before you proceed. For any more assistance please contact operations ")
-
+    '''
     @api.one
     @api.constrains('created_on')
     def _checkbranchspotcheckToDay(self):
