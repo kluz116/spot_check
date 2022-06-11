@@ -8,6 +8,7 @@
                 <tree string="All Mobile Money Spot Checks" default_order='created_on desc'>
 
                     <field name="unique_field"/>
+                    <field name="telecom"/>
                     <field name="state"/>
                     <field name="branch_id"/>
                     <field name="grand_total_ugx"/>
@@ -128,8 +129,11 @@
                     </header>
                 </xpath>
                    <sheet>
-
+                        <group>
+                        <field name ="telecom"/>
+                        </group>
                          <group>
+                             
                              <field name = "currency_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" readonly='1' />
                         </group>
                           <group>

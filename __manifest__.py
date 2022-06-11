@@ -48,7 +48,9 @@
         'reports/report_spot.xml',
         'reports/report_vault.xml',
         'reports/report_atm.xml',
-        'reports/report_teller.xml'
+        'reports/report_teller.xml',
+        'reports/confirmed_reports.xml',
+        'reports/ongoing_report.xml'
 
     ],
     # only loaded in demonstration mode

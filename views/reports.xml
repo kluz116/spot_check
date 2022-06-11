@@ -16,6 +16,7 @@
                     <field name="shortage_cash" />
                     <field name="surplus_cash" />
                     <field name="spot_check_type" />
+                    <field name="created_by" />
                     
                 </tree>
             </field>
@@ -37,6 +38,7 @@
                     <field name="shortage_cash" />
                     <field name="surplus_cash" />
                     <field name="spot_check_type" />
+                    <field name="created_by" />
                     
                 </tree>
             </field>

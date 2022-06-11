@@ -111,7 +111,7 @@
                     Hello Team,
                     <br /><br />
 
-                    Vault Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} UGX has been rejected by ${object.partner_id.supervises.name}.
+                    Vault Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} UGX has been rejected by ${object.branch_manager.name}.
                     <br/>
                     Rejection Reason: ${object.manager_reject_comment}
                     <br/>
@@ -146,7 +146,7 @@
                     Hello ${object.branch_manager.name},
                     <br /><br />
 
-                    Vault Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} UGX has been confirmed by ${object.partner_id.supervises.name} and closed. Vault Spot Check created on ${object.created_on} by ${object.created_by.name} from Branch ${object.branch_code}.
+                    Vault Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} UGX has been confirmed by ${object.branch_manager.name} and closed. Vault Spot Check created on ${object.created_on} by ${object.created_by.name} from Branch ${object.branch_code}.
                     
                     <br/><br/>
                     Regards,<br/>
@@ -227,7 +227,7 @@
                     <br/>
                     <br/>
                     <div class="col text-center">
-                        <a class="btn btn-success btn-sm" role="button" href="${object.base_url}"> ${object.partner_id.supervises.name} please click on this link to consent.</a>
+                        <a class="btn btn-success btn-sm" role="button" href="${object.base_url}"> ${object.branch_accountant.name} please click on this link to consent.</a>
                     </div>
                     <br/><br/>
                     Regards,<br/>
@@ -322,7 +322,7 @@
                     Hello ${object.branch_manager.name},
                     <br /><br />
 
-                    Vault Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} USD has been confirmed by ${object.partner_id.supervises.name} and closed. Vault Spot Check created on ${object.created_on} by ${object.created_by.name} from Branch ${object.branch_code}.
+                    Vault Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} USD has been confirmed by ${object.branch_manager.name} and closed. Vault Spot Check created on ${object.created_on} by ${object.created_by.name} from Branch ${object.branch_code}.
                     
                     <br/><br/>
                     Regards,<br/>
@@ -382,7 +382,7 @@
                     <br/>
                     <br/>
                     <div class="col text-center">
-                        <a class="btn btn-success btn-sm" role="button" href="${object.base_url}"> ${object.partner_id.supervises.name} please click on this link to consent.</a>
+                        <a class="btn btn-success btn-sm" role="button" href="${object.base_url}"> ${object.branch_accountant.name} please click on this link to consent.</a>
                     </div>
                     <br/><br/>
                     Regards,<br/>
@@ -477,7 +477,7 @@
                     Hello ${object.branch_manager.name},
                     <br /><br />
 
-                    ATM Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} UGX has been confirmed by ${object.partner_id.supervises.name} and closed. Vault Spot Check created on ${object.created_on} by ${object.created_by.name} from Branch ${object.branch_code}.
+                    ATM Spot Check of ${'{:,.2f}'.format(object.grand_total_ugx)} UGX has been confirmed by ${object.branch_manager.name} and closed. Vault Spot Check created on ${object.created_on} by ${object.created_by.name} from Branch ${object.branch_code}.
                     
                     <br/><br/>
                     Regards,<br/>
@@ -817,5 +817,392 @@
         </record>
 
 
+        <record id="email_template_accountants_teller_remiders" model="mail.template">
+            <field name="name">Spot Check: Remider to Accountants</field>
+            <field name="model_id" ref="model_res_partner"/>
+            
+            <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_to">${object.email}</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="subject">Spot Check Reminder</field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Hello ${object.name},
+                    <br /><br />
+
+                    This is a reminder, you have not yet done any teller spot check this current week which is against the policy.
+               
+                    <br/><br/>
+                    Regards,<br/>
+                    Cash Center Team.
+                
+                </p>
+            </div>
+            </field>
+       
+        </record>
+
+        <record id="email_template_accountants_teller_notfy" model="mail.template">
+            <field name="name">Spot Check: Reminder to Tellers</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_to">${object.supervisor.email}</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="subject">Spot Check Reminder for ${object.name}</field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Hello ${object.supervisor.name} ,
+                    <br /><br />
+
+                    This is a reminder, you have not yet done spot check for ${object.name} this current week which is against the policy. Take time off and carry out cash spot checks for ${object.name}
+               
+                    <br/><br/>
+                    Regards,<br/>
+                    Cash Center Team.
+                
+                </p>
+            </div>
+            </field>
+       
+        </record>
+
+        <record id="email_template_accountants_teller_notfy_penind" model="mail.template">
+            <field name="name">Spot Check: Reminder To Tellers Pening</field>
+            <field name="model_id" ref="model_res_partner"/>  
+            <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_to">${object.supervisor.email}</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="subject">Spot Check Reminder for ${object.name} </field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Hello ${object.supervisor.name} ,
+                    <br /><br />
+
+                    This is a reminder, ${object.name} has only been spot checked once this current week which is against the policy. Take time off and carry out another spot check for ${object.name}
+               
+                    <br/><br/>
+                    Regards,<br/>
+                    Cash Center Team.
+                
+                </p>
+            </div>
+            </field>
+       
+        </record>
+
+
+
+        <record id="email_template_accountants_teller_remiders_usd" model="mail.template">
+            <field name="name">Spot Check: Remider to Accountants</field>
+            <field name="model_id" ref="model_res_partner"/>
+        
+            <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_to">${object.email}</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="subject">Spot Check Reminder USD</field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Hello ${object.name},
+                    <br /><br />
+
+                    This is a reminder, you have not yet done any USD teller spot check this current week which is against the policy. Please ignore if you have no USD drawer at ${object.branch_id_spot_check.branch_name}
+               
+                    <br/><br/>
+                    Regards,<br/>
+                    Cash Center Team.
+                
+                </p>
+            </div>
+            </field>
+       
+        </record>
+
+        <record id="email_template_accountants_teller_notfy_usd" model="mail.template">
+            <field name="name">Spot Check: Reminder to Tellers</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_to">${object.supervisor.email}</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="subject">USD Spot Check Reminder for ${object.name}</field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Hello ${object.supervisor.name} ,
+                    <br /><br />
+
+                    This is a reminder, you have not yet done spot check for ${object.name} this current week which is against the policy. Take time off and carry out cash spot checks for ${object.name}
+                    <br/>
+                    Please ignore if you have no USD drawer at ${object.branch_id_spot_check.branch_name}
+                    <br/><br/>
+                    Regards,<br/>
+                    Cash Center Team.
+                
+                </p>
+            </div>
+            </field>
+       
+        </record>
+
+        <record id="email_template_accountants_teller_notfy_penind_usd" model="mail.template">
+            <field name="name">Spot Check: Reminder To Tellers Pending USD</field>
+            <field name="model_id" ref="model_res_partner"/>  
+            <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_to">${object.supervisor.email}</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="subject">USD Spot Check Reminder for ${object.name} </field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Hello ${object.supervisor.name} ,
+                    <br /><br />
+
+                    This is a reminder, ${object.name} has only been spot checked once this current week which is against the policy. Take time off and carry out another spot check for ${object.name}
+                    <br/>
+                    Please ignore if you have no USD drawer at ${object.branch_id_spot_check.branch_name}
+                    <br/><br/>
+                    Regards,<br/>
+                    Cash Center Team.
+                
+                </p>
+            </div>
+            </field>
+       
+        </record>
+
+
+        <record id="email_template_accountants_teller_remiders_mm" model="mail.template">
+            <field name="name">Spot Check: Remider to Accountants Mobile Money</field>
+            <field name="model_id" ref="model_res_partner"/>
+        
+            <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_to">${object.email}</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="subject">Spot Check Reminder USD</field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Hello ${object.name},
+                    <br /><br />
+
+                    This is a reminder, you have not yet done any USD teller spot check this current week which is against the policy. Please ignore if you have no USD drawer at ${object.branch_id_spot_check.branch_name}
+               
+                    <br/><br/>
+                    Regards,<br/>
+                    Cash Center Team.
+                
+                </p>
+            </div>
+            </field>
+       
+        </record>
+
+        <record id="email_template_accountants_teller_notfy_mm" model="mail.template">
+            <field name="name">Spot Check: Reminder to Tellers Mobile Money</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_to">${object.supervisor.email}</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="subject">USD Spot Check Reminder for ${object.name}</field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Hello ${object.supervisor.name} ,
+                    <br /><br />
+
+                    This is a reminder, you have not yet done Mobile Money spot check for ${object.name} this current week which is against the policy. Take time off and carry out cash spot checks for ${object.name}
+                    <br/>
+                    Please ignore if you have no Mobile Money at ${object.branch_id_spot_check.branch_name}
+                    <br/><br/>
+                    Regards,<br/>
+                    Cash Center Team.
+                
+                </p>
+            </div>
+            </field>
+       
+        </record>
+
+        <record id="email_template_accountants_teller_notfy_penind_mm" model="mail.template">
+            <field name="name">Spot Check: Reminder To Tellers Pending Mobile Money</field>
+            <field name="model_id" ref="model_res_partner"/>  
+            <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_to">${object.supervisor.email}</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="subject">USD Spot Check Reminder for ${object.name} </field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Hello ${object.supervisor.name} ,
+                    <br /><br />
+
+                    This is a reminder, ${object.name} has only been spot checked once Mobile Money this current week which is against the policy. Take time off and carry out another spot check for ${object.name}
+                    <br/>
+                    Please ignore if you have no Mobile Money at ${object.branch_id_spot_check.branch_name}
+                    <br/><br/>
+                    Regards,<br/>
+                    Cash Center Team.
+                
+                </p>
+            </div>
+            </field>
+       
+        </record>
+
+        <record id="email_template_credit_supervisor_remiders" model="mail.template">
+            <field name="name">Spot Check: Remider to Credit Supervisor</field>
+            <field name="model_id" ref="model_res_partner"/>
+            
+            <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_to">${object.email}</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="subject">Vault Spot Check Reminder - UGX</field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Hello ${object.name},
+                    <br /><br />
+
+                    This is a reminder, you have not yet done any vault spot check this current month which is against the policy. Kindly carry out atleast vault spot checks to avoid such notifications
+               
+                    <br/><br/>
+                    Regards,<br/>
+                    Cash Center Team.
+                
+                </p>
+            </div>
+            </field>
+       
+        </record>
+
+        
+        <record id="email_template_credit_supervisor_once" model="mail.template">
+            <field name="name">Spot Check: Remider to Credit Supervisor Once</field>
+            <field name="model_id" ref="model_res_partner"/>
+            
+            <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_to">${object.email}</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="subject"> Vault Spot Check Reminder - UGX</field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Hello ${object.name},
+                    <br /><br />
+
+                    This is a reminder, you have only done one vault spot check this current month which is against the policy. Kindly carry out atleast vault spot checks to avoid such notifications
+               
+                    <br/><br/>
+                    Regards,<br/>
+                    Cash Center Team.
+                
+                </p>
+            </div>
+            </field>
+       
+        </record>
+
+        
+        <record id="email_template_credit_supervisor_remiders_usd" model="mail.template">
+            <field name="name">Spot Check: Remider to Credit Supervisor USD</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_to">${object.email}</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="subject">Vault Spot Check Reminder - USD</field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Hello ${object.name},
+                    <br /><br />
+
+                    This is a reminder, you have not yet done any vault spot check this current month which is against the policy. Kindly carry out atleast vault spot checks to avoid such notifications
+               
+                    <br/><br/>
+                    Regards,<br/>
+                    Cash Center Team.
+                
+                </p>
+            </div>
+            </field>
+       
+        </record>
+
+        
+        <record id="email_template_credit_supervisor_once_usd" model="mail.template">
+            <field name="name">Spot Check: Remider to Credit Supervisor Once - USD</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_to">${object.email}</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="subject"> Vault Spot Check Reminder - USD</field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Hello ${object.name},
+                    <br /><br />
+
+                    This is a reminder, you have only done one vault spot check this current month which is against the policy. Kindly carry out atleast vault spot checks to avoid such notifications
+               
+                    <br/><br/>
+                    Regards,<br/>
+                    Cash Center Team.
+                
+                </p>
+            </div>
+            </field>
+        </record>
+        <record id="email_template_credit_supervisor_remiders_atm" model="mail.template">
+            <field name="name">Spot Check: Remider to Credit Supervisor ATM</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_to">${object.email}</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="subject">ATM Spot Check Reminder </field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Hello ${object.name},
+                    <br /><br />
+
+                    This is a reminder, you have not yet done any ATM spot check this current month which is against the policy. Kindly carry out atleast ATM spot checks to avoid such notifications.
+
+                    <br/>
+                    Please ingore if the branch has no ATM machine.
+               
+                    <br/><br/>
+                    Regards,<br/>
+                    Cash Center Team.
+                </p>
+            </div>
+            </field>
+        </record>
+        <record id="email_template_credit_supervisor_once_atm" model="mail.template">
+            <field name="name">Spot Check: Remider to Credit Supervisor Once - ATM</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_to">${object.email}</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="subject"> ATM Spot Check Reminder </field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 18px;">
+                    Hello ${object.name},
+                    <br /><br />
+
+                    This is a reminder, you have only done one ATM spot check this current month which is against the policy. Kindly carry out atleast ATM spot checks to avoid such notifications
+                    <br/>
+                    Please ingore if the branch has no ATM machine.
+                    <br/><br/>
+                    Regards,<br/>
+                    Cash Center Team.
+                
+                </p>
+            </div>
+            </field>
+        </record>
     </data>
 </odoo>

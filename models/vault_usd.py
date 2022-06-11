@@ -1,4 +1,5 @@
 from odoo import models,api,fields,exceptions
+import datetime
 
 class VaultUsd(models.Model):
     _name = "spot_check.vault_usd"
@@ -262,3 +263,58 @@ class VaultUsd(models.Model):
                 template_id = self.env.ref('spot_check.email_template_create_vault_request_to_manager_usd').id
                 template =  self.env['mail.template'].browse(template_id)
                 template.send_mail(req.id,force_send=True)    
+
+    
+    @api.model
+    def _creditsupervisor_without_spotchecks_usd(self):
+        my_date = datetime.date.today() 
+        week_num = my_date.isocalendar()
+        branch_obj = self.env['spot_check.branch'].search([('status','in',['active'])])
+        branch_list = []
+        branch_list_done = []
+        for i in branch_obj:
+            branch_list.append(i.id)
+
+        initiated_req = self.env['spot_check.vault_usd'].search([('state', 'in', ['ongoing','confirmed_one','reject_one'])])
+        for request in initiated_req:
+            week_num_teller= request.created_on.isocalendar()
+            if week_num != week_num_teller:
+                branch_list_done.append(request.branch_id.id)
+               
+
+        branch_list_not_done = [x for x in branch_list if x not in branch_list_done]
+        obj = self.env['res.partner'].search([('&'),('branch_id_spot_check','in',branch_list_not_done),('user_role','in',['credit_supervisor'])])
+
+        for res in obj:
+            template_id = self.env.ref('spot_check.email_template_credit_supervisor_remiders_usd').id
+            template =  self.env['mail.template'].browse(template_id)
+            template.send_mail(res.id,force_send=True)
+
+
+    @api.model
+    def _vault_spot_checked_once_usd(self):
+        my_date = datetime.date.today() 
+        week_num = my_date.isocalendar()
+        branch_obj = self.env['spot_check.branch'].search([('status','in',['active'])])
+        branch_list = []
+        branch_list_done = []
+        for i in branch_obj:
+            branch_list.append(i.id)
+
+        initiated_req = self.env['spot_check.vault_usd'].search([('state', 'in', ['ongoing','confirmed_one','reject_one'])])
+        for request in initiated_req:
+            week_num_teller= request.created_on.isocalendar()
+            if week_num == week_num_teller:
+                branch_list_done.append(request.branch_id.id)
+               
+
+        branch_list_not_done = [x for x in branch_list if x  in branch_list_done]
+        y = [z for z in branch_list_not_done if branch_list_not_done.count(z)==1]
+        final_list = list(dict.fromkeys(y))
+
+        obj = self.env['res.partner'].search([('&'),('branch_id_spot_check','in',final_list),('user_role','in',['credit_supervisor'])])
+
+        for res in obj:
+            template_id = self.env.ref('spot_check.email_template_credit_supervisor_once_usd').id
+            template =  self.env['mail.template'].browse(template_id)
+            template.send_mail(res.id,force_send=True)

@@ -1,5 +1,5 @@
-from email.policy import default
 from odoo import models,api,fields,exceptions
+import datetime
 
 class MobileMoney(models.Model):
     _name = "spot_check.mobile_money"
@@ -14,6 +14,7 @@ class MobileMoney(models.Model):
     teller_id = fields.Many2one('res.partner','Teller',domain="[('branch_id_spot_check', '=', branch_id),('user_role','=','teller')]")
     till = fields.Char(string='Till ID',compute='_get_till_id')
     state = fields.Selection([('ongoing', 'Pending Teller Consent'),('confirmed_one', 'Confirmed'),('reject_one', 'Rejected By Teller')],default="ongoing", string="Status")
+    telecom = fields.Selection([('mtn', 'MTN'),('airtel', 'Airtel')],default="mtn", string="Telecom")
 
     grand_total_ugx = fields.Monetary(string="Mobile Balance (UGX)",store=True)
     system_cash_balance = fields.Monetary(string="GL Balance (UGX)",required=True)
@@ -80,23 +81,23 @@ class MobileMoney(models.Model):
                 record.consent_status = 'No'
 
     
-
+    '''
     @api.depends('partner_id')    
     def _get_manager_id(self):
         if self.partner_id:
             self.branch_manager = self.partner_id.supervises
-
+    '''
     @api.depends('teller_id')    
     def _get_till_id(self):
         if self.teller_id:
             self.till = self.teller_id.till_id
-
+    '''
     @api.depends('branch_manager')    
     def _get_accountant_id(self):
         if self.branch_manager:
             self.branch_accountant = self.branch_manager.supervises  
 
-
+    '''
     @api.depends('branch_accountant')
     def _get_to_branch_accountant(self):
         for e in self:
@@ -156,3 +157,85 @@ class MobileMoney(models.Model):
                 template_id = self.env.ref('spot_check.email_template_create_teller_request_mm').id
                 template =  self.env['mail.template'].browse(template_id)
                 template.send_mail(req.id,force_send=True)
+
+    
+    @api.model
+    def _accountants_without_spotchecks_mm(self):
+        my_date = datetime.date.today() 
+        week_num = my_date.isocalendar()
+        branch_obj = self.env['spot_check.branch'].search([('status','in',['active'])])
+        branch_list = []
+        branch_list_done = []
+        for i in branch_obj:
+            branch_list.append(i.id)
+
+        initiated_req = self.env['spot_check.mobile_money'].search([('state', 'in', ['ongoing','confirmed_one','reject_one'])])
+        for request in initiated_req:
+            week_num_teller= request.created_on.isocalendar()
+            if week_num != week_num_teller:
+                branch_list_done.append(request.branch_id.id)
+               
+
+        branch_list_not_done = [x for x in branch_list if x not in branch_list_done]
+        obj = self.env['res.partner'].search([('&'),('branch_id_spot_check','in',branch_list_not_done),('user_role','in',['accountant'])])
+
+        for res in obj:
+            template_id = self.env.ref('spot_check.email_template_accountants_teller_remiders_mm').id
+            template =  self.env['mail.template'].browse(template_id)
+            template.send_mail(res.id,force_send=True)
+
+    @api.model
+    def _notfy_about_teller_mm(self):
+        my_date = datetime.date.today() # if date is 01/01/2018
+        week_num = my_date.isocalendar()
+        teller_obj = self.env['res.partner'].search([('user_role','in',['teller'])])
+
+        teller_list = []
+        teller_list_done = []
+        for i in teller_obj:
+            teller_list.append(i.id)
+
+        initiated_req = self.env['spot_check.mobile_money'].search([('state', 'in', ['ongoing','confirmed_one','reject_one'])])
+        for request in initiated_req:
+            week_num_teller= request.created_on.isocalendar()
+            if week_num != week_num_teller:
+                teller_list_done.append(request.teller_id.id)
+               
+
+        teller_list_not_done = [x for x in teller_list if x not in teller_list_done]
+        obj = self.env['res.partner'].search([('&'),('id','in',teller_list_not_done),('user_role','in',['teller'])])
+
+        for res in obj:
+            template_id = self.env.ref('spot_check.email_template_accountants_teller_notfy_mm').id
+            template =  self.env['mail.template'].browse(template_id)
+            template.send_mail(res.id,force_send=True)
+
+    @api.model
+    def _notfy_onetime_teller_mm(self):
+        my_date = datetime.date.today()
+        week_num = my_date.isocalendar()
+        teller_obj = self.env['res.partner'].search([('user_role','in',['teller'])])
+
+        teller_list = []
+        teller_list_done = []
+        for i in teller_obj:
+            teller_list.append(i.id)
+
+        initiated_req = self.env['spot_check.mobile_money'].search([('state', 'in', ['ongoing','confirmed_one','reject_one'])])
+        for request in initiated_req:
+            week_num_teller= request.created_on.isocalendar()
+            if week_num == week_num_teller:
+                teller_list_done.append(request.teller_id.id)
+               
+
+        teller_list_not_done = [x for x in teller_list if x  in teller_list_done]
+       
+        y = [z for z in teller_list_not_done if teller_list_not_done.count(z)==1]
+        final_list = list(dict.fromkeys(y))
+        obj = self.env['res.partner'].search([('&'),('id','in',final_list),('user_role','in',['teller'])])
+
+        for result in obj:
+            template_id = self.env.ref('spot_check.email_template_accountants_teller_notfy_penind_mm').id
+            template =  self.env['mail.template'].browse(template_id)
+            template.send_mail(result.id,force_send=True)
+         

@@ -6,8 +6,8 @@
         <field name="model_id" ref="model_spot_check_teller"/>
         <field name="state">code</field>
         <field name="code">model._update_notified_pending_confirmation_tellers()</field>
-        <field name="interval_number">230</field>
-        <field name="interval_type">minutes</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
         <field name="numbercall">-1</field>
         <field name="doall" eval="True"/>
     </record>
@@ -17,8 +17,8 @@
         <field name="model_id" ref="model_spot_check_teller"/>
         <field name="state">code</field>
         <field name="code">model._update_notified_pending_confirmation_tellers_usd()</field>
-        <field name="interval_number">230</field>
-        <field name="interval_type">minutes</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
         <field name="numbercall">-1</field>
         <field name="doall" eval="True"/>
     </record>
@@ -28,8 +28,8 @@
         <field name="model_id" ref="model_spot_check_vault"/>
         <field name="state">code</field>
         <field name="code">model._update_notified_pending_confirmation_vault()</field>
-        <field name="interval_number">230</field>
-        <field name="interval_type">minutes</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
         <field name="numbercall">-1</field>
         <field name="doall" eval="True"/>
     </record>
@@ -39,8 +39,8 @@
         <field name="model_id" ref="model_spot_check_vault_usd"/>
         <field name="state">code</field>
         <field name="code">model._update_notified_pending_confirmation_vault_usd()</field>
-        <field name="interval_number">230</field>
-        <field name="interval_type">minutes</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
         <field name="numbercall">-1</field>
         <field name="doall" eval="True"/>
     </record>
@@ -67,8 +67,187 @@
         <field name="doall" eval="True"/>
     </record>
 
+    <record id="check_branches_done" model="ir.cron">
+        <field name="name">Accountants Without Spotchecks current week</field>
+        <field name="model_id" ref="model_spot_check_teller"/>
+        <field name="state">code</field>
+        <field name="code">model._accountants_without_spotchecks()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+    <record id="check_tellers_done" model="ir.cron">
+        <field name="name">Tellers Notify One</field>
+        <field name="model_id" ref="model_spot_check_teller"/>
+        <field name="state">code</field>
+        <field name="code">model._notfy_about_teller()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+    <record id="check_tellers_done_once" model="ir.cron">
+        <field name="name">Tellers Notify Once</field>
+        <field name="model_id" ref="model_spot_check_teller"/>
+        <field name="state">code</field>
+        <field name="code">model._notfy_onetime_teller()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+
 
     
+    <record id="check_branches_done_usd" model="ir.cron">
+        <field name="name">Accountants Without Spotchecks current week Usd</field>
+        <field name="model_id" ref="model_spot_check_teller_usd"/>
+        <field name="state">code</field>
+        <field name="code">model._accountants_without_spotchecks_usd()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+    <record id="check_tellers_done_usd" model="ir.cron">
+        <field name="name">Tellers Notify One USD</field>
+        <field name="model_id" ref="model_spot_check_teller_usd"/>
+        <field name="state">code</field>
+        <field name="code">model._notfy_about_teller_usd()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+    <record id="check_tellers_done_once_usd" model="ir.cron">
+        <field name="name">Tellers Notify Once USD</field>
+        <field name="model_id" ref="model_spot_check_teller_usd"/>
+        <field name="state">code</field>
+        <field name="code">model._notfy_onetime_teller_usd()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+
+
+
+
+    
+    <record id="check_branches_done_mm" model="ir.cron">
+        <field name="name">Accountants Without Spotchecks current week MM</field>
+        <field name="model_id" ref="model_spot_check_mobile_money"/>
+        <field name="state">code</field>
+        <field name="code">model._accountants_without_spotchecks_mm()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+    <record id="check_tellers_done_mm" model="ir.cron">
+        <field name="name">Tellers Notify One USD</field>
+        <field name="model_id" ref="model_spot_check_mobile_money"/>
+        <field name="state">code</field>
+        <field name="code">model._notfy_about_teller_mm()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+    <record id="check_tellers_done_once_mm" model="ir.cron">
+        <field name="name">Tellers Notify Once USD</field>
+        <field name="model_id" ref="model_spot_check_mobile_money"/>
+        <field name="state">code</field>
+        <field name="code">model._notfy_onetime_teller_mm()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+
+
+    <record id="check_creditsupervisor_done" model="ir.cron">
+        <field name="name">Vault Pending Credit Supervisor</field>
+        <field name="model_id" ref="model_spot_check_vault"/>
+        <field name="state">code</field>
+        <field name="code">model._creditsupervisor_without_spotchecks()</field>
+        <field name="interval_number">5</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+    <record id="check_creditsupervisor_one" model="ir.cron">
+        <field name="name">Vault with Only One Spot Check - Credit Supervisor</field>
+        <field name="model_id" ref="model_spot_check_vault"/>
+        <field name="state">code</field>
+        <field name="code">model._vault_spot_checked_once()</field>
+        <field name="interval_number">5</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+
+    
+
+    <record id="check_creditsupervisor_done_usd" model="ir.cron">
+        <field name="name">Vault Pending Credit Supervisor - USD</field>
+        <field name="model_id" ref="model_spot_check_vault_usd"/>
+        <field name="state">code</field>
+        <field name="code">model._creditsupervisor_without_spotchecks_usd()</field>
+        <field name="interval_number">5</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+    <record id="check_creditsupervisor_one_usd" model="ir.cron">
+        <field name="name">Vault with Only One Spot Check - Credit Supervisor - USD</field>
+        <field name="model_id" ref="model_spot_check_vault_usd"/>
+        <field name="state">code</field>
+        <field name="code">model._vault_spot_checked_once_usd()</field>
+        <field name="interval_number">5</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+
+
+    <record id="check_creditsupervisor_done_atm" model="ir.cron">
+        <field name="name">Vault Pending Credit Supervisor - ATM</field>
+        <field name="model_id" ref="model_spot_check_atm"/>
+        <field name="state">code</field>
+        <field name="code">model._creditsupervisor_without_spotchecks_atm()</field>
+        <field name="interval_number">5</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+    <record id="check_creditsupervisor_one_atm" model="ir.cron">
+        <field name="name">Vault with Only One Spot Check - Credit Supervisor - ATM</field>
+        <field name="model_id" ref="model_spot_check_atm"/>
+        <field name="state">code</field>
+        <field name="code">model._vault_spot_checked_once_atm()</field>
+        <field name="interval_number">5</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+  
 
     
 

@@ -6,6 +6,7 @@
             <field name="model">spot_check.branch</field>
              <field name="arch" type="xml">
                 <tree string="All Branches">
+                   <field name="status"/>
                     <field name="branch_code" />
                     <field name="branch_name" />
                 </tree>
@@ -35,6 +36,9 @@
             <field name="arch" type="xml">
                 <form string="Add Branch" create="false" edit="false">
                     <sheet>
+                        <group>
+                            <field name="status"/>
+                        </group>
                         <group>
                             <field name="branch_code"/>
                         </group>

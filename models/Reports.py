@@ -20,8 +20,8 @@ class Reporting(models.Model):
     system_cash_balance = fields.Monetary(string="System Cash Balance")
     shortage_cash = fields.Monetary(string="Shortage Cash")
     surplus_cash = fields.Monetary(string="Surplus Cash")
-    created_on = fields.Datetime(string='Date')
-    created_by = fields.Many2one('res.partner','Accountant')
+    created_on = fields.Date(string='Date')
+    created_by = fields.Many2one('res.users','Created By')
     spot_check_type = fields.Char(string='Type')
 
 
@@ -32,37 +32,37 @@ class Reporting(models.Model):
             
                 select row_number() OVER (ORDER BY 1) AS id,* from (
                  SELECT a.currency_id, a.branch_id,
-                a.branch_accountant, a.branch_manager, a.state,a.sub_total_good, a.sub_total_coins, a.sub_total_mutilated,a.mutilated_sub_total_coins, a.grand_total_ugx,  a.system_cash_balance,a.shortage_cash, a.surplus_cash, CAST(a.created_on AS DATE) AS created_on, a.created_by,'Vault' AS spot_check_type
+                a.branch_accountant, a.branch_manager, a.state,a.sub_total_good, a.sub_total_coins, a.sub_total_mutilated,a.mutilated_sub_total_coins, a.grand_total_ugx,  a.system_cash_balance,a.shortage_cash, a.surplus_cash, CAST(a.created_on AS DATE) AS created_on, a.created_by,'Vault Spot Check' AS spot_check_type
                 FROM public.spot_check_vault a 
 
                 UNION ALL
 
                 SELECT  a.currency_id, a.branch_id,
-                a.branch_accountant, a.branch_manager, a.state,a.sub_total_good, 0 AS sub_total_coins, a.sub_total_mutilated, 0 AS mutilated_sub_total_coins, a.grand_total_ugx,  a.system_cash_balance,a.shortage_cash, a.surplus_cash,CAST(a.created_on AS DATE) AS created_on, a.created_by,'Vault' AS spot_check_type
+                a.branch_accountant, a.branch_manager, a.state,a.sub_total_good, 0 AS sub_total_coins, a.sub_total_mutilated, 0 AS mutilated_sub_total_coins, a.grand_total_ugx,  a.system_cash_balance,a.shortage_cash, a.surplus_cash,CAST(a.created_on AS DATE) AS created_on, a.created_by,'Vault Spot Check' AS spot_check_type
                 FROM public.spot_check_vault_usd a 
                 
                 UNION ALL
                 
                  SELECT a.currency_id, a.branch_id,
-                a.branch_accountant, a.branch_manager, a.state,a.sub_total_good, a.sub_total_coins, a.sub_total_mutilated,a.mutilated_sub_total_coins, a.grand_total_ugx,  a.system_cash_balance,a.shortage_cash, a.surplus_cash, CAST(a.created_on AS DATE) AS created_on, a.created_by,'Teller' AS spot_check_type
+                a.branch_accountant, a.branch_manager, a.state,a.sub_total_good, a.sub_total_coins, a.sub_total_mutilated,a.mutilated_sub_total_coins, a.grand_total_ugx,  a.system_cash_balance,a.shortage_cash, a.surplus_cash, CAST(a.created_on AS DATE) AS created_on, a.created_by,'Teller Spot Check' AS spot_check_type
                 FROM public.spot_check_teller a 
 
                 UNION ALL
 
                 SELECT  a.currency_id, a.branch_id,
-                a.branch_accountant, a.branch_manager, a.state,a.sub_total_good, 0 AS sub_total_coins, a.sub_total_mutilated, 0 AS mutilated_sub_total_coins, a.grand_total_ugx,  a.system_cash_balance,a.shortage_cash, a.surplus_cash,CAST(a.created_on AS DATE) AS created_on, a.created_by,'Teller' AS spot_check_type
+                a.branch_accountant, a.branch_manager, a.state,a.sub_total_good, 0 AS sub_total_coins, a.sub_total_mutilated, 0 AS mutilated_sub_total_coins, a.grand_total_ugx,  a.system_cash_balance,a.shortage_cash, a.surplus_cash,CAST(a.created_on AS DATE) AS created_on, a.created_by,'Teller Spot Check' AS spot_check_type
                 FROM public.spot_check_teller_usd a 
 
                 UNION ALL
 
                 SELECT  a.currency_id, a.branch_id,
-                a.branch_accountant, a.branch_manager, a.state,a.sub_total_good, 0 AS sub_total_coins, 0 AS sub_total_mutilated, 0 AS mutilated_sub_total_coins, a.grand_total_ugx,  a.system_cash_balance,a.shortage_cash, a.surplus_cash,CAST(a.created_on AS DATE) AS created_on, a.created_by,'ATM' AS spot_check_type
+                a.branch_accountant, a.branch_manager, a.state,a.sub_total_good, 0 AS sub_total_coins, 0 AS sub_total_mutilated, 0 AS mutilated_sub_total_coins, a.grand_total_ugx,  a.system_cash_balance,a.shortage_cash, a.surplus_cash,CAST(a.created_on AS DATE) AS created_on, a.created_by,'ATM Spot Check' AS spot_check_type
                 FROM public.spot_check_atm a 
 
                 UNION ALL
 
                 SELECT  a.currency_id, a.branch_id,
-                a.branch_accountant, a.branch_manager, a.state,0 AS sub_total_good, 0 AS sub_total_coins, 0 AS sub_total_mutilated, 0 AS mutilated_sub_total_coins, a.grand_total_ugx,  a.system_cash_balance,a.shortage_cash, a.surplus_cash,CAST(a.created_on AS DATE) AS created_on, a.created_by,'Mobile Money' AS spot_check_type
+                a.branch_accountant, a.branch_manager, a.state,0 AS sub_total_good, 0 AS sub_total_coins, 0 AS sub_total_mutilated, 0 AS mutilated_sub_total_coins, a.grand_total_ugx,  a.system_cash_balance,a.shortage_cash, a.surplus_cash,CAST(a.created_on AS DATE) AS created_on, a.created_by,'Mobile Money Spot Check' AS spot_check_type
                 FROM public.spot_check_mobile_money a 
                 ) AS x where x.state not in ('ongoing','rejected_one') order by x.created_on desc)""")
 

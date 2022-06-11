@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="confirmed_report">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                       <h4 style="text-align: center;">Confirmed Spot Checks</h4>
+                       <t t-foreach="docs" t-as="x">
+                            <table class="table table-bordered table-sm">
+                            <thead>
+
+                                <tr class="bg-primary">
+                                   <th>Currency</th>
+                                   <th>Branch</th>
+                                    <th>Total Cash</th>
+                                    <th>Total Coins</th>
+                                    <th>Total Mutilated</th>
+                                    <th>Total Mutilated Coins</th>
+                                    <th>Grand Total</th>
+                                    <th>System Cash Balance</th>
+                                    <th>Shortage Cash</th>
+                                    <th>Surplus Cash</th>
+                                    <th>Date</th>
+                                    <th>Created By</th>
+                                    <th>Type</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                   
+                                     <td>
+                                         <span t-field="x.currency_id.name"/>
+                                        
+                                    </td>
+                                    <td>
+                                         <span t-field="x.branch_id.branch_name"/>
+                                        
+                                    </td>
+                                 
+                                    <td>
+                                         <span t-field="x.sub_total_good"/>
+                                        
+                                    </td>
+                                    <td>
+                                         <span t-field="x.sub_total_coins"/>
+                                        
+                                    </td>
+                                    <td>
+                                         <span t-field="x.sub_total_mutilated"/>
+                                        
+                                    </td>
+                                    <td>
+                                         <span t-field="x.mutilated_sub_total_coins"/>
+                                        
+                                    </td>
+                                    <td>
+                                         <span t-field="x.grand_total_ugx"/>
+                                        
+                                    </td>
+                                    <td>
+                                         <span t-field="x.system_cash_balance"/>
+                                        
+                                    </td>
+                                    <td>
+                                         <span t-field="x.shortage_cash"/>
+                                        
+                                    </td>
+                                    <td>
+                                         <span t-field="x.surplus_cash"/>
+                                        
+                                    </td>
+                                    <td>
+                                         <span t-field="x.created_on"/>
+                                        
+                                    </td>
+                                    <td>
+                                         <span t-field="x.created_by.name"/>
+                                        
+                                    </td>
+                                    <td>
+                                         <span t-field="x.spot_check_type"/>
+                                        
+                                    </td>
+
+                                </tr>  
+                         
+                            </tbody>
+                        </table>
+              
+                        </t>
+                    </div>
+                </t>
+            </t>
+    
+    </template>
+</odoo>

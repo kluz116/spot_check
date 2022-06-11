@@ -38,6 +38,23 @@
         name="spot_check.teller_report"
         file="spot_check.teller_report"/>
 
+        <report
+        id="spot_check_confirmed_report"
+        model="spot_check.report"
+        string="Confirmed Spot Check Report"
+        report_type="qweb-pdf"
+        name="spot_check.confirmed_report"
+        file="spot_check.confirmed_report"/>
+
+
+       <report
+        id="spot_check_ongoing_checks"
+        model="spot_check.ongoing_checks"
+        string="Ongoing Spot Check Report"
+        report_type="qweb-pdf"
+        name="spot_check.ongoing_checks"
+        file="spot_check.ongoing_checks"/>
+
 
     </data>
 </odoo>

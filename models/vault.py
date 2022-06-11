@@ -1,5 +1,5 @@
-from email.policy import default
 from odoo import models,api,fields,exceptions
+import datetime
 
 class Vault(models.Model):
     _name = "spot_check.vault"
@@ -304,17 +304,17 @@ class Vault(models.Model):
                 record.consent_status = 'Yes'
             else:
                 record.consent_status = 'No'
-            
+    '''       
     @api.depends('partner_id')    
     def _get_manager_id(self):
         if self.partner_id:
             self.branch_manager = self.partner_id.supervises
-
+    
     @api.depends('branch_manager')    
     def _get_accountant_id(self):
         if self.branch_manager:
             self.branch_accountant = self.branch_manager.supervises  
-
+    '''
     
     @api.depends('branch_accountant')
     def _get_to_branch_accountant(self):
@@ -375,4 +375,59 @@ class Vault(models.Model):
                 template =  self.env['mail.template'].browse(template_id)
                 template.send_mail(req.id,force_send=True)  
         
+    
+    @api.model
+    def _creditsupervisor_without_spotchecks(self):
+        my_date = datetime.date.today() 
+        week_num = my_date.isocalendar()
+        branch_obj = self.env['spot_check.branch'].search([('status','in',['active'])])
+        branch_list = []
+        branch_list_done = []
+        for i in branch_obj:
+            branch_list.append(i.id)
+
+        initiated_req = self.env['spot_check.vault'].search([('state', 'in', ['ongoing','confirmed_one','reject_one'])])
+        for request in initiated_req:
+            week_num_teller= request.created_on.isocalendar()
+            if week_num != week_num_teller:
+                branch_list_done.append(request.branch_id.id)
+               
+
+        branch_list_not_done = [x for x in branch_list if x not in branch_list_done]
+        obj = self.env['res.partner'].search([('&'),('branch_id_spot_check','in',branch_list_not_done),('user_role','in',['credit_supervisor'])])
+
+        for res in obj:
+            template_id = self.env.ref('spot_check.email_template_credit_supervisor_remiders').id
+            template =  self.env['mail.template'].browse(template_id)
+            template.send_mail(res.id,force_send=True)
+
+
+    @api.model
+    def _vault_spot_checked_once(self):
+        my_date = datetime.date.today() 
+        week_num = my_date.isocalendar()
+        branch_obj = self.env['spot_check.branch'].search([('status','in',['active'])])
+        branch_list = []
+        branch_list_done = []
+        for i in branch_obj:
+            branch_list.append(i.id)
+
+        initiated_req = self.env['spot_check.vault'].search([('state', 'in', ['ongoing','confirmed_one','reject_one'])])
+        for request in initiated_req:
+            week_num_teller= request.created_on.isocalendar()
+            if week_num == week_num_teller:
+                branch_list_done.append(request.branch_id.id)
+               
+
+        branch_list_not_done = [x for x in branch_list if x  in branch_list_done]
+        y = [z for z in branch_list_not_done if branch_list_not_done.count(z)==1]
+        final_list = list(dict.fromkeys(y))
+
+        obj = self.env['res.partner'].search([('&'),('branch_id_spot_check','in',final_list),('user_role','in',['credit_supervisor'])])
+
+        for res in obj:
+            template_id = self.env.ref('spot_check.email_template_credit_supervisor_once').id
+            template =  self.env['mail.template'].browse(template_id)
+            template.send_mail(res.id,force_send=True)
+    
     
