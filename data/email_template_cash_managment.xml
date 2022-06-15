@@ -847,13 +847,13 @@
             <field name="name">Spot Check: Reminder to Tellers</field>
             <field name="model_id" ref="model_res_partner"/>
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
-            <field name="email_to">${object.supervisor.email}</field>
+            <field name="email_to">${object.supervises.email}</field>
             <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,regionalmanagers@financetrust.co.ug,Henry.Kalibbala@financetrust.co.ug</field>
             <field name="subject">Spot Check Reminder for ${object.name}</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
                 <p style="margin: 0px; padding: 0px; font-size: 18px;">
-                    Hello ${object.supervisor.name} ,
+                    Hello ${object.supervises.name} ,
                     <br /><br />
 
                     This is a reminder, you have not yet done spot check for ${object.name} this current week which is against the policy. Take time off and carry out cash spot checks for ${object.name}
@@ -872,13 +872,13 @@
             <field name="name">Spot Check: Reminder To Tellers Pening</field>
             <field name="model_id" ref="model_res_partner"/>  
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
-            <field name="email_to">${object.supervisor.email}</field>
+            <field name="email_to">${object.supervises.email}</field>
             <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,regionalmanagers@financetrust.co.ug,Henry.Kalibbala@financetrust.co.ug</field>
             <field name="subject">Spot Check Reminder for ${object.name} </field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
                 <p style="margin: 0px; padding: 0px; font-size: 18px;">
-                    Hello ${object.supervisor.name} ,
+                    Hello ${object.supervises.name} ,
                     <br /><br />
 
                     This is a reminder, ${object.name} has only been spot checked once this current week which is against the policy. Take time off and carry out another spot check for ${object.name}
@@ -925,13 +925,13 @@
             <field name="name">Spot Check: Reminder to Tellers</field>
             <field name="model_id" ref="model_res_partner"/>
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
-            <field name="email_to">${object.supervisor.email}</field>
+            <field name="email_to">${object.supervises.email}</field>
             <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,regionalmanagers@financetrust.co.ug,Henry.Kalibbala@financetrust.co.ug</field>
             <field name="subject">USD Spot Check Reminder for ${object.name}</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
                 <p style="margin: 0px; padding: 0px; font-size: 18px;">
-                    Hello ${object.supervisor.name} ,
+                    Hello ${object.supervises.name} ,
                     <br /><br />
 
                     This is a reminder, you have not yet done spot check for ${object.name} this current week which is against the policy. Take time off and carry out cash spot checks for ${object.name}
@@ -951,13 +951,13 @@
             <field name="name">Spot Check: Reminder To Tellers Pending USD</field>
             <field name="model_id" ref="model_res_partner"/>  
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
-            <field name="email_to">${object.supervisor.email}</field>
+            <field name="email_to">${object.supervises.email}</field>
             <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,regionalmanagers@financetrust.co.ug,Henry.Kalibbala@financetrust.co.ug</field>
             <field name="subject">USD Spot Check Reminder for ${object.name} </field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
                 <p style="margin: 0px; padding: 0px; font-size: 18px;">
-                    Hello ${object.supervisor.name} ,
+                    Hello ${object.supervises.name} ,
                     <br /><br />
 
                     This is a reminder, ${object.name} has only been spot checked once this current week which is against the policy. Take time off and carry out another spot check for ${object.name}
@@ -1004,13 +1004,13 @@
             <field name="name">Spot Check: Reminder to Tellers Mobile Money</field>
             <field name="model_id" ref="model_res_partner"/>
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
-            <field name="email_to">${object.supervisor.email}</field>
+            <field name="email_to">${object.supervises.email}</field>
             <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,regionalmanagers@financetrust.co.ug,Henry.Kalibbala@financetrust.co.ug</field>
             <field name="subject">USD Spot Check Reminder for ${object.name}</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
                 <p style="margin: 0px; padding: 0px; font-size: 18px;">
-                    Hello ${object.supervisor.name} ,
+                    Hello ${object.supervises.name} ,
                     <br /><br />
 
                     This is a reminder, you have not yet done Mobile Money spot check for ${object.name} this current week which is against the policy. Take time off and carry out cash spot checks for ${object.name}
@@ -1030,13 +1030,13 @@
             <field name="name">Spot Check: Reminder To Tellers Pending Mobile Money</field>
             <field name="model_id" ref="model_res_partner"/>  
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
-            <field name="email_to">${object.supervisor.email}</field>
+            <field name="email_to">${object.supervises.email}</field>
             <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,regionalmanagers@financetrust.co.ug,Henry.Kalibbala@financetrust.co.ug</field>
             <field name="subject">USD Spot Check Reminder for ${object.name} </field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
                 <p style="margin: 0px; padding: 0px; font-size: 18px;">
-                    Hello ${object.supervisor.name} ,
+                    Hello ${object.supervises.name} ,
                     <br /><br />
 
                     This is a reminder, ${object.name} has only been spot checked once Mobile Money this current week which is against the policy. Take time off and carry out another spot check for ${object.name}
@@ -1052,8 +1052,8 @@
        
         </record>
 
-        <record id="email_template_credit_supervisor_remiders" model="mail.template">
-            <field name="name">Spot Check: Remider to Credit Supervisor</field>
+        <record id="email_template_credit_supervises_remiders" model="mail.template">
+            <field name="name">Spot Check: Remider to Credit supervises</field>
             <field name="model_id" ref="model_res_partner"/>
             
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
@@ -1079,8 +1079,8 @@
         </record>
 
         
-        <record id="email_template_credit_supervisor_once" model="mail.template">
-            <field name="name">Spot Check: Remider to Credit Supervisor Once</field>
+        <record id="email_template_credit_supervises_once" model="mail.template">
+            <field name="name">Spot Check: Remider to Credit supervises Once</field>
             <field name="model_id" ref="model_res_partner"/>
             
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
@@ -1106,8 +1106,8 @@
         </record>
 
         
-        <record id="email_template_credit_supervisor_remiders_usd" model="mail.template">
-            <field name="name">Spot Check: Remider to Credit Supervisor USD</field>
+        <record id="email_template_credit_supervises_remiders_usd" model="mail.template">
+            <field name="name">Spot Check: Remider to Credit supervises USD</field>
             <field name="model_id" ref="model_res_partner"/>
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
             <field name="email_to">${object.email}</field>
@@ -1132,8 +1132,8 @@
         </record>
 
         
-        <record id="email_template_credit_supervisor_once_usd" model="mail.template">
-            <field name="name">Spot Check: Remider to Credit Supervisor Once - USD</field>
+        <record id="email_template_credit_supervises_once_usd" model="mail.template">
+            <field name="name">Spot Check: Remider to Credit supervises Once - USD</field>
             <field name="model_id" ref="model_res_partner"/>
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
             <field name="email_to">${object.email}</field>
@@ -1155,8 +1155,8 @@
             </div>
             </field>
         </record>
-        <record id="email_template_credit_supervisor_remiders_atm" model="mail.template">
-            <field name="name">Spot Check: Remider to Credit Supervisor ATM</field>
+        <record id="email_template_credit_supervises_remiders_atm" model="mail.template">
+            <field name="name">Spot Check: Remider to Credit supervises ATM</field>
             <field name="model_id" ref="model_res_partner"/>
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
             <field name="email_to">${object.email}</field>
@@ -1180,8 +1180,8 @@
             </div>
             </field>
         </record>
-        <record id="email_template_credit_supervisor_once_atm" model="mail.template">
-            <field name="name">Spot Check: Remider to Credit Supervisor Once - ATM</field>
+        <record id="email_template_credit_supervises_once_atm" model="mail.template">
+            <field name="name">Spot Check: Remider to Credit supervises Once - ATM</field>
             <field name="model_id" ref="model_res_partner"/>
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
             <field name="email_to">${object.email}</field>
