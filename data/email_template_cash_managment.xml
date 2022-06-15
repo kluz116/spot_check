@@ -7,7 +7,7 @@
             <field name="model_id" ref="model_spot_check_vault"/>
             <field name="email_from">${object.user_id.email}</field>
             <field name="email_to">${object.branch_manager.email},${object.branch_accountant.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) pending your consent</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -39,7 +39,7 @@
             <field name="model_id" ref="model_spot_check_vault"/>
             <field name="email_from">${object.branch_accountant.email}</field>
             <field name="email_to">${object.branch_manager.email},${object.user_id.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) pending your consent</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -68,7 +68,7 @@
             <field name="model_id" ref="model_spot_check_vault"/>
             <field name="email_from">${object.branch_accountant.email}</field>
             <field name="email_to">${object.branch_manager.email},${object.user_id.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) rejected</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -103,7 +103,7 @@
             <field name="model_id" ref="model_spot_check_vault"/>
             <field name="email_from">${object.branch_manager.email}</field>
             <field name="email_to">${object.branch_accountant.email},${object.user_id.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) rejected</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -138,7 +138,7 @@
             <field name="model_id" ref="model_spot_check_vault"/>
             <field name="email_from"> ${object.branch_manager.email}</field>
             <field name="email_to">${object.branch_accountant.email},${object.user_id.email}</field>
-            <field name="email_cc">Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,Allan.Musembya@financetrust.co.ug</field>
+            <field name="email_cc">Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) has been confirmed</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -183,7 +183,7 @@
             <field name="model_id" ref="model_spot_check_vault_usd"/>
             <field name="email_from">${object.user_id.email}</field>
             <field name="email_to">${object.branch_manager.email},${object.branch_accountant.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) pending your consent</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -215,7 +215,7 @@
             <field name="model_id" ref="model_spot_check_vault_usd"/>
             <field name="email_from">${object.branch_accountant.email}</field>
             <field name="email_to">${object.branch_manager.email},${object.user_id.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) pending your consent</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -244,7 +244,7 @@
             <field name="model_id" ref="model_spot_check_vault_usd"/>
             <field name="email_from">${object.branch_accountant.email}</field>
             <field name="email_to">${object.branch_manager.email},${object.user_id.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) rejected</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -279,7 +279,7 @@
             <field name="model_id" ref="model_spot_check_vault"/>
             <field name="email_from">${object.branch_manager.email}</field>
             <field name="email_to">${object.branch_accountant.email},${object.user_id.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) rejected</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -314,7 +314,7 @@
             <field name="model_id" ref="model_spot_check_vault_usd"/>
             <field name="email_from"> ${object.branch_manager.email}</field>
             <field name="email_to">${object.branch_accountant.email},${object.user_id.email}</field>
-            <field name="email_cc">Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,Allan.Musembya@financetrust.co.ug</field>
+            <field name="email_cc">Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) has been confirmed</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -339,7 +339,7 @@
             <field name="model_id" ref="model_spot_check_atm"/>
             <field name="email_from">${object.user_id.email}</field>
             <field name="email_to">${object.branch_manager.email},${object.branch_accountant.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
             <field name="subject">ATM Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) pending your consent</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -370,7 +370,7 @@
             <field name="model_id" ref="model_spot_check_atm"/>
             <field name="email_from">${object.branch_accountant.email}</field>
             <field name="email_to">${object.branch_manager.email},${object.user_id.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) pending your consent</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -399,7 +399,7 @@
             <field name="model_id" ref="model_spot_check_atm"/>
             <field name="email_from">${object.branch_accountant.email}</field>
             <field name="email_to">${object.branch_manager.email},${object.user_id.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
             <field name="subject">ATM Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) rejected</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -469,7 +469,7 @@
             <field name="model_id" ref="model_spot_check_atm"/>
             <field name="email_from"> ${object.branch_manager.email}</field>
             <field name="email_to">${object.branch_accountant.email},${object.user_id.email}</field>
-            <field name="email_cc">Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,Allan.Musembya@financetrust.co.ug</field>
+            <field name="email_cc">Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
             <field name="subject">ATM Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) has been confirmed</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -498,7 +498,7 @@
             <field name="model_id" ref="model_spot_check_teller"/>
             <field name="email_from">${object.user_id.email}</field>
             <field name="email_to">${object.teller_id.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check of (Ref ${'{:,.2f}'.format(object.grand_total_ugx)}) Till ${object.till} pending your consent</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -823,7 +823,7 @@
             
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
             <field name="email_to">${object.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,regionalmanagers@financetrust.co.ug,Henry.Kalibbala@financetrust.co.ug</field>
             <field name="subject">Spot Check Reminder</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -848,7 +848,7 @@
             <field name="model_id" ref="model_res_partner"/>
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
             <field name="email_to">${object.supervisor.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,regionalmanagers@financetrust.co.ug,Henry.Kalibbala@financetrust.co.ug</field>
             <field name="subject">Spot Check Reminder for ${object.name}</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -873,7 +873,7 @@
             <field name="model_id" ref="model_res_partner"/>  
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
             <field name="email_to">${object.supervisor.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,regionalmanagers@financetrust.co.ug,Henry.Kalibbala@financetrust.co.ug</field>
             <field name="subject">Spot Check Reminder for ${object.name} </field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -901,7 +901,7 @@
         
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
             <field name="email_to">${object.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,regionalmanagers@financetrust.co.ug,Henry.Kalibbala@financetrust.co.ug</field>
             <field name="subject">Spot Check Reminder USD</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -926,7 +926,7 @@
             <field name="model_id" ref="model_res_partner"/>
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
             <field name="email_to">${object.supervisor.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,regionalmanagers@financetrust.co.ug,Henry.Kalibbala@financetrust.co.ug</field>
             <field name="subject">USD Spot Check Reminder for ${object.name}</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -952,7 +952,7 @@
             <field name="model_id" ref="model_res_partner"/>  
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
             <field name="email_to">${object.supervisor.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,regionalmanagers@financetrust.co.ug,Henry.Kalibbala@financetrust.co.ug</field>
             <field name="subject">USD Spot Check Reminder for ${object.name} </field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -980,7 +980,7 @@
         
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
             <field name="email_to">${object.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,regionalmanagers@financetrust.co.ug,Henry.Kalibbala@financetrust.co.ug</field>
             <field name="subject">Spot Check Reminder USD</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -1005,7 +1005,7 @@
             <field name="model_id" ref="model_res_partner"/>
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
             <field name="email_to">${object.supervisor.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,regionalmanagers@financetrust.co.ug,Henry.Kalibbala@financetrust.co.ug</field>
             <field name="subject">USD Spot Check Reminder for ${object.name}</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -1031,7 +1031,7 @@
             <field name="model_id" ref="model_res_partner"/>  
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
             <field name="email_to">${object.supervisor.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,regionalmanagers@financetrust.co.ug,Henry.Kalibbala@financetrust.co.ug</field>
             <field name="subject">USD Spot Check Reminder for ${object.name} </field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -1058,7 +1058,7 @@
             
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
             <field name="email_to">${object.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,regionalmanagers@financetrust.co.ug,Henry.Kalibbala@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check Reminder - UGX</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -1085,7 +1085,7 @@
             
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
             <field name="email_to">${object.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,regionalmanagers@financetrust.co.ug,Henry.Kalibbala@financetrust.co.ug</field>
             <field name="subject"> Vault Spot Check Reminder - UGX</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -1093,7 +1093,7 @@
                     Hello ${object.name},
                     <br /><br />
 
-                    This is a reminder, you have only done one vault spot check this current month which is against the policy. Kindly carry out atleast vault spot checks to avoid such notifications
+                    This is a reminder, you have only done one vault spot check this current month which is against the policy. Kindly carry out atleast one vault spot checks to avoid such notifications
                
                     <br/><br/>
                     Regards,<br/>
@@ -1111,7 +1111,7 @@
             <field name="model_id" ref="model_res_partner"/>
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
             <field name="email_to">${object.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,regionalmanagers@financetrust.co.ug,Henry.Kalibbala@financetrust.co.ug</field>
             <field name="subject">Vault Spot Check Reminder - USD</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -1119,7 +1119,7 @@
                     Hello ${object.name},
                     <br /><br />
 
-                    This is a reminder, you have not yet done any vault spot check this current month which is against the policy. Kindly carry out atleast vault spot checks to avoid such notifications
+                    This is a reminder, you have not yet done any vault spot check this current month which is against the policy. Kindly carry out vault spot checks to avoid such notifications
                
                     <br/><br/>
                     Regards,<br/>
@@ -1137,7 +1137,7 @@
             <field name="model_id" ref="model_res_partner"/>
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
             <field name="email_to">${object.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,regionalmanagers@financetrust.co.ug,Henry.Kalibbala@financetrust.co.ug</field>
             <field name="subject"> Vault Spot Check Reminder - USD</field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -1145,7 +1145,7 @@
                     Hello ${object.name},
                     <br /><br />
 
-                    This is a reminder, you have only done one vault spot check this current month which is against the policy. Kindly carry out atleast vault spot checks to avoid such notifications
+                    This is a reminder, you have only done one vault spot check this current month which is against the policy. Kindly carry out vault spot checks to avoid such notifications
                
                     <br/><br/>
                     Regards,<br/>
@@ -1160,7 +1160,7 @@
             <field name="model_id" ref="model_res_partner"/>
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
             <field name="email_to">${object.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,regionalmanagers@financetrust.co.ug,Henry.Kalibbala@financetrust.co.ug</field>
             <field name="subject">ATM Spot Check Reminder </field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
@@ -1168,7 +1168,7 @@
                     Hello ${object.name},
                     <br /><br />
 
-                    This is a reminder, you have not yet done any ATM spot check this current month which is against the policy. Kindly carry out atleast ATM spot checks to avoid such notifications.
+                    This is a reminder, you have not yet done any ATM spot check this current month which is against the policy. Kindly carry out ATM spot checks to avoid such notifications.
 
                     <br/>
                     Please ingore if the branch has no ATM machine.
@@ -1185,7 +1185,7 @@
             <field name="model_id" ref="model_res_partner"/>
             <field name="email_from">Margaret.Babirye@financetrust.co.ug</field>
             <field name="email_to">${object.email}</field>
-            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug</field>
+            <field name="email_cc">Allan.Musembya@financetrust.co.ug,Eric.Ssenyonga@financetrust.co.ug,Margaret.Babirye@financetrust.co.ug,regionalmanagers@financetrust.co.ug,Henry.Kalibbala@financetrust.co.ug</field>
             <field name="subject"> ATM Spot Check Reminder </field>
             <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
