@@ -9,7 +9,7 @@
         <group string="Spot Check Settings">
           <field string="Branch Name" name="branch_id_spot_check" readonly="0" />
           <field string="Role" name="user_role" readonly="0" />
-          <field string="Supervisor(Only Tellers)" name="supervisor" readonly="0" />
+          <field string="Supervisor(Only Tellers)" name="supervises" readonly="0" />
           <field string="Till " name="till_id" readonly="0" />  
         </group>
       </xpath>
