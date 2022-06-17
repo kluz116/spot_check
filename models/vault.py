@@ -273,7 +273,7 @@ class Vault(models.Model):
     @api.depends('deno_one_thounsand_count','deno_one_thounsand_bundle')
     def _compute_deno_one_thounsand(self):
         for record in self:
-           record.deno_one_thounsand = (record.deno_one_thounsand_bundle * (100 * 2000)) + record.deno_one_thounsand_count * 1000
+           record.deno_one_thounsand = (record.deno_one_thounsand_bundle * (100 * 1000)) + record.deno_one_thounsand_count * 1000
 
 
 

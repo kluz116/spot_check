@@ -227,7 +227,7 @@
                     <br/>
                     <br/>
                     <div class="col text-center">
-                        <a class="btn btn-success btn-sm" role="button" href="${object.base_url}"> ${object.branch_accountant.name} please click on this link to consent.</a>
+                        <a class="btn btn-success btn-sm" role="button" href="${object.base_url}"> ${object.branch_manager.name} please click on this link to consent.</a>
                     </div>
                     <br/><br/>
                     Regards,<br/>
