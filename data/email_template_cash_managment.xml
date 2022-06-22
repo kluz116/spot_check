@@ -782,7 +782,7 @@
 
         <record id="email_template_create_teller_request_reject_mm" model="mail.template">
             <field name="name">Spot Check: Reject Teller Done</field>
-            <field name="model_id" ref="model_spot_check_teller"/>
+            <field name="model_id" ref="model_spot_check_mobile_money"/>
             
             <field name="email_from">${object.teller_id.email}</field>
             <field name="email_to">${object.user_id.email}</field>

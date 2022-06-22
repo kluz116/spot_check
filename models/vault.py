@@ -94,7 +94,7 @@ class Vault(models.Model):
     created_on =  fields.Date(string='Date', default=lambda self: fields.Date.today())
     created_by = fields.Many2one('res.users','Confirmed By:',default=lambda self: self.env.user)
     user_id = fields.Many2one('res.users', string='User', track_visibility='onchange', readonly=True, default=lambda self: self.env.user.id)
-    trx_proof = fields.Binary(string='Upload BRNET GL', attachment=True,required=True)
+    trx_proof = fields.Binary(string='Upload BRNET GL', attachment=True,required=True,store=True)
     branch_code =  fields.Integer(related='branch_id.branch_code')
     #branch_manager = fields.Many2one(compute='_get_manager_id', comodel_name='res.partner', string='Branch Manger', store=True)
     #branch_accountant = fields.Many2one(compute='_get_accountant_id', comodel_name='res.partner', string='Branch Accountant', store=True)

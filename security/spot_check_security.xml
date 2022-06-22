@@ -25,6 +25,11 @@
         <field name="name">Teller</field>
         <field name="category_id" ref="module_spot_check"/>
     </record>
+
+    <record id="edit_permission" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="category_id" ref="module_spot_check"/>
+    </record>
     
   
     <record model="ir.rule" id="partner_view_rule_credit_supervisor">
@@ -110,5 +115,19 @@
         <field name="name">Cash Managment Support Atm</field>
         <field name="domain_force">[(1,'=',1)]</field>
         <field name="groups" eval="[(4,ref('spot_check.Cash_Managment_Support_Team'))]"/>
+    </record>
+
+    <record id="partner_view_rule_vault1" model="ir.rule">
+        <field name="model_id" ref="model_spot_check_vault" />
+        <field name="name">Administrator UGX </field>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4,ref('spot_check.edit_permission'))]"/>
+    </record>
+
+    <record id="partner_view_rule_vault2" model="ir.rule">
+        <field name="model_id" ref="model_spot_check_vault_usd" />
+        <field name="name">Administrator USD</field>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4,ref('spot_check.edit_permission'))]"/>
     </record>
 </odoo>

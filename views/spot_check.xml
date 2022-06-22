@@ -1032,7 +1032,7 @@
                 </form>
             </field>
         </record>
-        <!--
+        
          <record model="ir.ui.view" id="spot_check_mobile_money_search_view">
             <field name="name">spot_check.mobile_money.search</field>
             <field name="model">spot_check.mobile_money</field>
@@ -1040,10 +1040,15 @@
                 <search>
                     <field name ="created_on"/>
                     <field name="branch_code"/>
+                    <field name="branch_id"/>
+                    <field name="branch_accountant"/>
+                    
                     <separator/>
+                    <!--
                      <filter name="created_ons" string="Spot Check Category Month" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
                      <filter name="created_on_week" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
                      <filter name="branch_ids" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_id'}"/>
+                     !-->
                 </search>
             </field>
         </record>
@@ -1053,11 +1058,10 @@
             <field name="arch" type="xml">
                 <search>
                     <field name ="created_on"/>
+                    <field name="branch_code"/>
                     <field name="branch_id"/>
-                    <separator/>
-                     <filter name="created_ons" string="Spot Check Category Month" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
-                     <filter name="created_on_week" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
-                     <filter name="branch_ids" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_id'}"/>
+                    <field name="branch_accountant"/>
+
                 </search>
             </field>
         </record>
@@ -1068,11 +1072,13 @@
             <field name="arch" type="xml">
                 <search>
                     <field name ="created_on"/>
+                    <field name="branch_code"/>
                     <field name="branch_id"/>
-                    <separator/>
+                    <field name="branch_accountant"/>
+                    <!--<separator/>
                      <filter name="created_ons" string="Spot Check Category Month" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
                      <filter name="created_on_week" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
-                     <filter name="branch_ids" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_id'}"/>
+                     <filter name="branch_ids" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_id'}"/>-->
                 </search>
             </field>
         </record>
@@ -1082,13 +1088,11 @@
             <field name="model">spot_check.teller</field>
             <field name="arch" type="xml">
                 <search>
-                    <field name ="created_on"/>
+                   <field name ="created_on"/>
+                    <field name="branch_code"/>
                     <field name="branch_id"/>
-                    <separator/>
-                         <filter name="created_ons" string="Spot Check Category Month" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
-                     <filter name="created_on_week" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
-                     <filter name="branch_ids" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_id'}"/>
-                </search>
+                    <field name="branch_accountant"/>
+                  </search>
             </field>
         </record>
              <record model="ir.ui.view" id="spot_check_teller_search_view_usd">
@@ -1097,12 +1101,10 @@
             <field name="arch" type="xml">
                 <search>
                     <field name ="created_on"/>
+                    <field name="branch_code"/>
                     <field name="branch_id"/>
-                    <separator/>
-                         <filter name="created_ons" string="Spot Check Category Month" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
-                     <filter name="created_on_week" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
-                     <filter name="branch_ids" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_id'}"/>
-                </search>
+                    <field name="branch_accountant"/>
+                  </search>
             </field>
         </record>
 
@@ -1112,16 +1114,14 @@
             <field name="arch" type="xml">
                 <search>
                     
-                     <field name ="created_on"/>
-                     <field name="branch_id"/>
-                    <separator/>
-                    <filter name="created_ons" string="Spot Check Category Month" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
-                     <filter name="created_on_week" string="Spot Check Category" icon="terp-partner" context="{'group_by':'created_on:week'}"/>
-                     <filter name="branch_ids" string="Spot Check Category Branch" icon="terp-partner" context="{'group_by':'branch_id'}"/>
+                    <field name ="created_on"/>
+                    <field name="branch_code"/>
+                    <field name="branch_id"/>
+                    <field name="branch_accountant"/>
                 </search>
             </field>
         </record>
-        -->
+        
 
          <record model="ir.actions.act_window" id="mobile_money_list_action">
             <field name="name">Mobile Money Spot Checks (UGX)</field>
