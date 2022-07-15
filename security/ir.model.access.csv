@@ -49,6 +49,9 @@ access_spot_check_reports,spot_check,model_spot_check_report,Branch_Manager_spot
 access_spot_check_reportongoing_checks,spot_check,model_spot_check_ongoing_checks,Cash_Managment_Support_Team,1,1,0,0
 access_spot_check_reports_ongoing_checks,spot_check,model_spot_check_ongoing_checks,Branch_Manager_spot_check,1,1,0,0
 
+access_spot_check_report4,spot_check,model_spot_check_reportsummary,Cash_Managment_Support_Team,1,1,0,0
+access_spot_check_report8,spot_check,model_spot_check_reportsummary,Branch_Manager_spot_check,1,1,0,0
+
 
 
 

@@ -166,12 +166,12 @@ class Vault(models.Model):
     @api.depends('mutilated_deno_twenty_thounsand_count','mutilated_deno_twenty_thounsand_bundle')
     def _compute_deno_twenty_thounsand_mutilated_(self):
         for record in self:
-           record.mutilated_deno_twenty_thounsand = (record.mutilated_deno_twenty_thounsand_bundle * (100 * 50000)) + record.mutilated_deno_twenty_thounsand_count * 20000
+           record.mutilated_deno_twenty_thounsand = (record.mutilated_deno_twenty_thounsand_bundle * (100 * 20000)) + record.mutilated_deno_twenty_thounsand_count * 20000
 
     @api.depends('mutilated_deno_ten_thounsand_count','mutilated_deno_ten_thounsand_bundle')
     def _compute_deno_ten_thounsand_mutilated_(self):
         for record in self:
-           record.mutilated_deno_ten_thounsand = (record.mutilated_deno_five_thounsand_bundle * (100 * 1000)) + record.mutilated_deno_ten_thounsand_count * 10000
+           record.mutilated_deno_ten_thounsand = (record.mutilated_deno_ten_thounsand_bundle * (100 * 10000)) + record.mutilated_deno_ten_thounsand_count * 10000
 
     @api.depends('mutilated_deno_five_thounsand_count','mutilated_deno_five_thounsand_bundle')
     def _compute_deno_five_thounsand_mutilated_(self):
