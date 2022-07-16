@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<odoo>
+        <record id="spot_check_change_teller_usd" model="ir.ui.view">
+            <field name="name">spot_check.change_teller_usd.form</field>
+            <field name="model">spot_check.change_teller_usd</field>
+            <field name="arch" type="xml">
+                <form string="Change Teller">
+                    <group class="oe_title">
+                        <field name="branch_id" />
+                        <field name="teller_id" />
+ 
+                    </group>
+                    <footer>
+                        <button name="change_teller_usd" string="Change Teller" type="object" class="btn btn-outline-primary"/>
+                        <button string="Cancel" class="btn-outline-dark" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="wizard_spot_change_tellers_usd" model="ir.actions.act_window">
+            <field name="name">Change Teller</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">spot_check.change_teller_usd</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="spot_check_change_teller_usd"/>
+            <field name="target">new</field>
+        </record>
+</odoo>

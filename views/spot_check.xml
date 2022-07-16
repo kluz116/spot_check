@@ -121,6 +121,7 @@
                 <form string="Create Certificate of cash balance" create="false" edit="false">
                   <xpath expr="//sheet" position="before">
                     <header> 
+                    <button name="%(spot_check.wizard_spot_change_tellers_mm)d" states='ongoing' type="action" string="Change Teller" class="btn btn-outline-primary" groups="spot_check.edit_permission"   />
                         <button name="%(spot_check.wizard_spot_check_tellers_mm)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_teller', '=', False)]}" />
                         <button name="%(spot_check.wizard_spot_check_reject_cash_teller_mm)d" states='ongoing' type="action" string="Reject" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_teller', '=', False)]}" />
                
@@ -786,6 +787,7 @@
                 <form string="Create Declaration Form" create="false" edit="false">
                   <xpath expr="//sheet" position="before">
                     <header> 
+                       <button name="%(spot_check.wizard_spot_change_tellers_usd)d" states='ongoing' type="action" string="Change Teller" class="btn btn-outline-primary" groups="spot_check.edit_permission"   />
                         <button name="%(spot_check.wizard_spot_check_tellers_usd)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_teller', '=', False)]}" />
                         <button name="%(spot_check.wizard_spot_check_reject_cash_teller_usd)d" states='ongoing' type="action" string="Reject" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_teller', '=', False)]}" />
                         <field name ="current_to_teller" invisible="1" />

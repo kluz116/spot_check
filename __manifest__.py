@@ -42,6 +42,8 @@
         'wizard/spot_check_mm_consent_teller.xml',
         'wizard/spot_check_mm_reject_teller.xml',
         'wizard/change_teller.xml',
+        'wizard/change_teller_mm.xml',
+        'wizard/change_teller_usd.xml',
         'views/branch.xml',
         'views/spot_check.xml',
         'views/spots_user.xml',
