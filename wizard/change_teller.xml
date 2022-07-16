@@ -6,8 +6,8 @@
             <field name="arch" type="xml">
                 <form string="Change Teller">
                     <group class="oe_title">
-                        <field name="branch_id" />
-                        <field name="teller_id" />
+                        <field name="branch_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
+                        <field name="teller_id" options="{'no_quick_create':True,'no_quick_edit':True,'no_open':True}" />
  
                     </group>
                     <footer>

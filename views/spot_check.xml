@@ -121,7 +121,7 @@
                 <form string="Create Certificate of cash balance" create="false" edit="false">
                   <xpath expr="//sheet" position="before">
                     <header> 
-                    <button name="%(spot_check.wizard_spot_change_tellers_mm)d" states='ongoing' type="action" string="Change Teller" class="btn btn-outline-primary" groups="spot_check.edit_permission"   />
+                        <button name="%(spot_check.wizard_spot_change_tellers_mm)d" states='ongoing' type="action" string="Change Teller" class="btn btn-danger" groups="spot_check.edit_permission"   />
                         <button name="%(spot_check.wizard_spot_check_tellers_mm)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_teller', '=', False)]}" />
                         <button name="%(spot_check.wizard_spot_check_reject_cash_teller_mm)d" states='ongoing' type="action" string="Reject" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_teller', '=', False)]}" />
                
@@ -211,6 +211,7 @@
                 <form string="Create Certificate of cash balance" create="false" edit="false">
                   <xpath expr="//sheet" position="before">
                     <header> 
+                        <button name="%(spot_check.wizard_spot_change_vault)d" states='ongoing,confirmed_one' type="action" string="Change Users" class="btn btn-danger" groups="spot_check.edit_permission"   />
                         <button name="%(spot_check.wizard_spot_check_accountant_cosent)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
                         <button name="%(spot_check.wizard_spot_check_reject_cash_accountant)d" states='ongoing' type="action" string="Reject" class="btn btn-outline-danger" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
                         <button name="%(spot_check.wizard_spot_check_manager_cosent)d" states='confirmed_one' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
@@ -419,6 +420,7 @@
                 <form string="Create Certificate of cash balance" create="false" edit="false">
                   <xpath expr="//sheet" position="before">
                     <header> 
+                        <button name="%(spot_check.wizard_spot_change_vault_usd)d" states='ongoing,confirmed_one' type="action" string="Change Users" class="btn btn-danger" groups="spot_check.edit_permission"   />
                         <button name="%(spot_check.wizard_spot_check_accountant_cosent_usd)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
                         <button name="%(spot_check.wizard_spot_check_reject_cash_accountant_usd)d" states='ongoing' type="action" string="Reject" class="btn btn-outline-danger" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
                         <button name="%(spot_check.wizard_spot_check_manager_cosent_usd)d" states='confirmed_one' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
@@ -570,7 +572,7 @@
                 <form string="Create Declaration Form" create="false" edit="false">
                   <xpath expr="//sheet" position="before">
                     <header> 
-                        <button name="%(spot_check.wizard_spot_change_tellers)d" states='ongoing' type="action" string="Change Teller" class="btn btn-outline-primary" groups="spot_check.edit_permission"   />
+                        <button name="%(spot_check.wizard_spot_change_tellers)d" states='ongoing' type="action" string="Change Teller" class="btn btn-danger" groups="spot_check.edit_permission"   />
                         <button name="%(spot_check.wizard_spot_check_tellers)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_teller', '=', False)]}" />
                         <button name="%(spot_check.wizard_spot_check_reject_cash_teller)d" states='ongoing' type="action" string="Reject" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_teller', '=', False)]}" />
                
@@ -787,7 +789,7 @@
                 <form string="Create Declaration Form" create="false" edit="false">
                   <xpath expr="//sheet" position="before">
                     <header> 
-                       <button name="%(spot_check.wizard_spot_change_tellers_usd)d" states='ongoing' type="action" string="Change Teller" class="btn btn-outline-primary" groups="spot_check.edit_permission"   />
+                       <button name="%(spot_check.wizard_spot_change_tellers_usd)d" states='ongoing' type="action" string="Change Teller" class="btn btn-danger" groups="spot_check.edit_permission"   />
                         <button name="%(spot_check.wizard_spot_check_tellers_usd)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_teller', '=', False)]}" />
                         <button name="%(spot_check.wizard_spot_check_reject_cash_teller_usd)d" states='ongoing' type="action" string="Reject" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_teller', '=', False)]}" />
                         <field name ="current_to_teller" invisible="1" />
@@ -940,7 +942,8 @@
                 <form string="Create Certificate of cash balance" create="false" edit="false">
                   <xpath expr="//sheet" position="before">
                     <header> 
-                        <button name="%(spot_check.wizard_spot_check_accountant_cosent_atm)d" states='ongoing' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
+                        <button name="%(spot_check.wizard_spot_change_atm)d" states='ongoing,confirmed_one' type="action" string="Change Users" class="btn btn-danger" groups="spot_check.edit_permission"   />
+                        <button name="%(spot_check.wizard_spot_check_accountant_cosent_atm)d" states='ongoing' type="action" string="Consent" class="btn btn-danger" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
                         <button name="%(spot_check.wizard_spot_check_reject_cash_accountant_atm)d" states='ongoing' type="action" string="Reject" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_accountant', '=', False)]}" />
                         <button name="%(spot_check.wizard_spot_check_manager_cosent_atm)d" states='confirmed_one' type="action" string="Consent" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />
                         <button name="%(spot_check.wizard_spot_check_reject_reject_manager_atm)d" states='confirmed_one' type="action" string="Reject" class="btn btn-outline-primary" attrs="{'invisible':['|',('current_to_branch_manager', '=', False)]}" />

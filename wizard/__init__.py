@@ -19,3 +19,6 @@ from . import spot_check_mm_reject_teller
 from . import change_teller
 from . import change_teller_usd
 from . import change_teller_mm
+from . import change_vault
+from . import change_vault_usd
+from . import change_atm
