@@ -16,3 +16,4 @@ from . import spot_check_reject_teller_usd
 from . import spot_check_consent_teller_usd
 from . import spot_check_mm_consent_teller
 from . import spot_check_mm_reject_teller
+from . import change_teller
